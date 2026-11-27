@@ -1,0 +1,95 @@
+<aside class="sf-sidebar">
+  <div class="sf-sidebar-header justify-content-between">
+    <a href="{{ url_for('home') }}" class="sf-brand-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      <span>SkillForge</span>
+    </a>
+    <button class="btn btn-sm btn-ghost d-lg-none" onclick="SkillForgeUI.toggleSidebar()">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <div class="sf-sidebar-body">
+    <!-- STUDENT SECTION -->
+    <div class="sf-sidebar-section-title">Student Learning</div>
+    <a href="{{ url_for('student_dashboard') }}" class="sf-sidebar-item {% if request.endpoint == 'student_dashboard' %}active{% endif %}">
+      <i data-lucide="layout-dashboard"></i>
+      <span>Dashboard</span>
+    </a>
+    <a href="{{ url_for('student_profile') }}" class="sf-sidebar-item {% if request.endpoint == 'student_profile' %}active{% endif %}">
+      <i data-lucide="user-check"></i>
+      <span>Skill Passport</span>
+    </a>
+    <a href="{{ url_for('student_roadmap') }}" class="sf-sidebar-item {% if request.endpoint == 'student_roadmap' %}active{% endif %}">
+      <i data-lucide="map"></i>
+      <span>Roadmap</span>
+    </a>
+    <a href="{{ url_for('student_courses') }}" class="sf-sidebar-item {% if 'courses' in request.endpoint or 'lesson' in request.endpoint %}active{% endif %}">
+      <i data-lucide="book-open"></i>
+      <span>Curriculum</span>
+    </a>
+    <a href="{{ url_for('student_assignments') }}" class="sf-sidebar-item {% if 'assignment' in request.endpoint %}active{% endif %}">
+      <i data-lucide="file-check"></i>
+      <span>Assignments</span>
+    </a>
+    <a href="{{ url_for('student_coding_assessment') }}" class="sf-sidebar-item {% if request.endpoint == 'student_coding_assessment' %}active{% endif %}">
+      <i data-lucide="terminal"></i>
+      <span>Code Assessment</span>
+    </a>
+    <a href="{{ url_for('student_quiz') }}" class="sf-sidebar-item {% if request.endpoint == 'student_quiz' %}active{% endif %}">
+      <i data-lucide="help-circle"></i>
+      <span>Quizzes & Exams</span>
+    </a>
+
+    <!-- WORK & SUPERVISION -->
+    <div class="sf-sidebar-section-title">Internship & Project</div>
+    <a href="{{ url_for('project_dashboard') }}" class="sf-sidebar-item {% if 'project' in request.endpoint %}active{% endif %}">
+      <i data-lucide="kanban"></i>
+      <span>Live Project</span>
+    </a>
+    <a href="{{ url_for('student_daily_report') }}" class="sf-sidebar-item {% if request.endpoint == 'student_daily_report' %}active{% endif %}">
+      <i data-lucide="clipboard-list"></i>
+      <span>Daily Standup (DWR)</span>
+    </a>
+    <a href="{{ url_for('student_attendance') }}" class="sf-sidebar-item {% if request.endpoint == 'student_attendance' %}active{% endif %}">
+      <i data-lucide="calendar-check"></i>
+      <span>Attendance</span>
+    </a>
+    <a href="{{ url_for('zoom_meet') }}" class="sf-sidebar-item {% if request.endpoint == 'zoom_meet' or request.endpoint == 'google_meet' %}active{% endif %}">
+      <i data-lucide="video"></i>
+      <span>Live Sessions</span>
+    </a>
+    <a href="{{ url_for('student_evaluations') }}" class="sf-sidebar-item {% if request.endpoint == 'student_evaluations' %}active{% endif %}">
+      <i data-lucide="award"></i>
+      <span>Evaluations</span>
+    </a>
+
+    <!-- MENTOR & ADMIN SWITCHERS -->
+    <div class="sf-sidebar-section-title">Portals</div>
+    <a href="{{ url_for('mentor_dashboard') }}" class="sf-sidebar-item {% if 'mentor' in request.endpoint %}active{% endif %}">
+      <i data-lucide="shield"></i>
+      <span>Mentor Portal</span>
+    </a>
+    <a href="{{ url_for('admin_dashboard') }}" class="sf-sidebar-item {% if 'admin' in request.endpoint %}active{% endif %}">
+      <i data-lucide="sliders"></i>
+      <span>Admin Console</span>
+    </a>
+    <a href="{{ url_for('employee_portal') }}" class="sf-sidebar-item {% if 'employee' in request.endpoint %}active{% endif %}">
+      <i data-lucide="briefcase"></i>
+      <span>HR Portal</span>
+    </a>
+  </div>
+
+  <div class="p-3 border-top border-subtle">
+    <a href="{{ url_for('certificate_view', cert_id='SF-2026-88412') }}" class="sf-sidebar-item text-primary">
+      <i data-lucide="file-badge"></i>
+      <span>My Certificate</span>
+    </a>
+    <button onclick="SkillForgeAPI.auth.logout()" class="sf-sidebar-item text-danger border-0 bg-transparent w-100 text-start">
+      <i data-lucide="log-out"></i>
+      <span>Sign Out</span>
+    </button>
+  </div>
+</aside>

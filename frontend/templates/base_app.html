@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body_class %}bg-canvas sf-app-body{% endblock %}
+
+{% block layout %}
+<div class="sf-app-shell">
+  {% include "components/sidebar_app.html" %}
+  <div class="sf-main-wrapper">
+    {% include "components/topbar_app.html" %}
+    <main class="sf-page-content">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</div>
+{% endblock %}
