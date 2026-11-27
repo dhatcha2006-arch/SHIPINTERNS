@@ -190,8 +190,8 @@ def api_login():
         "token": "sf_token_" + os.urandom(12).hex(),
         "user": {
             "id": 101,
-            "name": "Alex Chen",
-            "email": email or "alex.chen@skillforge.edu",
+            "name": "Dhatchanamoorthi Anbazhagan",
+            "email": email or "dhatcha2006@skillforge.edu",
             "role": role,
             "cohort": "Spring 2026 Full Stack Cohort"
         }

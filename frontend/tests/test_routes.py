@@ -163,7 +163,7 @@ def test_student_analytics(client):
     assert b"Student Engineering Performance Analytics" in response.data
 
 def test_auth_api(client):
-    res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
+    res = client.post('/api/v1/auth/login', json={'email': 'dhatcha2006@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
     data = res.get_json()
     assert data['success'] is True
