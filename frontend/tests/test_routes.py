@@ -50,6 +50,11 @@ def test_internship_application_flow(client):
     assert res2.status_code == 200
     assert b"Application Status Tracker" in res2.data
 
+def test_student_courses(client):
+    response = client.get('/student/courses')
+    assert response.status_code == 200
+    assert b"Curriculum & Course Tracks" in response.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200

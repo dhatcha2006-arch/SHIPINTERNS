@@ -1,0 +1,103 @@
+{% extends "base_app.html" %}
+
+{% block title %}Curriculum & Courses | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Curriculum & Course Tracks</h1>
+    <p class="text-slate-500 small mb-0">Structured engineering syllabus with in-browser lab exercises and mentor-evaluated milestones.</p>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <span class="sf-badge sf-badge-primary">Track: Full-Stack Engineering</span>
+  </div>
+</div>
+
+<!-- Enrolled Track Spotlight -->
+<div class="sf-card p-4 bg-white border mb-4">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-8">
+      <span class="sf-badge sf-badge-primary mb-2">Active Enrollment • Sprint 4</span>
+      <h2 class="h5 fw-bold text-slate-900 mb-2">CS-401: Distributed RESTful Architectures & Microservices</h2>
+      <p class="text-slate-600 small mb-3">
+        Learn production patterns for Python Flask web services: WSGI internals, asynchronous workers with Celery, connection pool tuning, and OpenAPI contract testing.
+      </p>
+      <div class="d-flex flex-wrap align-items-center gap-4 text-slate-500 small mb-3">
+        <div><i data-lucide="book-open" class="me-1 text-primary" style="width: 14px;"></i> 12 Lessons</div>
+        <div><i data-lucide="terminal" class="me-1 text-primary" style="width: 14px;"></i> 4 Code Labs</div>
+        <div><i data-lucide="clock" class="me-1 text-primary" style="width: 14px;"></i> 24 Total Hours</div>
+        <div><i data-lucide="user-check" class="me-1 text-primary" style="width: 14px;"></i> Mentor: Sarah Jenkins</div>
+      </div>
+      <div>
+        <div class="d-flex justify-content-between small text-slate-600 mb-1">
+          <span>Curriculum Completion</span>
+          <span class="fw-bold tabular-nums">78.4%</span>
+        </div>
+        <div class="sf-progress-bar">
+          <div class="sf-progress-fill" style="width: 78.4%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 text-lg-end">
+      <a href="{{ url_for('student_lesson') }}" class="btn-sf-primary px-4 py-2">
+        <i data-lucide="play" style="width: 16px; height: 16px;"></i>
+        <span>Continue Next Lesson</span>
+      </a>
+      <div class="mt-2">
+        <a href="{{ url_for('student_course_details', course_id=101) }}" class="text-primary small">View Full Syllabus &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Course Catalog Grid -->
+<div class="row g-4">
+  <!-- Course 1 -->
+  <div class="col-md-6 col-xl-4">
+    <div class="sf-card p-4 bg-white border h-100 d-flex flex-column">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <span class="sf-badge sf-badge-neutral">Foundation</span>
+        <span class="sf-badge sf-badge-success">Completed</span>
+      </div>
+      <h3 class="h6 fw-bold text-slate-900 mb-2">CS-201: Python Systems & Clean Code Architecture</h3>
+      <p class="text-slate-500 small mb-3">Object-oriented design patterns, memory profiling, type hinting, and automated Pytest fixtures.</p>
+      <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+        <span class="text-success small fw-medium">Score: 98%</span>
+        <a href="{{ url_for('student_course_details', course_id=201) }}" class="btn-sf-ghost py-1 px-2 small">Review</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 2 -->
+  <div class="col-md-6 col-xl-4">
+    <div class="sf-card p-4 bg-white border h-100 d-flex flex-column">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <span class="sf-badge sf-badge-primary">Core</span>
+        <span class="sf-badge sf-badge-primary">In Progress (78%)</span>
+      </div>
+      <h3 class="h6 fw-bold text-slate-900 mb-2">CS-401: Distributed RESTful Services & Microservices</h3>
+      <p class="text-slate-500 small mb-3">Flask blueprint design, JWT security, Celery task distribution, and PostgreSQL ACID transactions.</p>
+      <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+        <span class="text-primary small fw-medium">Sprint 4 Active</span>
+        <a href="{{ url_for('student_lesson') }}" class="btn-sf-primary py-1 px-2 small">Resume</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course 3 -->
+  <div class="col-md-6 col-xl-4">
+    <div class="sf-card p-4 bg-white border h-100 d-flex flex-column">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <span class="sf-badge sf-badge-neutral">Advanced</span>
+        <span class="badge bg-slate-100 text-slate-500">Upcoming Sprint 5</span>
+      </div>
+      <h3 class="h6 fw-bold text-slate-900 mb-2">CS-501: Container Orchestration & Docker Pipelines</h3>
+      <p class="text-slate-500 small mb-3">Multi-stage container builds, rootless execution, Kubernetes manifest authoring, and CI pipelines.</p>
+      <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+        <span class="text-slate-400 small">Opens April 10</span>
+        <a href="{{ url_for('student_course_details', course_id=501) }}" class="btn-sf-secondary py-1 px-2 small">Preview</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
