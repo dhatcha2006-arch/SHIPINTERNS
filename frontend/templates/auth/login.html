@@ -30,6 +30,12 @@
 
       <form id="loginForm" onsubmit="handleLogin(event)">
         <div class="mb-3">
+          <label class="sf-label" for="nameInput">Full Name</label>
+          <input type="text" id="nameInput" class="sf-input" placeholder="Enter your full name" autocomplete="name" value="Dhatchanamoorthi Anbazhagan">
+          <div class="text-slate-400 small mt-1" style="font-size: 0.75rem;">This name will be displayed across your Student Profile, Skill Passport & Certificates.</div>
+        </div>
+
+        <div class="mb-3">
           <label class="sf-label" for="emailInput">Institutional / Work Email</label>
           <input type="email" id="emailInput" class="sf-input" required placeholder="dhatcha2006@shipinterns.edu" autocomplete="email">
         </div>
@@ -78,6 +84,13 @@ function fillDemo(role) {
     admin: 'admin@shipinterns.edu',
     hr: 'hr.partner@shipinterns.edu'
   };
+  const nameMap = {
+    student: 'Dhatchanamoorthi Anbazhagan',
+    mentor: 'Sarah Jenkins',
+    admin: 'System Admin',
+    hr: 'Enterprise Talent Partner'
+  };
+  document.getElementById('nameInput').value = nameMap[role] || 'Dhatchanamoorthi Anbazhagan';
   document.getElementById('emailInput').value = emailMap[role] || 'student@shipinterns.edu';
   document.getElementById('passwordInput').value = 'ShipInterns2026!';
 }
@@ -101,10 +114,11 @@ async function handleLogin(e) {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Authenticating...';
 
+  const name = document.getElementById('nameInput').value.trim();
   const email = document.getElementById('emailInput').value.trim();
   const password = document.getElementById('passwordInput').value;
 
-  const res = await ShipInternsAPI.auth.login({ email, password });
+  const res = await ShipInternsAPI.auth.login({ email, password, name });
   if (res.success) {
     ShipInternsUI.showToast('Authentication successful. Redirecting...', 'success', 'Welcome');
     setTimeout(() => {

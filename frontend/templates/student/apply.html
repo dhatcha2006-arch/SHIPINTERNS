@@ -41,7 +41,7 @@
       <div class="row g-3 mb-4">
         <div class="col-sm-6">
           <label class="sf-label">Full Name</label>
-          <input type="text" class="sf-input" value="Dhatchanamoorthi Anbazhagan" required>
+          <input type="text" class="sf-input sf-dynamic-user-name-val" value="{{ current_user.name if current_user else 'Dhatchanamoorthi Anbazhagan' }}" required>
         </div>
         <div class="col-sm-6">
           <label class="sf-label">Email Address</label>

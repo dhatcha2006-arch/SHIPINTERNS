@@ -61,11 +61,36 @@ const ShipInternsUI = {
         menu.classList.toggle('d-none');
       });
     }
+  },
+
+  // Hydrate dynamic user profile name across pages
+  hydrateUser() {
+    try {
+      const stored = localStorage.getItem('sf_user');
+      if (stored) {
+        const u = JSON.parse(stored);
+        if (u && u.name) {
+          document.querySelectorAll('.sf-dynamic-user-name').forEach(el => {
+            el.textContent = u.name;
+          });
+          document.querySelectorAll('.sf-dynamic-user-name-val').forEach(el => {
+            el.value = u.name;
+          });
+          const initials = u.name.split(' ').filter(Boolean).map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'SI';
+          document.querySelectorAll('.sf-dynamic-user-initials').forEach(el => {
+            el.textContent = initials;
+          });
+        }
+      }
+    } catch (e) {
+      console.warn('Hydration error:', e);
+    }
   }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
   ShipInternsUI.initMobileNav();
+  ShipInternsUI.hydrateUser();
 });
 
 window.ShipInternsUI = ShipInternsUI;

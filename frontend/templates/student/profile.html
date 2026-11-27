@@ -24,11 +24,11 @@
   <!-- Left Column: Identity & Contact Card -->
   <div class="col-lg-4">
     <div class="sf-card p-4 text-center mb-4">
-      <div class="rounded-circle bg-primary-50 text-primary border border-primary-200 d-inline-flex align-items-center justify-content-center fw-bold fs-3 mb-3 mx-auto" style="width: 84px; height: 84px;">
-        DA
+      <div class="rounded-circle bg-primary-50 text-primary border border-primary-200 d-inline-flex align-items-center justify-content-center fw-bold fs-3 mb-3 mx-auto sf-dynamic-user-initials" style="width: 84px; height: 84px;">
+        {{ (current_user.name[:2] if current_user and current_user.name else 'DA').upper() }}
       </div>
-      <h2 class="h5 fw-bold text-slate-900 mb-1">Dhatchanamoorthi Anbazhagan</h2>
-      <div class="text-primary small fw-semibold mb-2">Student Intern • Spring 2026 Cohort</div>
+      <h2 class="h5 fw-bold text-slate-900 mb-1 sf-dynamic-user-name">{{ current_user.name if current_user else 'Dhatchanamoorthi Anbazhagan' }}</h2>
+      <div class="text-primary small fw-semibold mb-2">{{ current_user.role.title() if current_user else 'Student Intern' }} • Spring 2026 Cohort</div>
       <div class="sf-badge sf-badge-success mb-3">ID: SF-2026-88412 (Verified)</div>
 
       <p class="text-slate-600 small mb-4 text-start">
@@ -83,7 +83,7 @@
             <span class="sf-badge sf-badge-primary">Cryptographic Skill Passport</span>
           </div>
           <h2 class="h4 fw-bold text-slate-900 mb-1">ShipInterns Academy Verified Passport</h2>
-          <div class="text-slate-500 small">Issued to Dhatchanamoorthi Anbazhagan • Candidate UID: SF-2026-88412</div>
+          <div class="text-slate-500 small">Issued to <span class="sf-dynamic-user-name">{{ current_user.name if current_user else 'Dhatchanamoorthi Anbazhagan' }}</span> • Candidate UID: SF-2026-88412</div>
         </div>
         <div class="text-sm-end">
           <div class="text-slate-400 small">SHA-256 Commit Root:</div>

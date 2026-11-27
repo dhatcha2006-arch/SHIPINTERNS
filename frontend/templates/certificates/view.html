@@ -45,7 +45,7 @@
       <!-- Recipient Body -->
       <div class="text-center my-5">
         <div class="text-slate-500 small mb-2 text-uppercase" style="letter-spacing: 0.05em;">This is to certify that</div>
-        <div class="display-5 fw-bold text-slate-900 mb-2" style="font-family: serif;">Dhatchanamoorthi Anbazhagan</div>
+        <div class="display-5 fw-bold text-slate-900 mb-2 sf-dynamic-user-name" style="font-family: serif;">{{ current_user.name if current_user else 'Dhatchanamoorthi Anbazhagan' }}</div>
         <div class="text-slate-600 max-w-xl mx-auto" style="font-size: 1.05rem; line-height: 1.6;">
           has successfully demonstrated production software engineering competence, completed 140 hours of supervised coursework, passed all in-browser technical assessments, and contributed verified pull requests to enterprise codebases under senior mentor supervision in:
         </div>

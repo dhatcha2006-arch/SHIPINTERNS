@@ -10,7 +10,7 @@
       <h1 class="h3 fw-bold text-slate-900 mb-0">Internship Command Center</h1>
       <span class="sf-badge sf-badge-primary">Sprint 4 of 8</span>
     </div>
-    <div class="text-slate-500 small">Enterprise Full-Stack Track • Supervised Squad 04 • Mentor: <strong>Sarah Jenkins</strong></div>
+    <div class="text-slate-500 small">Welcome back, <strong class="sf-dynamic-user-name">{{ current_user.name if current_user else 'Dhatchanamoorthi Anbazhagan' }}</strong> • Enterprise Full-Stack Track • Supervised Squad 04 • Mentor: <strong>Sarah Jenkins</strong></div>
   </div>
   <div class="d-flex align-items-center gap-2">
     <a href="{{ url_for('student_daily_report') }}" class="btn-sf-secondary">

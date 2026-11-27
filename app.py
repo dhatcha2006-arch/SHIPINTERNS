@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, jsonify, request, send_from_directory
+from flask import Flask, render_template, jsonify, request, send_from_directory, session
 
 app = Flask(
     __name__,
@@ -8,6 +8,17 @@ app = Flask(
     static_url_path='/static'
 )
 app.config['SECRET_KEY'] = 'shipinterns-dev-secret-key-2026'
+
+@app.context_processor
+def inject_user():
+    user = session.get('user', {
+        "id": 101,
+        "name": "Dhatchanamoorthi Anbazhagan",
+        "email": "dhatcha2006@shipinterns.edu",
+        "role": "student",
+        "cohort": "Spring 2026 Full Stack Cohort"
+    })
+    return dict(current_user=user)
 
 # --- PUBLIC ROUTES ---
 @app.route('/')
@@ -178,23 +189,33 @@ def api_health():
 def api_login():
     data = request.get_json() or {}
     email = data.get('email', '')
+    name = (data.get('name') or '').strip()
     role = 'student'
+    default_name = "Dhatchanamoorthi Anbazhagan"
     if 'mentor' in email:
         role = 'mentor'
+        default_name = "Sarah Jenkins"
     elif 'admin' in email:
         role = 'admin'
+        default_name = "System Admin"
     elif 'hr' in email or 'emp' in email:
         role = 'employee'
+        default_name = "Enterprise Talent Partner"
+    
+    final_name = name if name else default_name
+    user_info = {
+        "id": 101,
+        "name": final_name,
+        "email": email or "dhatcha2006@shipinterns.edu",
+        "role": role,
+        "cohort": "Spring 2026 Full Stack Cohort"
+    }
+    session['user'] = user_info
+
     return jsonify({
         "success": True,
         "token": "sf_token_" + os.urandom(12).hex(),
-        "user": {
-            "id": 101,
-            "name": "Dhatchanamoorthi Anbazhagan",
-            "email": email or "dhatcha2006@shipinterns.edu",
-            "role": role,
-            "cohort": "Spring 2026 Full Stack Cohort"
-        }
+        "user": user_info
     })
 
 @app.route('/api/v1/auth/register', methods=['POST'])
