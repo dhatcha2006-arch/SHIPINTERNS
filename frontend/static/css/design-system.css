@@ -23,7 +23,7 @@
   --sf-bg-subtle: #f8fafc;
   --sf-border-subtle: rgba(15, 23, 42, 0.08);
   --sf-border-strong: rgba(15, 23, 42, 0.16);
-  --sf-border-focus: #eab308;
+  --sf-border-focus: #0f172a;
 
   /* Typography Roles */
   --sf-text-primary: #0f172a;
@@ -32,13 +32,18 @@
   --sf-text-subtle: #94a3b8;
   --sf-text-inverse: #ffffff;
 
-  /* Brand Yellow Accent (Vibrant Golden Yellow & Amber) */
-  --sf-primary-50:  #fefce8;
-  --sf-primary-100: #fef9c3;
-  --sf-primary-200: #fef08a;
-  --sf-primary-500: #facc15;
-  --sf-primary-600: #eab308;
-  --sf-primary-700: #ca8a04;
+  /* Linear-style Monochromatic Primary & Gold Micro-Accent */
+  --sf-primary-50:  #f8fafc;
+  --sf-primary-100: #f1f5f9;
+  --sf-primary-200: #e2e8f0;
+  --sf-primary-500: #0f172a;
+  --sf-primary-600: #090a0f;
+  --sf-primary-700: #000000;
+
+  /* Gold / Amber Micro-Accent (Live Dots, Seal, Logo) */
+  --sf-gold-400: #facc15;
+  --sf-gold-500: #eab308;
+  --sf-gold-600: #ca8a04;
 
   /* Semantics */
   --sf-success-50:  #ecfdf5;
@@ -116,12 +121,13 @@ p {
 }
 
 a {
-  color: #b45309;
+  color: #0f172a;
   text-decoration: none;
+  font-weight: 500;
   transition: color 0.15s ease-in-out;
 }
 a:hover {
-  color: #78350f;
+  color: #2563eb;
 }
 
 .tabular-nums {
