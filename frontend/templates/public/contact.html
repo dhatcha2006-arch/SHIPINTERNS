@@ -1,0 +1,99 @@
+{% extends "base_public.html" %}
+
+{% block title %}Contact & Campus Partnerships | SkillForge Academy{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-white border-bottom">
+  <div class="container py-4">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <span class="sf-badge sf-badge-primary mb-3">Get in Touch</span>
+        <h1 class="display-6 fw-bold text-slate-900 mb-3">Connect with SkillForge</h1>
+        <p class="lead text-slate-600 mb-4">
+          Whether you are a student inquiring about upcoming cohorts, a university department seeking accredited curriculum integration, or an enterprise looking to hire interns, our academy team is here to assist.
+        </p>
+
+        <div class="d-flex flex-column gap-3 mb-4">
+          <div class="d-flex align-items-start gap-3">
+            <div class="p-2 bg-slate-100 rounded text-primary mt-1">
+              <i data-lucide="mail" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <div class="fw-semibold text-slate-900">Direct Academic Inquiries</div>
+              <div class="text-slate-500 small">admissions@skillforge.academy</div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-start gap-3">
+            <div class="p-2 bg-slate-100 rounded text-primary mt-1">
+              <i data-lucide="building" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <div class="fw-semibold text-slate-900">Enterprise Hiring & Placement</div>
+              <div class="text-slate-500 small">partnerships@skillforge.academy</div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-start gap-3">
+            <div class="p-2 bg-slate-100 rounded text-primary mt-1">
+              <i data-lucide="map-pin" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <div class="fw-semibold text-slate-900">Academy Headquarters</div>
+              <div class="text-slate-500 small">SkillForge Tower, Tech Innovation Park, Sector 4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="sf-card p-4 bg-white border">
+          <h2 class="h5 fw-bold text-slate-900 mb-3">Send a Message</h2>
+          <form id="contactForm" onsubmit="handleContact(event)">
+            <div class="row g-3 mb-3">
+              <div class="col-sm-6">
+                <label class="sf-label">Full Name</label>
+                <input type="text" class="sf-input" required placeholder="Elena Vance">
+              </div>
+              <div class="col-sm-6">
+                <label class="sf-label">Email Address</label>
+                <input type="email" class="sf-input" required placeholder="elena@university.edu">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="sf-label">Inquiry Type</label>
+              <select class="sf-select">
+                <option>Student Internship Application</option>
+                <option>University / College Partnership</option>
+                <option>Corporate Hiring & Recruitment</option>
+                <option>Mentor / Instructor Application</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <label class="sf-label">Message Details</label>
+              <textarea class="sf-textarea" rows="4" required placeholder="Describe your background or partnership requirements..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-sf-primary w-100 py-2">
+              <span>Submit Inquiry</span>
+              <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function handleContact(e) {
+  e.preventDefault();
+  SkillForgeUI.showToast('Your inquiry has been submitted. An academy coordinator will respond within 24 hours.', 'success', 'Inquiry Received');
+  e.target.reset();
+}
+</script>
+{% endblock %}
