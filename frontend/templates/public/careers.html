@@ -1,0 +1,61 @@
+{% extends "base_public.html" %}
+
+{% block title %}Careers & Mentorship Openings | SkillForge Academy{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-white border-bottom">
+  <div class="container py-4">
+    <div class="max-w-2xl">
+      <span class="sf-badge sf-badge-primary mb-3">Join the Faculty</span>
+      <h1 class="display-6 fw-bold text-slate-900 mb-3">Mentor the Next Generation of Engineers</h1>
+      <p class="lead text-slate-600 mb-0">
+        We are seeking senior software engineers, distributed systems architects, and engineering managers who are passionate about code craftsmanship, 1-on-1 mentorship, and structured rubric evaluations.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-canvas">
+  <div class="container py-2">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="sf-card p-4 bg-white border h-100">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <span class="sf-badge sf-badge-neutral mb-2">Remote • 8-10 hrs / week</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Senior Cloud Systems Mentor</h2>
+            </div>
+            <span class="badge bg-success-50 text-success border border-success-200">Open Role</span>
+          </div>
+          <p class="text-slate-600 small mb-4">
+            Guide squads of 5-8 interns through Kubernetes cluster deployments, Prometheus alerting setups, and Terraform modules. Conduct weekly PR reviews and hold 1-on-1 sprint retrospectives.
+          </p>
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <span class="text-muted small">Honorarium: $80 - $120 / hr</span>
+            <a href="{{ url_for('contact') }}" class="btn-sf-primary btn-sm">Apply as Mentor</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="sf-card p-4 bg-white border h-100">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <span class="sf-badge sf-badge-neutral mb-2">Remote • Flexible</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">AI Systems Curriculum Architect</h2>
+            </div>
+            <span class="badge bg-success-50 text-success border border-success-200">Open Role</span>
+          </div>
+          <p class="text-slate-600 small mb-4">
+            Author real-world coding assessment test suites, benchmark LLM evaluation rubrics, and design production capstone projects covering vector embeddings and latency budgets.
+          </p>
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <span class="text-muted small">Contract: Full or Part-time</span>
+            <a href="{{ url_for('contact') }}" class="btn-sf-primary btn-sm">Apply as Architect</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

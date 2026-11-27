@@ -18,3 +18,9 @@ def test_home_page(client):
     assert response.status_code == 200
     assert b"SkillForge" in response.data
     assert b"Where Academic Foundations Meet Supervised Industry Practice" in response.data
+
+def test_public_pages(client):
+    for route in ['/about', '/programs', '/contact', '/careers']:
+        response = client.get(route)
+        assert response.status_code == 200
+        assert b"SkillForge" in response.data
