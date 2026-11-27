@@ -1,0 +1,210 @@
+{% extends "base_app.html" %}
+
+{% block title %}Skill Passport & Profile | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Student Profile & Skill Passport</h1>
+    <p class="text-slate-500 small mb-0">Verified identity, validated competency rubrics, and immutable project credentials.</p>
+  </div>
+  <div class="d-flex gap-2">
+    <button class="btn-sf-secondary" onclick="window.print()">
+      <i data-lucide="printer" style="width: 16px; height: 16px;"></i>
+      <span>Print Passport</span>
+    </button>
+    <a href="{{ url_for('certificate_view', cert_id='SF-2026-88412') }}" class="btn-sf-primary">
+      <i data-lucide="award" style="width: 16px; height: 16px;"></i>
+      <span>View Certificate</span>
+    </a>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Left Column: Identity & Contact Card -->
+  <div class="col-lg-4">
+    <div class="sf-card p-4 text-center mb-4">
+      <div class="rounded-circle bg-primary-50 text-primary border border-primary-200 d-inline-flex align-items-center justify-content-center fw-bold fs-3 mb-3 mx-auto" style="width: 84px; height: 84px;">
+        AC
+      </div>
+      <h2 class="h5 fw-bold text-slate-900 mb-1">Alex Chen</h2>
+      <div class="text-primary small fw-semibold mb-2">Student Intern • Spring 2026 Cohort</div>
+      <div class="sf-badge sf-badge-success mb-3">ID: SF-2026-88412 (Verified)</div>
+
+      <p class="text-slate-600 small mb-4 text-start">
+        Aspiring Distributed Systems and Full-Stack Software Engineer with intensive hands-on experience in Python Flask, relational database indexing, and containerized deployments.
+      </p>
+
+      <div class="text-start border-top pt-3">
+        <div class="mb-2 small">
+          <span class="text-slate-400">Institutional Email:</span><br>
+          <span class="text-slate-800 fw-medium">alex.chen@skillforge.edu</span>
+        </div>
+        <div class="mb-2 small">
+          <span class="text-slate-400">University:</span><br>
+          <span class="text-slate-800 fw-medium">State Institute of Technology</span>
+        </div>
+        <div class="mb-2 small">
+          <span class="text-slate-400">Assigned Track:</span><br>
+          <span class="text-slate-800 fw-medium">Enterprise Full-Stack Python & React</span>
+        </div>
+        <div class="mb-0 small">
+          <span class="text-slate-400">GitHub Profile:</span><br>
+          <a href="https://github.com/alexchen-dev" target="_blank" class="text-primary fw-medium">github.com/alexchen-dev</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Profile Update Form -->
+    <div class="sf-card p-4">
+      <h3 class="h6 fw-bold text-slate-900 mb-3">Update Contact Information</h3>
+      <form onsubmit="handleProfileUpdate(event)">
+        <div class="mb-3">
+          <label class="sf-label">LinkedIn Profile URL</label>
+          <input type="url" class="sf-input" value="https://linkedin.com/in/alexchen" required>
+        </div>
+        <div class="mb-3">
+          <label class="sf-label">Portfolio Website</label>
+          <input type="url" class="sf-input" value="https://alexchen.codes">
+        </div>
+        <button type="submit" class="btn-sf-primary btn-sm w-100">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Right Column: Official Cryptographic Skill Passport -->
+  <div class="col-lg-8">
+    <div class="sf-card p-4 p-md-5 bg-white border mb-4">
+      <!-- Passport Header -->
+      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-start pb-4 border-bottom mb-4 gap-3">
+        <div>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge bg-slate-900 text-white px-2 py-1">OFFICIAL CREDENTIAL</span>
+            <span class="sf-badge sf-badge-primary">Cryptographic Skill Passport</span>
+          </div>
+          <h2 class="h4 fw-bold text-slate-900 mb-1">SkillForge Academy Verified Passport</h2>
+          <div class="text-slate-500 small">Issued to Alex Chen • Candidate UID: SF-2026-88412</div>
+        </div>
+        <div class="text-sm-end">
+          <div class="text-slate-400 small">SHA-256 Commit Root:</div>
+          <code class="text-slate-700 small tabular-nums bg-slate-100 p-1 rounded" style="font-size: 0.75rem;">e3b0c44298fc1c149afb...</code>
+        </div>
+      </div>
+
+      <!-- Verified Competency Matrix -->
+      <div class="mb-5">
+        <h3 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">
+          Verified Technical Competencies
+        </h3>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="p-3 bg-slate-50 border rounded-2">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fw-semibold small text-slate-900">Distributed REST & Microservices</span>
+                <span class="sf-badge sf-badge-success">Mastered (96%)</span>
+              </div>
+              <div class="sf-progress-bar mb-2">
+                <div class="sf-progress-fill success" style="width: 96%;"></div>
+              </div>
+              <div class="text-slate-400 small" style="font-size: 0.75rem;">Verified via 4 Pull Requests & 2 Coding Exams</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="p-3 bg-slate-50 border rounded-2">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fw-semibold small text-slate-900">PostgreSQL Relational Architecture</span>
+                <span class="sf-badge sf-badge-success">Mastered (92%)</span>
+              </div>
+              <div class="sf-progress-bar mb-2">
+                <div class="sf-progress-fill success" style="width: 92%;"></div>
+              </div>
+              <div class="text-slate-400 small" style="font-size: 0.75rem;">Verified via Database Indexing & Query Tuning PR</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="p-3 bg-slate-50 border rounded-2">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fw-semibold small text-slate-900">Docker Containerization & CI/CD</span>
+                <span class="sf-badge sf-badge-primary">Proficient (88%)</span>
+              </div>
+              <div class="sf-progress-bar mb-2">
+                <div class="sf-progress-fill" style="width: 88%;"></div>
+              </div>
+              <div class="text-slate-400 small" style="font-size: 0.75rem;">Verified via Multi-Stage Dockerfile & GitHub Actions</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="p-3 bg-slate-50 border rounded-2">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fw-semibold small text-slate-900">Automated Testing & Pytest Framework</span>
+                <span class="sf-badge sf-badge-success">Mastered (95%)</span>
+              </div>
+              <div class="sf-progress-bar mb-2">
+                <div class="sf-progress-fill success" style="width: 95%;"></div>
+              </div>
+              <div class="text-slate-400 small" style="font-size: 0.75rem;">Verified via 94% test suite branch coverage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verified GitHub PR Contributions Log -->
+      <div class="mb-4">
+        <h3 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">
+          Audited Production Deliverables
+        </h3>
+        <div class="sf-table-wrapper">
+          <table class="sf-table">
+            <thead>
+              <tr>
+                <th>Deliverable / PR</th>
+                <th>Repository</th>
+                <th>Mentor Approval</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="fw-medium text-slate-900">PR #42: Connection Pooling & Idempotent Transactions</div>
+                  <code class="text-slate-400 small" style="font-size: 0.75rem;">commit 4f9812b</code>
+                </td>
+                <td class="small text-slate-600">skillforge/order-service</td>
+                <td><span class="sf-badge sf-badge-success">Sarah Jenkins (Approved)</span></td>
+                <td class="tabular-nums fw-semibold text-slate-900">96 / 100</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="fw-medium text-slate-900">PR #38: Celery Background Task Dispatcher with Redis</div>
+                  <code class="text-slate-400 small" style="font-size: 0.75rem;">commit 91c4ea0</code>
+                </td>
+                <td class="small text-slate-600">skillforge/worker-fleet</td>
+                <td><span class="sf-badge sf-badge-success">Sarah Jenkins (Approved)</span></td>
+                <td class="tabular-nums fw-semibold text-slate-900">94 / 100</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Passport Footer Signoff -->
+      <div class="d-flex justify-content-between align-items-center pt-3 border-top small text-slate-500">
+        <div>Supervised by: <strong>Sarah Jenkins (Principal Systems Mentor)</strong></div>
+        <div>Academy Verification Authority: <strong>SkillForge Board of Examiners</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function handleProfileUpdate(e) {
+  e.preventDefault();
+  SkillForgeUI.showToast('Profile information updated successfully.', 'success', 'Saved');
+}
+</script>
+{% endblock %}
