@@ -24,3 +24,16 @@ def test_public_pages(client):
         response = client.get(route)
         assert response.status_code == 200
         assert b"SkillForge" in response.data
+
+def test_auth_pages(client):
+    for route in ['/auth/login', '/auth/register', '/auth/forgot-password']:
+        response = client.get(route)
+        assert response.status_code == 200
+        assert b"SkillForge" in response.data
+
+def test_auth_api(client):
+    res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
+    assert res.status_code == 200
+    data = res.get_json()
+    assert data['success'] is True
+    assert 'token' in data
