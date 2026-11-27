@@ -1,0 +1,123 @@
+{% extends "base_app.html" %}
+
+{% block title %}Examination Engine | SkillForge{% endblock %}
+
+{% block content %}
+<div class="container py-2" style="max-width: 900px;">
+  <!-- Exam Top Bar -->
+  <div class="sf-card p-3 bg-white border mb-4">
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <span class="sf-badge sf-badge-primary">Timed Examination</span>
+          <span class="text-slate-400">•</span>
+          <span class="text-slate-500 small">Sprint 4: Distributed Systems & Security</span>
+        </div>
+        <h1 class="h5 fw-bold text-slate-900 mb-0">Mid-Sprint Technical Assessment (5 Questions)</h1>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <div class="text-end">
+          <div class="text-slate-400 small" style="font-size: 0.75rem;">Time Remaining</div>
+          <div class="fs-5 fw-bold text-danger tabular-nums font-monospace" id="examCountdown">28:45</div>
+        </div>
+        <button class="btn-sf-primary btn-sm px-3" onclick="finishExam()">
+          <span>Submit Exam</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Question Index Navigator Pills -->
+  <div class="sf-card p-3 bg-white border mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <span class="text-slate-500 small fw-medium">Question Navigator:</span>
+      <div class="d-flex gap-2" id="questionPillList">
+        <button class="btn btn-sm btn-primary rounded-circle p-0" style="width: 32px; height: 32px;" onclick="goToQuestion(1)">1</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-circle p-0" style="width: 32px; height: 32px;" onclick="goToQuestion(2)">2</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-circle p-0" style="width: 32px; height: 32px;" onclick="goToQuestion(3)">3</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-circle p-0" style="width: 32px; height: 32px;" onclick="goToQuestion(4)">4</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-circle p-0" style="width: 32px; height: 32px;" onclick="goToQuestion(5)">5</button>
+      </div>
+      <span class="sf-badge sf-badge-success" id="answeredCountBadge">1 of 5 Answered</span>
+    </div>
+  </div>
+
+  <!-- Active Question Card -->
+  <div class="sf-card p-4 p-md-5 bg-white border mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span class="sf-badge sf-badge-neutral">Question 1 of 5 • Multiple Choice</span>
+      <span class="text-slate-400 small">Weight: 20 Points</span>
+    </div>
+
+    <h2 class="h6 fw-bold text-slate-900 mb-3" style="line-height: 1.5;">
+      In an asynchronous microservices topology deploying Celery with Redis as a broker, what is the primary consequence of configuring <code>CELERY_ACKS_LATE = True</code>?
+    </h2>
+
+    <div class="d-flex flex-column gap-3 mb-4">
+      <label class="p-3 border rounded-2 d-flex align-items-start gap-3 bg-slate-50 cursor-pointer">
+        <input class="form-check-input mt-1" type="radio" name="q1" value="A">
+        <div>
+          <strong class="text-slate-900 small d-block mb-1">Option A:</strong>
+          <span class="text-slate-600 small">Tasks are acknowledged before execution, increasing throughput at the risk of losing tasks if the worker crashes midway.</span>
+        </div>
+      </label>
+
+      <label class="p-3 border rounded-2 d-flex align-items-start gap-3 bg-white cursor-pointer hover-bg-slate-50">
+        <input class="form-check-input mt-1" type="radio" name="q1" value="B" checked>
+        <div>
+          <strong class="text-slate-900 small d-block mb-1">Option B (Recommended Architecture):</strong>
+          <span class="text-slate-600 small">Tasks are acknowledged only after the execution completes successfully. If a worker terminates abnormally, the broker re-queues the message to another worker.</span>
+        </div>
+      </label>
+
+      <label class="p-3 border rounded-2 d-flex align-items-start gap-3 bg-white cursor-pointer hover-bg-slate-50">
+        <input class="form-check-input mt-1" type="radio" name="q1" value="C">
+        <div>
+          <strong class="text-slate-900 small d-block mb-1">Option C:</strong>
+          <span class="text-slate-600 small">Tasks are automatically dropped if they take longer than 30 seconds to execute.</span>
+        </div>
+      </label>
+
+      <label class="p-3 border rounded-2 d-flex align-items-start gap-3 bg-white cursor-pointer hover-bg-slate-50">
+        <input class="form-check-input mt-1" type="radio" name="q1" value="D">
+        <div>
+          <strong class="text-slate-900 small d-block mb-1">Option D:</strong>
+          <span class="text-slate-600 small">Redis disables persistence and runs entirely in memory without writing to AOF files.</span>
+        </div>
+      </label>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+      <button class="btn-sf-secondary" disabled>
+        <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
+        <span>Previous</span>
+      </button>
+      <button class="btn-sf-ghost text-warning" onclick="SkillForgeUI.showToast('Question 1 flagged for review.', 'warning', 'Flagged')">
+        <i data-lucide="flag" style="width: 14px; height: 14px;"></i>
+        <span>Flag Question</span>
+      </button>
+      <button class="btn-sf-primary px-3" onclick="goToQuestion(2)">
+        <span>Next Question</span>
+        <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function goToQuestion(qNum) {
+  SkillForgeUI.showToast(`Navigated to Question ${qNum}`, 'info', 'Exam Navigator');
+}
+
+function finishExam() {
+  if (confirm('Are you ready to submit your exam responses for mentor evaluation?')) {
+    SkillForgeUI.showToast('Exam submitted successfully! Score: 95/100 (Pass with Distinction).', 'success', 'Exam Evaluated');
+    setTimeout(() => {
+      window.location.href = '/student/assignments';
+    }, 1200);
+  }
+}
+</script>
+{% endblock %}
