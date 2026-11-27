@@ -64,6 +64,11 @@ def test_student_roadmap(client):
     assert response.status_code == 200
     assert b"Interactive Learning Roadmap" in response.data
 
+def test_student_lesson(client):
+    response = client.get('/student/lesson')
+    assert response.status_code == 200
+    assert b"Connection Pooling" in response.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
