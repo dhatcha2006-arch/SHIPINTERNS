@@ -1,0 +1,154 @@
+{% extends "base_app.html" %}
+
+{% block title %}Mentor Allocations & Squad Directory | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Mentor Allocation & Squad Management</h1>
+    <p class="text-slate-500 small mb-0">Manage 1-on-1 mentorship pairings, cohort capacity, and office hour consultations.</p>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <a href="{{ url_for('mentor_dashboard') }}" class="btn-sf-secondary">
+      <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+      <span>Back to Cockpit</span>
+    </a>
+    <button class="btn-sf-primary" onclick="openScheduleModal()">
+      <i data-lucide="calendar-plus" style="width: 16px; height: 16px;"></i>
+      <span>Schedule 1-on-1 Sync</span>
+    </button>
+  </div>
+</div>
+
+<div class="row g-4 mb-4">
+  <!-- Mentor Dossier & Capacity Card -->
+  <div class="col-lg-4">
+    <div class="sf-card p-4 bg-white border mb-4">
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <div class="rounded-circle bg-primary-50 text-primary border border-primary-200 d-flex align-items-center justify-content-center fw-bold fs-4" style="width: 64px; height: 64px;">
+          SJ
+        </div>
+        <div>
+          <h2 class="h5 fw-bold text-slate-900 mb-1">Sarah Jenkins</h2>
+          <div class="text-primary small fw-semibold">Principal Systems Mentor</div>
+          <div class="text-slate-400 small">Enterprise Full-Stack Track</div>
+        </div>
+      </div>
+      <p class="text-slate-600 small mb-3">
+        Staff Architect at CloudMesh. Guides students through Kubernetes controller design, Flask microservices, and database replication patterns.
+      </p>
+
+      <div class="p-3 bg-slate-50 border rounded-2 mb-3">
+        <div class="d-flex justify-content-between small text-slate-600 mb-1">
+          <span>Mentorship Capacity</span>
+          <span class="fw-bold tabular-nums">8 / 10 Interns</span>
+        </div>
+        <div class="sf-progress-bar">
+          <div class="sf-progress-fill" style="width: 80%;"></div>
+        </div>
+      </div>
+
+      <div class="small text-slate-500">
+        Office Hours: <strong>Tuesday & Thursday (4:00 - 6:00 PM UTC)</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Allocated Interns Table -->
+  <div class="col-lg-8">
+    <div class="sf-card bg-white border">
+      <div class="sf-card-header">
+        <h2 class="h6 fw-bold text-slate-900 mb-0">Allocated Squad Directory (8 Interns)</h2>
+        <span class="sf-badge sf-badge-primary">Spring 2026</span>
+      </div>
+      <div class="sf-card-body p-0">
+        <div class="sf-table-wrapper border-0">
+          <table class="sf-table">
+            <thead>
+              <tr>
+                <th>Intern Name & ID</th>
+                <th>Sprint Progress</th>
+                <th>Attendance</th>
+                <th>PRs Evaluated</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="fw-semibold text-slate-900">Alex Chen</div>
+                  <div class="text-slate-400 small">ID: SF-2026-88412</div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="sf-progress-bar flex-grow-1" style="width: 70px;">
+                      <div class="sf-progress-fill" style="width: 78%;"></div>
+                    </div>
+                    <span class="tabular-nums small fw-semibold">78%</span>
+                  </div>
+                </td>
+                <td class="tabular-nums text-success small fw-medium">96.8%</td>
+                <td class="tabular-nums text-slate-700 small">18 PRs</td>
+                <td>
+                  <a href="{{ url_for('student_profile') }}" class="btn-sf-ghost py-1 px-2 small">Skill Passport</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="fw-semibold text-slate-900">Marcus Vance</div>
+                  <div class="text-slate-400 small">ID: SF-2026-88413</div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="sf-progress-bar flex-grow-1" style="width: 70px;">
+                      <div class="sf-progress-fill" style="width: 82%;"></div>
+                    </div>
+                    <span class="tabular-nums small fw-semibold">82%</span>
+                  </div>
+                </td>
+                <td class="tabular-nums text-success small fw-medium">98.0%</td>
+                <td class="tabular-nums text-slate-700 small">19 PRs</td>
+                <td>
+                  <a href="{{ url_for('student_profile') }}" class="btn-sf-ghost py-1 px-2 small">Skill Passport</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="fw-semibold text-slate-900">Liam Kelling</div>
+                  <div class="text-slate-400 small">ID: SF-2026-88414</div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="sf-progress-bar flex-grow-1" style="width: 70px;">
+                      <div class="sf-progress-fill" style="width: 74%;"></div>
+                    </div>
+                    <span class="tabular-nums small fw-semibold">74%</span>
+                  </div>
+                </td>
+                <td class="tabular-nums text-success small fw-medium">94.5%</td>
+                <td class="tabular-nums text-slate-700 small">16 PRs</td>
+                <td>
+                  <a href="{{ url_for('student_profile') }}" class="btn-sf-ghost py-1 px-2 small">Skill Passport</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function openScheduleModal() {
+  SkillForgeUI.showToast('Mentor Office Hours scheduler initialized. Google Meet integration ready.', 'info', 'Scheduler');
+  setTimeout(() => {
+    window.location.href = '/projects/google-meet';
+  }, 1000);
+}
+</script>
+{% endblock %}
