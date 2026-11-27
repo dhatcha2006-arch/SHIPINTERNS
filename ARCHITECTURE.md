@@ -8,7 +8,7 @@ SkillForge is built using a decoupled, modular Flask Jinja2 + Bootstrap 5.3 + Va
 2. **Slate Neutral Ramp:** Consistent neutral palette from `--sf-slate-50` to `--sf-slate-900` with one primary brand accent (`#2563EB`).
 3. **No Colored Glowing Blobs:** Soft, neutral 1px hairline borders (`rgba(15, 23, 42, 0.08)`) with natural shadows.
 4. **Nested Radii Rule:** Controls: `8px`, Cards: `12px`, Modals: `16px`.
-5. **Human Typography:** Plus Jakarta Sans for headings and body; JetBrains Mono for code blocks and tabular metrics.
+5. **Human Typography:** Inter for crisp headings and interface text; JetBrains Mono for code blocks and tabular metrics.
 
 ## 30 Production Modules
 1. Public Website: Home (`/`)
