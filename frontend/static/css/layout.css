@@ -177,7 +177,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #38bdf8;
+  color: #facc15;
   flex-shrink: 0;
 }
 
@@ -217,9 +217,9 @@
   opacity: 0.65;
 }
 
-/* Electric Blue Contact Us CTA */
+/* Electric Yellow Contact Us CTA */
 .sf-pill-cta {
-  color: #0076ff;
+  color: #facc15;
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -231,7 +231,7 @@
 }
 
 .sf-pill-cta:hover {
-  color: #38bdf8;
+  color: #fde047;
 }
 
 .sf-pill-cta:hover .sf-arrow-right {
@@ -421,8 +421,8 @@
   color: var(--sf-slate-900);
 }
 .sf-sidebar-item.active {
-  background-color: var(--sf-primary-50);
-  color: var(--sf-primary-600);
+  background-color: var(--sf-primary-100);
+  color: #854d0e;
   font-weight: 600;
 }
 .sf-sidebar-item i, .sf-sidebar-item svg {

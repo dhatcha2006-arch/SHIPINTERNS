@@ -4,13 +4,13 @@
    ========================================================================== */
 
 /* Buttons */
-.btn-sf-primary {
-  background-color: var(--sf-primary-600);
-  color: #ffffff;
-  border: 1px solid var(--sf-primary-600);
+.btn-sf-primary, .btn-primary {
+  background-color: var(--sf-primary-500) !important;
+  color: #0f172a !important;
+  border: 1px solid var(--sf-primary-600) !important;
   padding: 8px 18px;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600 !important;
   border-radius: var(--sf-radius-md);
   box-shadow: var(--sf-shadow-xs);
   transition: all 0.15s ease-in-out;
@@ -19,10 +19,17 @@
   justify-content: center;
   gap: var(--sf-space-2);
 }
-.btn-sf-primary:hover {
-  background-color: var(--sf-primary-700);
-  border-color: var(--sf-primary-700);
-  color: #ffffff;
+.btn-sf-primary:hover, .btn-primary:hover,
+.btn-sf-primary:focus, .btn-primary:focus {
+  background-color: var(--sf-primary-600) !important;
+  border-color: var(--sf-primary-700) !important;
+  color: #000000 !important;
+}
+
+.btn-sf-primary:active, .btn-primary:active {
+  background-color: var(--sf-primary-700) !important;
+  border-color: #a16207 !important;
+  color: #000000 !important;
 }
 
 .btn-sf-secondary {
@@ -138,8 +145,8 @@
   line-height: 1.4;
 }
 .sf-badge-primary {
-  background-color: var(--sf-primary-50);
-  color: var(--sf-primary-600);
+  background-color: var(--sf-primary-100);
+  color: #854d0e;
   border: 1px solid var(--sf-primary-200);
 }
 .sf-badge-success {
@@ -240,4 +247,36 @@
 }
 .sf-progress-fill.success {
   background-color: var(--sf-success-600);
+}
+
+/* Yellow Brand Accent Utilities */
+.text-primary, a.text-primary {
+  color: #b45309 !important;
+}
+.text-primary:hover, a.text-primary:hover {
+  color: #78350f !important;
+}
+.bg-primary {
+  background-color: var(--sf-primary-500) !important;
+  color: #0f172a !important;
+}
+.bg-primary-50 {
+  background-color: var(--sf-primary-50) !important;
+}
+.border-primary-200 {
+  border-color: var(--sf-primary-200) !important;
+}
+.border-primary {
+  border-color: var(--sf-primary-500) !important;
+}
+.btn-primary {
+  background-color: var(--sf-primary-500) !important;
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  border-color: var(--sf-primary-600) !important;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--sf-primary-600) !important;
+  border-color: var(--sf-primary-700) !important;
+  color: #000000 !important;
 }

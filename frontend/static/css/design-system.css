@@ -23,7 +23,7 @@
   --sf-bg-subtle: #f8fafc;
   --sf-border-subtle: rgba(15, 23, 42, 0.08);
   --sf-border-strong: rgba(15, 23, 42, 0.16);
-  --sf-border-focus: #2563eb;
+  --sf-border-focus: #eab308;
 
   /* Typography Roles */
   --sf-text-primary: #0f172a;
@@ -32,13 +32,13 @@
   --sf-text-subtle: #94a3b8;
   --sf-text-inverse: #ffffff;
 
-  /* Brand Cobalt Accent */
-  --sf-primary-50:  #eff6ff;
-  --sf-primary-100: #dbeafe;
-  --sf-primary-200: #bfdbfe;
-  --sf-primary-500: #3b82f6;
-  --sf-primary-600: #2563eb;
-  --sf-primary-700: #1d4ed8;
+  /* Brand Yellow Accent (Vibrant Golden Yellow & Amber) */
+  --sf-primary-50:  #fefce8;
+  --sf-primary-100: #fef9c3;
+  --sf-primary-200: #fef08a;
+  --sf-primary-500: #facc15;
+  --sf-primary-600: #eab308;
+  --sf-primary-700: #ca8a04;
 
   /* Semantics */
   --sf-success-50:  #ecfdf5;
@@ -116,12 +116,12 @@ p {
 }
 
 a {
-  color: var(--sf-primary-600);
+  color: #b45309;
   text-decoration: none;
   transition: color 0.15s ease-in-out;
 }
 a:hover {
-  color: var(--sf-primary-700);
+  color: #78350f;
 }
 
 .tabular-nums {
