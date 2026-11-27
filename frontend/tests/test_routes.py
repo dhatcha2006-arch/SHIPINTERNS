@@ -59,6 +59,11 @@ def test_student_courses(client):
     assert res2.status_code == 200
     assert b"Distributed RESTful Services" in res2.data
 
+def test_student_roadmap(client):
+    response = client.get('/student/roadmap')
+    assert response.status_code == 200
+    assert b"Interactive Learning Roadmap" in response.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
