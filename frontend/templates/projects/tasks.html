@@ -1,0 +1,123 @@
+{% extends "base_app.html" %}
+
+{% block title %}Agile Kanban Board | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <span class="sf-badge sf-badge-primary">Sprint 4 Kanban</span>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-500 small">Squad 04 Tasks</span>
+    </div>
+    <h1 class="h3 fw-bold text-slate-900 mb-0">Project Task Tracking Board</h1>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <button class="btn-sf-primary btn-sm" onclick="addNewTask()">
+      <i data-lucide="plus" style="width: 14px; height: 14px;"></i>
+      <span>Create Task</span>
+    </button>
+  </div>
+</div>
+
+<!-- Kanban Columns Grid -->
+<div class="sf-kanban-board">
+  <!-- Backlog Column -->
+  <div class="sf-kanban-column">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h6 fw-bold text-slate-700 mb-0">Backlog</h2>
+      <span class="sf-badge sf-badge-neutral">1</span>
+    </div>
+    
+    <div class="sf-kanban-card">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <span class="sf-badge sf-badge-neutral">Task 4.4</span>
+        <span class="badge bg-slate-100 text-slate-600 font-monospace small">5 pts</span>
+      </div>
+      <div class="fw-semibold text-slate-900 small mb-2">Prometheus Custom Metric Exporters</div>
+      <p class="text-slate-500 small mb-3" style="font-size: 0.75rem;">Instrument Flask endpoint duration histograms with Grafana dashboards.</p>
+      <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+        <div class="rounded-circle bg-slate-200 text-slate-800 d-flex align-items-center justify-content-center fw-bold small" style="width: 24px; height: 24px; font-size: 0.65rem;">
+          LK
+        </div>
+        <button class="btn btn-xs btn-outline-primary py-0 px-1 small" onclick="moveTask(this, 'progress')">Start &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- In Progress Column -->
+  <div class="sf-kanban-column">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h6 fw-bold text-slate-700 mb-0">In Progress</h2>
+      <span class="sf-badge sf-badge-primary">2</span>
+    </div>
+
+    <div class="sf-kanban-card border-primary">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <span class="sf-badge sf-badge-primary">Task 4.2</span>
+        <span class="badge bg-primary-50 text-primary font-monospace small">8 pts</span>
+      </div>
+      <div class="fw-semibold text-slate-900 small mb-2">Celery Async Task Queue with Redis</div>
+      <p class="text-slate-500 small mb-3" style="font-size: 0.75rem;">Implement idempotent retries and dead-letter queue routing.</p>
+      <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+        <div class="rounded-circle bg-primary-100 text-primary d-flex align-items-center justify-content-center fw-bold small" style="width: 24px; height: 24px; font-size: 0.65rem;">
+          AC
+        </div>
+        <button class="btn btn-xs btn-outline-warning py-0 px-1 small" onclick="moveTask(this, 'review')">Submit PR &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- In Review Column -->
+  <div class="sf-kanban-column">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h6 fw-bold text-slate-700 mb-0">Under Code Review</h2>
+      <span class="sf-badge sf-badge-warning">1</span>
+    </div>
+
+    <div class="sf-kanban-card">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <span class="sf-badge sf-badge-warning">PR #42</span>
+        <span class="badge bg-slate-100 text-slate-600 font-monospace small">5 pts</span>
+      </div>
+      <div class="fw-semibold text-slate-900 small mb-2">PostgreSQL PgBouncer Connection Pool</div>
+      <p class="text-slate-500 small mb-3" style="font-size: 0.75rem;">Under review by Mentor Sarah Jenkins. All CI tests passing.</p>
+      <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+        <div class="rounded-circle bg-primary-100 text-primary d-flex align-items-center justify-content-center fw-bold small" style="width: 24px; height: 24px; font-size: 0.65rem;">
+          AC
+        </div>
+        <span class="text-warning small fw-medium" style="font-size: 0.7rem;">Reviewing</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Done Column -->
+  <div class="sf-kanban-column">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h6 fw-bold text-slate-700 mb-0">Completed & Merged</h2>
+      <span class="sf-badge sf-badge-success">3</span>
+    </div>
+
+    <div class="sf-kanban-card bg-slate-50">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <span class="sf-badge sf-badge-success">PR #38</span>
+        <span class="badge bg-success-50 text-success font-monospace small">5 pts</span>
+      </div>
+      <div class="fw-semibold text-slate-900 small mb-1">Flask Blueprints Factory Pattern</div>
+      <div class="text-success small fw-medium" style="font-size: 0.7rem;">Approved & Merged • Score: 98/100</div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function moveTask(btn, targetColumn) {
+  SkillForgeUI.showToast(`Task state updated to ${targetColumn}.`, 'success', 'Kanban Board');
+}
+
+function addNewTask() {
+  SkillForgeUI.showToast('Task creation form dispatched to sprint backlog.', 'info', 'Agile Backlog');
+}
+</script>
+{% endblock %}

@@ -98,6 +98,15 @@ def test_mentor_allocations(client):
     assert response.status_code == 200
     assert b"Allocated Squad Directory" in response.data
 
+def test_live_projects(client):
+    res1 = client.get('/projects/dashboard')
+    assert res1.status_code == 200
+    assert b"Microservices Event Bus" in res1.data
+
+    res2 = client.get('/projects/tasks')
+    assert res2.status_code == 200
+    assert b"Project Task Tracking Board" in res2.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
