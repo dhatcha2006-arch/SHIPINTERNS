@@ -1,0 +1,165 @@
+/* ==========================================================================
+   SkillForge Layout & Shell Architecture
+   ========================================================================== */
+
+/* Public Shell */
+.sf-public-navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--sf-border-subtle);
+  height: 72px;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  transition: all 0.2s ease;
+}
+
+.sf-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-2);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--sf-slate-900);
+  letter-spacing: -0.02em;
+}
+.sf-brand-logo svg {
+  color: var(--sf-primary-600);
+  width: 28px;
+  height: 28px;
+}
+
+.sf-nav-link {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--sf-text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--sf-radius-md);
+  transition: all 0.15s ease;
+}
+.sf-nav-link:hover, .sf-nav-link.active {
+  color: var(--sf-primary-600);
+  background-color: var(--sf-primary-50);
+}
+
+.sf-public-footer {
+  background: var(--sf-slate-900);
+  color: var(--sf-slate-300);
+  border-top: 1px solid var(--sf-slate-800);
+  padding: var(--sf-space-12) 0 var(--sf-space-6) 0;
+}
+
+/* App Shell (Dashboard, Portal & Studio) */
+.sf-app-shell {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--sf-bg-canvas);
+}
+
+.sf-sidebar {
+  width: 260px;
+  background-color: var(--sf-bg-surface);
+  border-right: 1px solid var(--sf-border-subtle);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1020;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sf-sidebar-header {
+  height: 68px;
+  padding: 0 var(--sf-space-5);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--sf-border-subtle);
+}
+
+.sf-sidebar-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sf-space-4) var(--sf-space-3);
+}
+
+.sf-sidebar-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sf-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--sf-space-3) var(--sf-space-3) var(--sf-space-1) var(--sf-space-3);
+  margin-top: var(--sf-space-2);
+}
+
+.sf-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+  padding: 9px 12px;
+  color: var(--sf-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--sf-radius-md);
+  margin-bottom: 2px;
+  transition: all 0.15s ease;
+}
+.sf-sidebar-item:hover {
+  background-color: var(--sf-slate-100);
+  color: var(--sf-slate-900);
+}
+.sf-sidebar-item.active {
+  background-color: var(--sf-primary-50);
+  color: var(--sf-primary-600);
+  font-weight: 600;
+}
+.sf-sidebar-item i, .sf-sidebar-item svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.75;
+}
+
+.sf-main-wrapper {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sf-topbar {
+  height: 68px;
+  background-color: var(--sf-bg-surface);
+  border-bottom: 1px solid var(--sf-border-subtle);
+  padding: 0 var(--sf-space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1010;
+}
+
+.sf-page-content {
+  flex: 1;
+  padding: var(--sf-space-6);
+  max-width: 1536px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Responsive sidebar collapse */
+@media (max-width: 991.98px) {
+  .sf-sidebar {
+    transform: translateX(-100%);
+  }
+  .sf-sidebar.open {
+    transform: translateX(0);
+    box-shadow: var(--sf-shadow-lg);
+  }
+  .sf-main-wrapper {
+    margin-left: 0;
+  }
+}
