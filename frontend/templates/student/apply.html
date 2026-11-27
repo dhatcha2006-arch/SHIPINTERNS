@@ -1,0 +1,125 @@
+{% extends "base_app.html" %}
+
+{% block title %}Internship Application | SkillForge{% endblock %}
+
+{% block content %}
+<div class="container py-2" style="max-width: 840px;">
+  <div class="mb-4">
+    <a href="{{ url_for('internships') }}" class="text-slate-500 small text-decoration-none d-inline-flex align-items-center gap-1 mb-2">
+      <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
+      <span>Back to Internship Board</span>
+    </a>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Supervised Internship Application</h1>
+    <p class="text-slate-500 small mb-0">Spring 2026 Cohort • Guaranteed 1-on-1 Senior Mentor Supervised Track</p>
+  </div>
+
+  <!-- Multi-step Indicator -->
+  <div class="sf-card p-3 mb-4 bg-white">
+    <div class="d-flex justify-content-between align-items-center position-relative">
+      <div class="d-flex align-items-center gap-2">
+        <span class="rounded-circle bg-primary-600 text-white d-flex align-items-center justify-content-center fw-bold small" style="width: 28px; height: 28px;">1</span>
+        <span class="fw-semibold small text-slate-900 d-none d-sm-inline">Personal & Academic</span>
+      </div>
+      <div class="flex-grow-1 mx-3 border-top border-2 border-primary-200"></div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="rounded-circle bg-primary-50 text-primary border border-primary-300 d-flex align-items-center justify-content-center fw-bold small" style="width: 28px; height: 28px;">2</span>
+        <span class="fw-medium small text-slate-500 d-none d-sm-inline">Track & Links</span>
+      </div>
+      <div class="flex-grow-1 mx-3 border-top border-2 border-slate-200"></div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="rounded-circle bg-slate-100 text-slate-400 d-flex align-items-center justify-content-center fw-bold small" style="width: 28px; height: 28px;">3</span>
+        <span class="fw-medium small text-slate-400 d-none d-sm-inline">Review & Submit</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Form -->
+  <div class="sf-card p-4 p-md-5 bg-white border">
+    <form id="applyWizard" onsubmit="submitApplication(event)">
+      <!-- Step 1 Section -->
+      <h2 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">1. Academic Background</h2>
+      <div class="row g-3 mb-4">
+        <div class="col-sm-6">
+          <label class="sf-label">Full Name</label>
+          <input type="text" class="sf-input" value="Alex Chen" required>
+        </div>
+        <div class="col-sm-6">
+          <label class="sf-label">Email Address</label>
+          <input type="email" class="sf-input" value="alex.chen@skillforge.edu" required>
+        </div>
+        <div class="col-sm-8">
+          <label class="sf-label">College / University Name</label>
+          <input type="text" class="sf-input" value="State Institute of Technology" required>
+        </div>
+        <div class="col-sm-4">
+          <label class="sf-label">Graduation Year</label>
+          <select class="sf-select">
+            <option>2026</option>
+            <option>2027</option>
+            <option>2028</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Step 2 Section -->
+      <h2 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">2. Track Selection & Code Verification</h2>
+      <div class="row g-3 mb-4">
+        <div class="col-sm-6">
+          <label class="sf-label">Preferred Internship Track</label>
+          <select class="sf-select" required>
+            <option value="fullstack" selected>Enterprise Full-Stack Python & React</option>
+            <option value="cloud">Cloud Systems Architecture & SRE</option>
+            <option value="ai">Applied AI Systems & LLM Engineering</option>
+            <option value="security">Applied Cybersecurity & Secure Coding</option>
+          </select>
+        </div>
+        <div class="col-sm-6">
+          <label class="sf-label">GitHub Profile or Repository URL</label>
+          <input type="url" class="sf-input" placeholder="https://github.com/your-handle" value="https://github.com/alexchen-dev" required>
+        </div>
+        <div class="col-12">
+          <label class="sf-label">Primary Programming Languages & Frameworks</label>
+          <input type="text" class="sf-input" value="Python, Flask, JavaScript, SQL, Docker" required>
+        </div>
+      </div>
+
+      <!-- Step 3 Section -->
+      <h2 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">3. Statement of Purpose & Availability</h2>
+      <div class="mb-4">
+        <label class="sf-label">Why do you want to join this supervised internship? (Brief statement)</label>
+        <textarea class="sf-textarea" rows="3" required>I am eager to transition from classroom projects to production-grade distributed architectures with direct mentor guidance, peer pull request reviews, and daily standups.</textarea>
+      </div>
+
+      <div class="mb-4">
+        <label class="sf-label">Attach Resume / CV (PDF format)</label>
+        <input type="file" class="sf-input" accept=".pdf">
+        <div class="text-slate-400 small mt-1" style="font-size: 0.75rem;">Max file size: 5MB. Verified automatically by admissions portal.</div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+        <button type="button" class="btn-sf-secondary" onclick="window.history.back()">Cancel</button>
+        <button type="submit" id="submitApplyBtn" class="btn-sf-primary px-4">
+          <span>Submit Application</span>
+          <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function submitApplication(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitApplyBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Submitting...';
+
+  SkillForgeUI.showToast('Application successfully registered! Redirecting to tracker...', 'success', 'Application Received');
+  setTimeout(() => {
+    window.location.href = '/student/application-status';
+  }, 1000);
+}
+</script>
+{% endblock %}

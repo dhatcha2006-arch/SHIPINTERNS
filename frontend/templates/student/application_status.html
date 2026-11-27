@@ -1,0 +1,94 @@
+{% extends "base_app.html" %}
+
+{% block title %}Application Status Tracker | SkillForge{% endblock %}
+
+{% block content %}
+<div class="container py-2" style="max-width: 880px;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h3 fw-bold text-slate-900 mb-1">Application Status Tracker</h1>
+      <div class="text-slate-500 small">Application Reference: <strong>APP-2026-99120</strong> • Track: Enterprise Full-Stack Python</div>
+    </div>
+    <span class="sf-badge sf-badge-primary">Stage 3 of 5: Technical Assessment</span>
+  </div>
+
+  <!-- Status Roadmap Timeline -->
+  <div class="sf-card p-4 p-md-5 bg-white border mb-4">
+    <div class="sf-roadmap-tree">
+      <!-- Step 1 -->
+      <div class="sf-roadmap-node">
+        <div class="sf-node-dot completed">
+          <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+        </div>
+        <div class="sf-card p-3 bg-slate-50 border mb-0">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fw-semibold text-slate-900 small">1. Application Dossier Received</span>
+            <span class="text-success small fw-medium">Completed • Mar 12, 2026</span>
+          </div>
+          <div class="text-slate-500 small">Resume, university transcript, and GitHub repository links verified by admissions bot.</div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="sf-roadmap-node">
+        <div class="sf-node-dot completed">
+          <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+        </div>
+        <div class="sf-card p-3 bg-slate-50 border mb-0">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fw-semibold text-slate-900 small">2. Academic & Eligibility Screening</span>
+            <span class="text-success small fw-medium">Passed • Mar 14, 2026</span>
+          </div>
+          <div class="text-slate-500 small">Prerequisites validated: Python foundations, Git fluency, and minimum commitment hours confirmed.</div>
+        </div>
+      </div>
+
+      <!-- Step 3 (Current Active) -->
+      <div class="sf-roadmap-node">
+        <div class="sf-node-dot" style="background: #2563eb; color: #ffffff; border-color: #2563eb;">
+          <i data-lucide="terminal" style="width: 16px; height: 16px;"></i>
+        </div>
+        <div class="sf-card p-3 border border-primary bg-primary-50 mb-0">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fw-bold text-slate-900 small">3. In-Browser Coding Assessment</span>
+            <span class="sf-badge sf-badge-primary">In Progress</span>
+          </div>
+          <div class="text-slate-600 small mb-3">Solve 3 practical architectural exercises (REST routing, SQL queries, and error handlers).</div>
+          <a href="{{ url_for('student_coding_assessment') }}" class="btn-sf-primary btn-sm">
+            <i data-lucide="play" style="width: 14px; height: 14px;"></i>
+            <span>Launch Coding Assessment Studio</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="sf-roadmap-node">
+        <div class="sf-node-dot">
+          <span style="font-size: 12px;">4</span>
+        </div>
+        <div class="sf-card p-3 bg-slate-50 border mb-0 opacity-75">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fw-semibold text-slate-700 small">4. Mentor 1-on-1 Technical Discussion</span>
+            <span class="text-slate-400 small">Pending Assessment</span>
+          </div>
+          <div class="text-slate-500 small">30-minute virtual discussion over Google Meet with Lead Mentor Sarah Jenkins.</div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="sf-roadmap-node mb-0">
+        <div class="sf-node-dot">
+          <span style="font-size: 12px;">5</span>
+        </div>
+        <div class="sf-card p-3 bg-slate-50 border mb-0 opacity-75">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fw-semibold text-slate-700 small">5. Formal Offer Letter & Cohort Induction</span>
+            <span class="text-slate-400 small">Final Step</span>
+          </div>
+          <div class="text-slate-500 small">Sign agreement, configure your GitHub workspace, and attend squad kick-off.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
