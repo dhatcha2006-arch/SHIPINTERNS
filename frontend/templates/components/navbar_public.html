@@ -2,14 +2,9 @@
   <div class="sf-header-container">
     <nav class="sf-pill-navbar" id="sfPillNavbar">
       
-      <!-- Brand Logo (Juspay style: Circular Blue Ring Mark + ShipInterns Brand Name) -->
+      <!-- Brand Logo (Custom SI Monogram Logo + Brand Name) -->
       <a href="{{ url_for('home') }}" class="sf-pill-brand">
-        <span class="sf-brand-mark">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="2.5"/>
-            <circle cx="12" cy="12" r="3.5" fill="currentColor"/>
-          </svg>
-        </span>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ShipInterns" class="sf-brand-logo-img">
         <span class="sf-brand-text">ShipInterns</span>
       </a>
 

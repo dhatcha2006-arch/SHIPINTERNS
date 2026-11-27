@@ -8,9 +8,7 @@
     <!-- Logo -->
     <div class="text-center mb-4">
       <a href="{{ url_for('home') }}" class="sf-brand-logo justify-content-center text-slate-900 fs-4 mb-2">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ShipInterns" class="sf-brand-logo-img me-2">
         <span>ShipInterns</span>
       </a>
       <h1 class="h4 fw-bold text-slate-900 mb-1">Create Student Intern Account</h1>
