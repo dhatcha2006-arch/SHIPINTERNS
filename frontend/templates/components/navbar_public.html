@@ -1,25 +1,138 @@
-<nav class="sf-public-navbar">
-  <div class="container d-flex align-items-center justify-content-between h-100">
-    <a href="{{ url_for('home') }}" class="sf-brand-logo">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-      </svg>
-      <span>SkillForge</span>
-    </a>
+<header class="sf-floating-header">
+  <div class="sf-header-container">
+    <nav class="sf-pill-navbar" id="sfPillNavbar">
+      
+      <!-- Brand Logo (Juspay style: Circular Blue Ring Mark + Uppercase Bold White Name) -->
+      <a href="{{ url_for('home') }}" class="sf-pill-brand">
+        <span class="sf-brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="2.5"/>
+            <circle cx="12" cy="12" r="3.5" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="sf-brand-text">SKILLFORGE</span>
+      </a>
 
-    <div class="d-none d-lg-flex align-items-center gap-1">
-      <a href="{{ url_for('home') }}" class="sf-nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
-      <a href="{{ url_for('about') }}" class="sf-nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
-      <a href="{{ url_for('programs') }}" class="sf-nav-link {% if request.endpoint == 'programs' %}active{% endif %}">Programs</a>
-      <a href="{{ url_for('internships') }}" class="sf-nav-link {% if request.endpoint == 'internships' %}active{% endif %}">Internships</a>
-      <a href="{{ url_for('careers') }}" class="sf-nav-link {% if request.endpoint == 'careers' %}active{% endif %}">Careers</a>
-      <a href="{{ url_for('contact') }}" class="sf-nav-link {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a>
-      <a href="{{ url_for('certificate_verify') }}" class="sf-nav-link text-primary {% if request.endpoint == 'certificate_verify' %}active{% endif %}">Verify Certificate</a>
-    </div>
+      <!-- Desktop Navigation Menu -->
+      <div class="sf-pill-menu d-none d-lg-flex align-items-center">
+        <!-- Programs Dropdown -->
+        <div class="sf-nav-dropdown">
+          <button class="sf-pill-link sf-dropdown-toggle" type="button">
+            <span>Programs</span>
+            <svg class="sf-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="sf-dropdown-menu">
+            <a href="{{ url_for('programs') }}" class="sf-dropdown-item">
+              <div class="sf-drop-icon"><i data-lucide="code" style="width: 16px; height: 16px;"></i></div>
+              <div>
+                <div class="fw-semibold text-white">Full-Stack Development</div>
+                <div class="small text-slate-400">Enterprise React, Python & Cloud</div>
+              </div>
+            </a>
+            <a href="{{ url_for('programs') }}" class="sf-dropdown-item">
+              <div class="sf-drop-icon"><i data-lucide="cpu" style="width: 16px; height: 16px;"></i></div>
+              <div>
+                <div class="fw-semibold text-white">AI & Machine Learning</div>
+                <div class="small text-slate-400">LLM orchestration, PyTorch & RAG</div>
+              </div>
+            </a>
+            <a href="{{ url_for('programs') }}" class="sf-dropdown-item">
+              <div class="sf-drop-icon"><i data-lucide="cloud" style="width: 16px; height: 16px;"></i></div>
+              <div>
+                <div class="fw-semibold text-white">Cloud DevOps Engineering</div>
+                <div class="small text-slate-400">Kubernetes, Terraform & CI/CD</div>
+              </div>
+            </a>
+          </div>
+        </div>
 
-    <div class="d-flex align-items-center gap-3">
-      <a href="{{ url_for('login') }}" class="btn-sf-ghost text-slate-700">Log in</a>
-      <a href="{{ url_for('register') }}" class="btn-sf-primary">Apply Now</a>
+        <!-- Direct Links -->
+        <a href="{{ url_for('internships') }}" class="sf-pill-link {% if request.endpoint == 'internships' %}active{% endif %}">
+          Internships
+        </a>
+
+        <!-- Courses Dropdown -->
+        <div class="sf-nav-dropdown">
+          <button class="sf-pill-link sf-dropdown-toggle" type="button">
+            <span>Courses</span>
+            <svg class="sf-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="sf-dropdown-menu">
+            <a href="{{ url_for('student_courses') }}" class="sf-dropdown-item">
+              <div class="sf-drop-icon"><i data-lucide="book-open" style="width: 16px; height: 16px;"></i></div>
+              <div>
+                <div class="fw-semibold text-white">Curriculum & Syllabus</div>
+                <div class="small text-slate-400">Explore modules, lessons & roadmaps</div>
+              </div>
+            </a>
+            <a href="{{ url_for('certificate_verify') }}" class="sf-dropdown-item">
+              <div class="sf-drop-icon"><i data-lucide="shield-check" style="width: 16px; height: 16px;"></i></div>
+              <div>
+                <div class="fw-semibold text-white">Verify Certificate</div>
+                <div class="small text-slate-400">Public tamper-proof credential check</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="{{ url_for('about') }}" class="sf-pill-link {% if request.endpoint == 'about' %}active{% endif %}">
+          About
+        </a>
+
+        <a href="{{ url_for('careers') }}" class="sf-pill-link {% if request.endpoint == 'careers' %}active{% endif %}">
+          Careers
+        </a>
+      </div>
+
+      <!-- Right Actions (Region Capsule Badge + Electric Blue Contact Us CTA) -->
+      <div class="sf-pill-actions d-flex align-items-center">
+        <!-- Region Badge Pill (Juspay style: [ Globe India ▾ ]) -->
+        <div class="sf-region-badge d-none d-sm-inline-flex align-items-center">
+          <span class="sf-region-flag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" stroke="#3b82f6"/>
+              <path d="M2 12h20" stroke="#60a5fa"/>
+              <path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z" stroke="#93c5fd"/>
+            </svg>
+          </span>
+          <span class="sf-region-text">India</span>
+          <svg class="sf-chevron-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+
+        <!-- Contact us CTA Link (Electric Blue with Chevron) -->
+        <a href="{{ url_for('contact') }}" class="sf-pill-cta">
+          <span>Contact us</span>
+          <svg class="sf-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+
+        <!-- Portal / Sign In Button -->
+        <a href="{{ url_for('login') }}" class="sf-pill-login d-none d-md-inline-flex">
+          Sign In
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="sf-mobile-toggle d-lg-none" type="button" id="sfMobileNavToggle" aria-label="Toggle navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sf-icon-open"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+
+    </nav>
+
+    <!-- Mobile Drawer Menu (Dark Glass Styled) -->
+    <div class="sf-mobile-menu d-lg-none d-none" id="sfMobileMenu">
+      <div class="p-3">
+        <a href="{{ url_for('home') }}" class="sf-mobile-link">Home</a>
+        <a href="{{ url_for('programs') }}" class="sf-mobile-link">Programs</a>
+        <a href="{{ url_for('internships') }}" class="sf-mobile-link">Internships</a>
+        <a href="{{ url_for('student_courses') }}" class="sf-mobile-link">Courses</a>
+        <a href="{{ url_for('about') }}" class="sf-mobile-link">About</a>
+        <a href="{{ url_for('careers') }}" class="sf-mobile-link">Careers</a>
+        <a href="{{ url_for('contact') }}" class="sf-mobile-link text-primary fw-semibold">Contact us ›</a>
+        <div class="border-top border-secondary my-2 pt-2 d-flex gap-2">
+          <a href="{{ url_for('login') }}" class="btn btn-sm btn-outline-light w-50">Log In</a>
+          <a href="{{ url_for('register') }}" class="btn btn-sm btn-primary w-50">Apply Now</a>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
+</header>

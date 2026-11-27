@@ -50,7 +50,22 @@ const SkillForgeUI = {
     if (sidebar) {
       sidebar.classList.toggle('open');
     }
+  },
+
+  // Toggle Mobile Navigation Menu
+  initMobileNav() {
+    const toggleBtn = document.getElementById('sfMobileNavToggle');
+    const menu = document.getElementById('sfMobileMenu');
+    if (toggleBtn && menu) {
+      toggleBtn.addEventListener('click', () => {
+        menu.classList.toggle('d-none');
+      });
+    }
   }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  SkillForgeUI.initMobileNav();
+});
 
 window.SkillForgeUI = SkillForgeUI;

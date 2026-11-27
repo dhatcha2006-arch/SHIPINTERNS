@@ -2,44 +2,313 @@
    SkillForge Layout & Shell Architecture
    ========================================================================== */
 
-/* Public Shell */
-.sf-public-navbar {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--sf-border-subtle);
-  height: 72px;
-  position: sticky;
-  top: 0;
-  z-index: 1030;
-  transition: all 0.2s ease;
+/* ==========================================================================
+   SkillForge Layout & Shell Architecture
+   Floating Pill Header (Juspay Design Reference)
+   ========================================================================== */
+
+/* Public Shell & Floating Header Wrapper */
+.sf-floating-header {
+  position: fixed;
+  top: 16px;
+  left: 0;
+  right: 0;
+  z-index: 1040;
+  padding: 0 16px;
+  pointer-events: none;
 }
 
-.sf-brand-logo {
+.sf-header-container {
+  max-width: 1220px;
+  margin: 0 auto;
+  pointer-events: auto;
+}
+
+.sf-pill-navbar {
+  background: #090a0f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  height: 60px;
   display: flex;
   align-items: center;
-  gap: var(--sf-space-2);
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: var(--sf-slate-900);
-  letter-spacing: -0.02em;
-}
-.sf-brand-logo svg {
-  color: var(--sf-primary-600);
-  width: 28px;
-  height: 28px;
+  justify-content: space-between;
+  padding: 0 12px 0 24px;
+  box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.25s ease;
 }
 
-.sf-nav-link {
-  font-size: 0.9375rem;
+.sf-public-main {
+  padding-top: 96px;
+}
+
+/* Brand Logo (Electric Blue Circle Mark + Uppercase White Text) */
+.sf-pill-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.sf-brand-mark {
+  width: 22px;
+  height: 22px;
+  color: #0076ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 6px rgba(0, 118, 255, 0.5));
+}
+
+.sf-brand-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sf-brand-text {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  font-family: var(--sf-font-sans);
+}
+
+/* Desktop Navigation Menu */
+.sf-pill-menu {
+  gap: 4px;
+}
+
+.sf-pill-link {
+  color: #d1d5db;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--sf-text-secondary);
-  padding: 8px 16px;
-  border-radius: var(--sf-radius-md);
+  padding: 7px 14px;
+  text-decoration: none;
+  border-radius: 9999px;
+  background: transparent;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.sf-pill-link:hover,
+.sf-pill-link.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sf-chevron {
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.sf-nav-dropdown:hover .sf-chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu Glass Panel */
+.sf-nav-dropdown {
+  position: relative;
+}
+
+.sf-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 300px;
+  background: #0d0f17;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 1060;
+}
+
+.sf-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.sf-nav-dropdown:hover .sf-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.sf-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.sf-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.sf-drop-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+/* Right Actions (Exact Juspay Layout) */
+.sf-pill-actions {
+  gap: 12px;
+}
+
+.sf-region-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 5px 12px 5px 8px;
+  gap: 6px;
+  color: #e2e8f0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  user-select: none;
+}
+
+.sf-region-flag {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sf-region-flag svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sf-chevron-xs {
+  width: 10px;
+  height: 10px;
+  opacity: 0.65;
+}
+
+/* Electric Blue Contact Us CTA */
+.sf-pill-cta {
+  color: #0076ff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
   transition: all 0.15s ease;
 }
-.sf-nav-link:hover, .sf-nav-link.active {
-  color: var(--sf-primary-600);
-  background-color: var(--sf-primary-50);
+
+.sf-pill-cta:hover {
+  color: #38bdf8;
+}
+
+.sf-pill-cta:hover .sf-arrow-right {
+  transform: translateX(3px);
+}
+
+.sf-arrow-right {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.15s ease;
+}
+
+/* Sign In / Portal Pill */
+.sf-pill-login {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.sf-pill-login:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+/* Mobile Toggle & Menu */
+.sf-mobile-toggle {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sf-mobile-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sf-mobile-menu {
+  margin-top: 8px;
+  background: #090a0f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.sf-mobile-link {
+  display: block;
+  padding: 10px 14px;
+  color: #d1d5db;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.sf-mobile-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+/* Legacy compatibility classes */
+.sf-public-navbar {
+  display: none;
+}
+.sf-nav-link {
+  display: none;
 }
 
 .sf-public-footer {
