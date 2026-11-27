@@ -1,0 +1,154 @@
+{% extends "base_app.html" %}
+
+{% block title %}Learning Roadmap Graph | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Interactive Learning Roadmap</h1>
+    <p class="text-slate-500 small mb-0">Track: Enterprise Full-Stack Python & React • 16-Week Production Apprenticeship</p>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <span class="sf-badge sf-badge-primary">Sprint 4 Active</span>
+    <span class="sf-badge sf-badge-success">3 Sprints Verified</span>
+  </div>
+</div>
+
+<div class="sf-card p-4 p-md-5 bg-white border">
+  <div class="sf-roadmap-tree">
+    <!-- Milestone 1 -->
+    <div class="sf-roadmap-node">
+      <div class="sf-node-dot completed">
+        <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+      </div>
+      <div class="sf-card p-4 bg-slate-50 border mb-0">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-2">
+          <div>
+            <span class="sf-badge sf-badge-success mb-1">Sprint 1 • 20 Hours</span>
+            <h2 class="h6 fw-bold text-slate-900 mb-0">Python Advanced Systems & Metaprogramming</h2>
+          </div>
+          <span class="text-success small fw-medium">Audited & Approved • 98%</span>
+        </div>
+        <p class="text-slate-600 small mb-2">Custom decorators, metaclasses, async generators, memory profiling with cProfile, and Pytest coverage.</p>
+        <div class="text-slate-400 small" style="font-size: 0.75rem;">Verified commit: <code>4a180f9</code> • Mentor: Sarah Jenkins</div>
+      </div>
+    </div>
+
+    <!-- Milestone 2 -->
+    <div class="sf-roadmap-node">
+      <div class="sf-node-dot completed">
+        <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+      </div>
+      <div class="sf-card p-4 bg-slate-50 border mb-0">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-2">
+          <div>
+            <span class="sf-badge sf-badge-success mb-1">Sprint 2 • 24 Hours</span>
+            <h2 class="h6 fw-bold text-slate-900 mb-0">Web Framework Architecture & WSGI Internals</h2>
+          </div>
+          <span class="text-success small fw-medium">Audited & Approved • 95%</span>
+        </div>
+        <p class="text-slate-600 small mb-2">Flask application factories, thread-local proxies, customized middleware, and structured logging.</p>
+        <div class="text-slate-400 small" style="font-size: 0.75rem;">Verified commit: <code>9b212dd</code> • Mentor: Sarah Jenkins</div>
+      </div>
+    </div>
+
+    <!-- Milestone 3 -->
+    <div class="sf-roadmap-node">
+      <div class="sf-node-dot completed">
+        <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+      </div>
+      <div class="sf-card p-4 bg-slate-50 border mb-0">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-2">
+          <div>
+            <span class="sf-badge sf-badge-success mb-1">Sprint 3 • 26 Hours</span>
+            <h2 class="h6 fw-bold text-slate-900 mb-0">Relational Persistence, Migrations & Indexing</h2>
+          </div>
+          <span class="text-success small fw-medium">Audited & Approved • 94%</span>
+        </div>
+        <p class="text-slate-600 small mb-2">PostgreSQL schema migrations, B-Tree and GIN indexes, deadlock prevention, and SQLAlchemy 2.0 ORM patterns.</p>
+        <div class="text-slate-400 small" style="font-size: 0.75rem;">Verified commit: <code>7c340ee</code> • Mentor: Sarah Jenkins</div>
+      </div>
+    </div>
+
+    <!-- Milestone 4 (CURRENT ACTIVE) -->
+    <div class="sf-roadmap-node">
+      <div class="sf-node-dot" style="background: #2563eb; color: #ffffff; border-color: #2563eb;">
+        <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
+      </div>
+      <div class="sf-card p-4 border-2 border-primary bg-primary-50 mb-0">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-2">
+          <div>
+            <span class="sf-badge sf-badge-primary mb-1">Sprint 4 • Active Milestone</span>
+            <h2 class="h6 fw-bold text-slate-900 mb-0">Distributed RESTful Services & Microservices</h2>
+          </div>
+          <span class="sf-badge sf-badge-primary">78% Progress</span>
+        </div>
+        <p class="text-slate-700 small mb-3">JWT token rotation, circuit breaker patterns, request tracing, and OpenAPI schema validation.</p>
+        <div class="d-flex gap-2">
+          <a href="{{ url_for('student_lesson') }}" class="btn-sf-primary btn-sm">
+            <i data-lucide="play" style="width: 14px; height: 14px;"></i>
+            <span>Resume Sprint 4 Lessons</span>
+          </a>
+          <a href="{{ url_for('student_assignments') }}" class="btn-sf-secondary btn-sm">View Sprint Tasks</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Milestone 5 (LOCKED) -->
+    <div class="sf-roadmap-node">
+      <div class="sf-node-dot">
+        <i data-lucide="lock" style="width: 14px; height: 14px;"></i>
+      </div>
+      <div class="sf-card p-4 bg-slate-50 border mb-0 opacity-75">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <h2 class="h6 fw-semibold text-slate-700 mb-0">Sprint 5: Asynchronous Task Fleets & Redis</h2>
+          <span class="sf-badge sf-badge-neutral">Locked</span>
+        </div>
+        <div class="text-slate-500 small">Unlocks once Sprint 4 pull requests are approved by your mentor.</div>
+      </div>
+    </div>
+
+    <!-- Milestone 6 (LOCKED) -->
+    <div class="sf-roadmap-node">
+      <div class="sf-node-dot">
+        <i data-lucide="lock" style="width: 14px; height: 14px;"></i>
+      </div>
+      <div class="sf-card p-4 bg-slate-50 border mb-0 opacity-75">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <h2 class="h6 fw-semibold text-slate-700 mb-0">Sprint 6: Docker Containerization & Multi-Stage Builds</h2>
+          <span class="sf-badge sf-badge-neutral">Locked</span>
+        </div>
+        <div class="text-slate-500 small">Covers container security, non-root users, volume persistence, and docker compose orchestration.</div>
+      </div>
+    </div>
+
+    <!-- Milestone 7 (LOCKED) -->
+    <div class="sf-roadmap-node">
+      <div class="sf-node-dot">
+        <i data-lucide="lock" style="width: 14px; height: 14px;"></i>
+      </div>
+      <div class="sf-card p-4 bg-slate-50 border mb-0 opacity-75">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <h2 class="h6 fw-semibold text-slate-700 mb-0">Sprint 7: Live Enterprise Supervised Project</h2>
+          <span class="sf-badge sf-badge-neutral">Locked</span>
+        </div>
+        <div class="text-slate-500 small">Join assigned production repo squad, attend daily standups, and deliver real features.</div>
+      </div>
+    </div>
+
+    <!-- Milestone 8 (LOCKED) -->
+    <div class="sf-roadmap-node mb-0">
+      <div class="sf-node-dot">
+        <i data-lucide="award" style="width: 14px; height: 14px;"></i>
+      </div>
+      <div class="sf-card p-4 bg-slate-50 border mb-0 opacity-75">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <h2 class="h6 fw-semibold text-slate-700 mb-0">Sprint 8: Defense, Final Evaluation & Skill Passport Graduation</h2>
+          <span class="sf-badge sf-badge-neutral">Graduation</span>
+        </div>
+        <div class="text-slate-500 small">Formal code defense with industry panel, final rubric audit, and issuance of cryptographic certificate.</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
