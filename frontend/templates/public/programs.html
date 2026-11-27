@@ -1,0 +1,143 @@
+{% extends "base_public.html" %}
+
+{% block title %}Training Programs & Tracks | SkillForge Academy{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-white border-bottom">
+  <div class="container py-4">
+    <div class="max-w-2xl">
+      <span class="sf-badge sf-badge-primary mb-3">Structured Curricula</span>
+      <h1 class="display-6 fw-bold text-slate-900 mb-3">Supervised Training Programs</h1>
+      <p class="lead text-slate-600 mb-0">
+        Each track is an intensive 16-week pathway combining theoretical rigor, in-browser coding assessments, supervised open-source projects, and guaranteed mentor evaluation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-canvas">
+  <div class="container py-2">
+    <div class="row g-4">
+      <!-- Track 1: Cloud & DevOps -->
+      <div class="col-lg-6">
+        <div class="sf-card h-100 p-4 bg-white border d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">16 Weeks • 120 Hours</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Cloud Systems Architecture & SRE</h2>
+            </div>
+            <span class="badge bg-slate-100 text-slate-700">Intermediate - Advanced</span>
+          </div>
+          <p class="text-slate-600 small mb-4">
+            Master Linux internals, Docker containerization, Kubernetes cluster orchestration, Terraform infrastructure-as-code, and Prometheus telemetry.
+          </p>
+          <div class="mb-4">
+            <div class="text-slate-500 small fw-semibold mb-2 text-uppercase" style="font-size: 0.75rem;">Key Competencies:</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="sf-badge sf-badge-neutral">Kubernetes</span>
+              <span class="sf-badge sf-badge-neutral">Docker</span>
+              <span class="sf-badge sf-badge-neutral">Terraform</span>
+              <span class="sf-badge sf-badge-neutral">CI/CD Actions</span>
+              <span class="sf-badge sf-badge-neutral">Grafana</span>
+            </div>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+            <span class="text-slate-500 small">Cohort Starts: <strong>April 15, 2026</strong></span>
+            <a href="{{ url_for('student_courses', course_id=101) }}" class="btn-sf-primary btn-sm">Explore Syllabus</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 2: Enterprise Full Stack -->
+      <div class="col-lg-6">
+        <div class="sf-card h-100 p-4 bg-white border d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">16 Weeks • 140 Hours</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Enterprise Full-Stack Python & React</h2>
+            </div>
+            <span class="badge bg-slate-100 text-slate-700">All Levels</span>
+          </div>
+          <p class="text-slate-600 small mb-4">
+            Build production-grade web applications using Python Flask, REST API patterns, PostgreSQL relational modeling, Redis caching, and reactive component systems.
+          </p>
+          <div class="mb-4">
+            <div class="text-slate-500 small fw-semibold mb-2 text-uppercase" style="font-size: 0.75rem;">Key Competencies:</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="sf-badge sf-badge-neutral">Python Flask</span>
+              <span class="sf-badge sf-badge-neutral">PostgreSQL</span>
+              <span class="sf-badge sf-badge-neutral">REST APIs</span>
+              <span class="sf-badge sf-badge-neutral">Bootstrap 5</span>
+              <span class="sf-badge sf-badge-neutral">OAuth & JWT</span>
+            </div>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+            <span class="text-slate-500 small">Cohort Starts: <strong>April 22, 2026</strong></span>
+            <a href="{{ url_for('student_courses', course_id=102) }}" class="btn-sf-primary btn-sm">Explore Syllabus</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 3: AI & Machine Learning -->
+      <div class="col-lg-6">
+        <div class="sf-card h-100 p-4 bg-white border d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">18 Weeks • 160 Hours</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Applied AI Systems & LLM Engineering</h2>
+            </div>
+            <span class="badge bg-slate-100 text-slate-700">Advanced</span>
+          </div>
+          <p class="text-slate-600 small mb-4">
+            Implement production retrieval-augmented generation (RAG), vector databases, semantic search pipelines, and agent orchestration with strict latency limits.
+          </p>
+          <div class="mb-4">
+            <div class="text-slate-500 small fw-semibold mb-2 text-uppercase" style="font-size: 0.75rem;">Key Competencies:</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="sf-badge sf-badge-neutral">PyTorch</span>
+              <span class="sf-badge sf-badge-neutral">RAG Systems</span>
+              <span class="sf-badge sf-badge-neutral">Vector DBs</span>
+              <span class="sf-badge sf-badge-neutral">Prompt Evals</span>
+              <span class="sf-badge sf-badge-neutral">FastAPI</span>
+            </div>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+            <span class="text-slate-500 small">Cohort Starts: <strong>May 5, 2026</strong></span>
+            <a href="{{ url_for('student_courses', course_id=103) }}" class="btn-sf-primary btn-sm">Explore Syllabus</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 4: DevSecOps & Security -->
+      <div class="col-lg-6">
+        <div class="sf-card h-100 p-4 bg-white border d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">14 Weeks • 110 Hours</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Applied Cybersecurity & Secure Coding</h2>
+            </div>
+            <span class="badge bg-slate-100 text-slate-700">Intermediate</span>
+          </div>
+          <p class="text-slate-600 small mb-4">
+            Conduct vulnerability assessments, OWASP mitigation, cryptographic key lifecycle management, and static application security testing (SAST) in CI pipelines.
+          </p>
+          <div class="mb-4">
+            <div class="text-slate-500 small fw-semibold mb-2 text-uppercase" style="font-size: 0.75rem;">Key Competencies:</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="sf-badge sf-badge-neutral">OWASP Top 10</span>
+              <span class="sf-badge sf-badge-neutral">SAST / DAST</span>
+              <span class="sf-badge sf-badge-neutral">Zero Trust</span>
+              <span class="sf-badge sf-badge-neutral">TLS & PKI</span>
+              <span class="sf-badge sf-badge-neutral">Audit Trails</span>
+            </div>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between">
+            <span class="text-slate-500 small">Cohort Starts: <strong>May 12, 2026</strong></span>
+            <a href="{{ url_for('student_courses', course_id=104) }}" class="btn-sf-primary btn-sm">Explore Syllabus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

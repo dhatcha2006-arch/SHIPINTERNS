@@ -1,0 +1,93 @@
+{% extends "base_public.html" %}
+
+{% block title %}About Us | SkillForge Academy{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-white border-bottom">
+  <div class="container py-4">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <span class="sf-badge sf-badge-primary mb-3">Our Mission & Pedagogy</span>
+        <h1 class="display-6 fw-bold text-slate-900 mb-3">Cultivating Production-Ready Software Engineers</h1>
+        <p class="lead text-slate-600 mb-4">
+          SkillForge was established to solve the industry readiness gap. While standard curricula focus on abstract proofs, engineering enterprises demand distributed systems resilience, automated testing, code review literacy, and disciplined agile execution.
+        </p>
+        <p class="text-slate-600">
+          Every intern at SkillForge is paired with an accredited senior engineering mentor from tier-1 technology firms. Work is verified through real pull requests, rigorous rubric evaluations, and daily work reports (DWR) that simulate top engineering teams.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <div class="sf-card p-4 bg-slate-50 border">
+          <h2 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">Academy Accreditation & Standards</h2>
+          <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small">
+            <li class="d-flex gap-2">
+              <i data-lucide="check-circle" class="text-success mt-1" style="width: 16px; height: 16px;"></i>
+              <div><strong>ISO 9001:2015 Certified:</strong> Continuous curriculum calibration based on quarterly tech audits.</div>
+            </li>
+            <li class="d-flex gap-2">
+              <i data-lucide="check-circle" class="text-success mt-1" style="width: 16px; height: 16px;"></i>
+              <div><strong>Industry Advisory Council:</strong> Supervised by senior architects across cloud, AI, and cybersecurity.</div>
+            </li>
+            <li class="d-flex gap-2">
+              <i data-lucide="check-circle" class="text-success mt-1" style="width: 16px; height: 16px;"></i>
+              <div><strong>Cryptographic Verification:</strong> All certificates backed by immutable SHA-256 commit hashes.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Faculty & Mentorship Leadership -->
+<section class="py-5 bg-canvas">
+  <div class="container py-4">
+    <h2 class="h4 fw-bold text-slate-900 mb-4">Engineering Mentors & Advisory Board</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="sf-card p-4 bg-white text-center">
+          <div class="rounded-circle bg-slate-200 text-slate-800 d-inline-flex align-items-center justify-content-center fw-bold mb-3" style="width: 72px; height: 72px; font-size: 1.25rem;">
+            SJ
+          </div>
+          <h3 class="h6 fw-bold text-slate-900 mb-1">Sarah Jenkins</h3>
+          <div class="text-primary small mb-2">Staff Systems Architect</div>
+          <p class="text-muted small mb-0">Specializes in Kubernetes operators, distributed consensus algorithms, and event streaming systems.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="sf-card p-4 bg-white text-center">
+          <div class="rounded-circle bg-slate-200 text-slate-800 d-inline-flex align-items-center justify-content-center fw-bold mb-3" style="width: 72px; height: 72px; font-size: 1.25rem;">
+            MK
+          </div>
+          <h3 class="h6 fw-bold text-slate-900 mb-1">Marcus Kumar</h3>
+          <div class="text-primary small mb-2">Head of AI Engineering</div>
+          <p class="text-muted small mb-0">Prior research at robotics labs; guides students in LLM fine-tuning, RAG pipelines, and model evaluation.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="sf-card p-4 bg-white text-center">
+          <div class="rounded-circle bg-slate-200 text-slate-800 d-inline-flex align-items-center justify-content-center fw-bold mb-3" style="width: 72px; height: 72px; font-size: 1.25rem;">
+            ER
+          </div>
+          <h3 class="h6 fw-bold text-slate-900 mb-1">Elena Rostova</h3>
+          <div class="text-primary small mb-2">Lead Full-Stack Engineer</div>
+          <p class="text-muted small mb-0">Expert in micro-frontends, accessible design tokens, and scalable Python Flask microservice backends.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="sf-card p-4 bg-white text-center">
+          <div class="rounded-circle bg-slate-200 text-slate-800 d-inline-flex align-items-center justify-content-center fw-bold mb-3" style="width: 72px; height: 72px; font-size: 1.25rem;">
+            DT
+          </div>
+          <h3 class="h6 fw-bold text-slate-900 mb-1">David Tanaka</h3>
+          <div class="text-primary small mb-2">Director of DevSecOps</div>
+          <p class="text-muted small mb-0">Oversees secure coding assessments, zero-trust infrastructure workshops, and CI/CD pipelines.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
