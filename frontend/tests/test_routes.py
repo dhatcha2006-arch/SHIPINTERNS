@@ -83,6 +83,11 @@ def test_student_coding_assessment(client):
     assert response.status_code == 200
     assert b"Distributed Token Bucket Rate Limiter" in response.data
 
+def test_student_quiz(client):
+    response = client.get('/student/quiz')
+    assert response.status_code == 200
+    assert b"Timed Examination" in response.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
