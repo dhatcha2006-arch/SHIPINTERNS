@@ -1,0 +1,278 @@
+{% extends "base_public.html" %}
+
+{% block title %}Supervised Internships | SkillForge Academy{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-white border-bottom">
+  <div class="container py-3">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+      <div>
+        <span class="sf-badge sf-badge-primary mb-2">Verified Openings • Spring 2026</span>
+        <h1 class="h3 fw-bold text-slate-900 mb-1">Supervised Engineering Internships</h1>
+        <p class="text-slate-600 small mb-0">Every listing includes guaranteed 1-on-1 mentorship, live project codebases, and monthly stipends.</p>
+      </div>
+      <div>
+        <a href="{{ url_for('student_apply') }}" class="btn-sf-primary">
+          <i data-lucide="file-text" style="width: 16px; height: 16px;"></i>
+          <span>Direct General Application</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-canvas">
+  <div class="container py-2">
+    <!-- Filter Controls -->
+    <div class="sf-card p-3 mb-4 bg-white">
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-4">
+          <div class="position-relative">
+            <input type="text" id="searchInput" class="sf-input pe-5" placeholder="Search role, skills, keywords..." onkeyup="filterInternships()">
+            <i data-lucide="search" class="position-absolute top-50 end-0 translate-middle-y me-3 text-slate-400" style="width: 16px; height: 16px;"></i>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <select id="domainSelect" class="sf-select" onchange="filterInternships()">
+            <option value="all">All Engineering Domains</option>
+            <option value="cloud">Cloud & DevOps</option>
+            <option value="fullstack">Full-Stack Development</option>
+            <option value="ai">AI & Machine Learning</option>
+            <option value="security">Cybersecurity & SecOps</option>
+          </select>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <select id="typeSelect" class="sf-select" onchange="filterInternships()">
+            <option value="all">Workplace Mode: All</option>
+            <option value="remote">Remote (Worldwide)</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="onsite">On-Site Campus</option>
+          </select>
+        </div>
+        <div class="col-lg-2 text-end">
+          <span class="text-slate-500 small" id="matchCounter">Showing 6 openings</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Internship Listings Grid -->
+    <div class="row g-4" id="internshipGrid">
+      <!-- Item 1 -->
+      <div class="col-lg-6 internship-item" data-domain="cloud" data-type="remote" data-title="Cloud Infrastructure & Kubernetes Intern">
+        <div class="sf-card p-4 bg-white h-100 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">DevOps Track</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Cloud Infrastructure & Kubernetes Intern</h2>
+              <div class="text-slate-500 small">Apex Cloud Labs • Supervised by Sarah Jenkins</div>
+            </div>
+            <span class="sf-badge sf-badge-neutral">Remote</span>
+          </div>
+          <p class="text-slate-600 small mb-3">
+            Build and automate Kubernetes custom resource controllers, configure Helm charts, and instrument container clusters with Prometheus and Loki telemetry.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="sf-badge sf-badge-neutral">Kubernetes</span>
+            <span class="sf-badge sf-badge-neutral">Go</span>
+            <span class="sf-badge sf-badge-neutral">Docker</span>
+            <span class="sf-badge sf-badge-neutral">Terraform</span>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-slate-900 fw-bold small tabular-nums">$1,200 / month</span>
+              <span class="text-slate-400 small"> • 16 Weeks</span>
+            </div>
+            <a href="{{ url_for('student_apply') }}" class="btn-sf-primary btn-sm">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="col-lg-6 internship-item" data-domain="fullstack" data-type="remote" data-title="Full-Stack Python & React Intern">
+        <div class="sf-card p-4 bg-white h-100 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">Full-Stack Track</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Full-Stack Python & React Intern</h2>
+              <div class="text-slate-500 small">DataCraft Systems • Supervised by Elena Rostova</div>
+            </div>
+            <span class="sf-badge sf-badge-neutral">Remote</span>
+          </div>
+          <p class="text-slate-600 small mb-3">
+            Develop scalable RESTful microservices in Flask, optimize PostgreSQL indexing strategies, and craft accessible, responsive web interfaces with Bootstrap 5.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="sf-badge sf-badge-neutral">Python</span>
+            <span class="sf-badge sf-badge-neutral">Flask</span>
+            <span class="sf-badge sf-badge-neutral">PostgreSQL</span>
+            <span class="sf-badge sf-badge-neutral">JavaScript ES6</span>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-slate-900 fw-bold small tabular-nums">$1,000 / month</span>
+              <span class="text-slate-400 small"> • 16 Weeks</span>
+            </div>
+            <a href="{{ url_for('student_apply') }}" class="btn-sf-primary btn-sm">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="col-lg-6 internship-item" data-domain="ai" data-type="remote" data-title="Applied AI & LLM Systems Intern">
+        <div class="sf-card p-4 bg-white h-100 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">AI Systems</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Applied AI & LLM Systems Intern</h2>
+              <div class="text-slate-500 small">NeuralVance Labs • Supervised by Marcus Kumar</div>
+            </div>
+            <span class="sf-badge sf-badge-neutral">Remote</span>
+          </div>
+          <p class="text-slate-600 small mb-3">
+            Construct semantic vector search pipelines using Qdrant and pgvector, benchmark inference latency, and author automated hallucination test harnesses.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="sf-badge sf-badge-neutral">PyTorch</span>
+            <span class="sf-badge sf-badge-neutral">FastAPI</span>
+            <span class="sf-badge sf-badge-neutral">Vector DBs</span>
+            <span class="sf-badge sf-badge-neutral">HuggingFace</span>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-slate-900 fw-bold small tabular-nums">$1,400 / month</span>
+              <span class="text-slate-400 small"> • 18 Weeks</span>
+            </div>
+            <a href="{{ url_for('student_apply') }}" class="btn-sf-primary btn-sm">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="col-lg-6 internship-item" data-domain="security" data-type="hybrid" data-title="DevSecOps & Application Security Intern">
+        <div class="sf-card p-4 bg-white h-100 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">Security Track</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">DevSecOps & Application Security Intern</h2>
+              <div class="text-slate-500 small">Fortress Guard • Supervised by David Tanaka</div>
+            </div>
+            <span class="sf-badge sf-badge-neutral">Hybrid</span>
+          </div>
+          <p class="text-slate-600 small mb-3">
+            Integrate Semgrep SAST checks into GitHub Actions, execute container image vulnerability audits with Trivy, and conduct threat modeling reviews.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="sf-badge sf-badge-neutral">OWASP</span>
+            <span class="sf-badge sf-badge-neutral">Semgrep</span>
+            <span class="sf-badge sf-badge-neutral">Trivy</span>
+            <span class="sf-badge sf-badge-neutral">GitHub CI</span>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-slate-900 fw-bold small tabular-nums">$1,100 / month</span>
+              <span class="text-slate-400 small"> • 14 Weeks</span>
+            </div>
+            <a href="{{ url_for('student_apply') }}" class="btn-sf-primary btn-sm">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="col-lg-6 internship-item" data-domain="fullstack" data-type="onsite" data-title="Frontend Systems & Design Tokens Intern">
+        <div class="sf-card p-4 bg-white h-100 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">Frontend Systems</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Frontend Systems & Design Tokens Intern</h2>
+              <div class="text-slate-500 small">SkillForge Academy Studio • Supervised by Elena Rostova</div>
+            </div>
+            <span class="sf-badge sf-badge-neutral">On-Site</span>
+          </div>
+          <p class="text-slate-600 small mb-3">
+            Architect accessible design component systems, eliminate UI slop, enforce WCAG 2.1 AA accessibility guidelines, and implement responsive test coverage.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="sf-badge sf-badge-neutral">CSS3 Tokens</span>
+            <span class="sf-badge sf-badge-neutral">JavaScript ES6</span>
+            <span class="sf-badge sf-badge-neutral">WCAG 2.1</span>
+            <span class="sf-badge sf-badge-neutral">Bootstrap 5</span>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-slate-900 fw-bold small tabular-nums">$950 / month</span>
+              <span class="text-slate-400 small"> • 12 Weeks</span>
+            </div>
+            <a href="{{ url_for('student_apply') }}" class="btn-sf-primary btn-sm">Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="col-lg-6 internship-item" data-domain="cloud" data-type="remote" data-title="Site Reliability & Performance Intern">
+        <div class="sf-card p-4 bg-white h-100 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <span class="sf-badge sf-badge-primary mb-2">SRE Track</span>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">Site Reliability & Performance Intern</h2>
+              <div class="text-slate-500 small">Vanguard Cloud • Supervised by Sarah Jenkins</div>
+            </div>
+            <span class="sf-badge sf-badge-neutral">Remote</span>
+          </div>
+          <p class="text-slate-600 small mb-3">
+            Automate disaster recovery drills, establish Service Level Objectives (SLOs), configure Grafana operational dashboards, and analyze distributed traces.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="sf-badge sf-badge-neutral">Grafana</span>
+            <span class="sf-badge sf-badge-neutral">Prometheus</span>
+            <span class="sf-badge sf-badge-neutral">Linux Bash</span>
+            <span class="sf-badge sf-badge-neutral">Chaos Testing</span>
+          </div>
+          <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-slate-900 fw-bold small tabular-nums">$1,250 / month</span>
+              <span class="text-slate-400 small"> • 16 Weeks</span>
+            </div>
+            <a href="{{ url_for('student_apply') }}" class="btn-sf-primary btn-sm">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function filterInternships() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const domain = document.getElementById('domainSelect').value;
+  const type = document.getElementById('typeSelect').value;
+
+  const items = document.querySelectorAll('.internship-item');
+  let matchCount = 0;
+
+  items.forEach(item => {
+    const itemDomain = item.getAttribute('data-domain');
+    const itemType = item.getAttribute('data-type');
+    const itemTitle = item.getAttribute('data-title').toLowerCase();
+    const itemText = item.innerText.toLowerCase();
+
+    const matchesDomain = (domain === 'all' || itemDomain === domain);
+    const matchesType = (type === 'all' || itemType === type);
+    const matchesQuery = (!query || itemTitle.includes(query) || itemText.includes(query));
+
+    if (matchesDomain && matchesType && matchesQuery) {
+      item.style.display = 'block';
+      matchCount++;
+    } else {
+      item.style.display = 'none';
+    }
+  });
+
+  const counterEl = document.getElementById('matchCounter');
+  if (counterEl) {
+    counterEl.innerText = `Showing ${matchCount} opening${matchCount === 1 ? '' : 's'}`;
+  }
+}
+</script>
+{% endblock %}
