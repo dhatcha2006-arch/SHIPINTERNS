@@ -1,0 +1,151 @@
+{% extends "base_app.html" %}
+
+{% block title %}Submit Assignment | SkillForge{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <a href="{{ url_for('student_assignments') }}" class="text-slate-500 small text-decoration-none d-inline-flex align-items-center gap-1 mb-2">
+    <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
+    <span>Back to Assignments Board</span>
+  </a>
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+    <div>
+      <div class="d-flex align-items-center gap-2 mb-1">
+        <span class="sf-badge sf-badge-primary">Sprint 4 Assignment</span>
+        <span class="text-slate-400">•</span>
+        <span class="text-slate-500 small">ID: TASK-402</span>
+      </div>
+      <h1 class="h3 fw-bold text-slate-900 mb-0">Task 4.2: Asynchronous Task Queue with Celery & Redis</h1>
+    </div>
+    <div>
+      <span class="sf-badge sf-badge-danger">Due: April 03, 2026 at 23:59 UTC</span>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Submission Form -->
+  <div class="col-lg-8">
+    <div class="sf-card p-4 p-md-5 bg-white border mb-4">
+      <h2 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">Deliverable Submission Details</h2>
+
+      <form id="assignmentForm" onsubmit="handleAssignmentSubmit(event)">
+        <!-- GitHub Pull Request URL -->
+        <div class="mb-4">
+          <label class="sf-label">GitHub Pull Request URL (Primary)</label>
+          <div class="position-relative">
+            <input type="url" id="prUrlInput" class="sf-input ps-5" required placeholder="https://github.com/skillforge/order-service/pull/43" value="https://github.com/skillforge/order-service/pull/43">
+            <i data-lucide="git-pull-request" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-slate-400" style="width: 16px; height: 16px;"></i>
+          </div>
+          <div class="text-slate-400 small mt-1" style="font-size: 0.75rem;">Your PR must be rebased on <code>main</code> and have passing automated CI checks.</div>
+        </div>
+
+        <!-- Optional Source Code Archive -->
+        <div class="mb-4">
+          <label class="sf-label">Supplementary Archive (.zip / .tar.gz) <span class="text-slate-400 font-normal">(Optional)</span></label>
+          <input type="file" class="sf-input" accept=".zip,.tar.gz,.gz">
+        </div>
+
+        <!-- Engineering Remarks -->
+        <div class="mb-4">
+          <label class="sf-label">Architectural Implementation Notes</label>
+          <textarea class="sf-textarea" id="notesInput" rows="5" required placeholder="Describe your concurrency strategy, task retry backoff, and how you verified deadlock prevention...">Implemented exponential backoff on transient Redis network failures. Configured Celery prefetch multiplier to 1 for compute-heavy worker queues to prevent starvation. Added 12 unit tests using pytest-mock with 95% branch coverage.</textarea>
+        </div>
+
+        <!-- Pre-submission Integrity Check -->
+        <div class="p-3 bg-slate-50 border rounded-2 mb-4">
+          <div class="fw-semibold text-slate-900 small mb-2">Pre-Submission Quality Checklist</div>
+          <div class="d-flex flex-column gap-2 small text-slate-600">
+            <label class="form-check d-flex align-items-center gap-2 mb-0">
+              <input class="form-check-input mt-0" type="checkbox" checked required>
+              <span>All automated unit tests pass locally with zero warnings</span>
+            </label>
+            <label class="form-check d-flex align-items-center gap-2 mb-0">
+              <input class="form-check-input mt-0" type="checkbox" checked required>
+              <span>No credentials, database passwords or API keys are committed in code</span>
+            </label>
+            <label class="form-check d-flex align-items-center gap-2 mb-0">
+              <input class="form-check-input mt-0" type="checkbox" checked required>
+              <span>Code conforms to PEP 8 standards and Flake8 linter rules</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center pt-2">
+          <button type="button" class="btn-sf-secondary" onclick="window.history.back()">Back</button>
+          <button type="submit" id="submitBtn" class="btn-sf-primary px-4">
+            <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+            <span>Submit for Mentor Review</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Right Column: Rubric & Past Submissions -->
+  <div class="col-lg-4">
+    <!-- Grading Rubric Breakdown -->
+    <div class="sf-card p-4 bg-white border mb-4">
+      <h3 class="h6 fw-bold text-slate-900 mb-3">Evaluation Rubric</h3>
+      <div class="d-flex flex-column gap-3 small">
+        <div class="p-2 bg-slate-50 border rounded">
+          <div class="d-flex justify-content-between fw-semibold text-slate-900 mb-1">
+            <span>Concurrency & Retries</span>
+            <span class="tabular-nums">40 Pts</span>
+          </div>
+          <div class="text-slate-500" style="font-size: 0.75rem;">Exponential backoff logic, idempotent handlers, and dead-letter queue management.</div>
+        </div>
+
+        <div class="p-2 bg-slate-50 border rounded">
+          <div class="d-flex justify-content-between fw-semibold text-slate-900 mb-1">
+            <span>Automated Test Coverage</span>
+            <span class="tabular-nums">35 Pts</span>
+          </div>
+          <div class="text-slate-500" style="font-size: 0.75rem;">Pytest test suites covering both success and timeout scenarios.</div>
+        </div>
+
+        <div class="p-2 bg-slate-50 border rounded">
+          <div class="d-flex justify-content-between fw-semibold text-slate-900 mb-1">
+            <span>Code Craftsmanship & Documentation</span>
+            <span class="tabular-nums">25 Pts</span>
+          </div>
+          <div class="text-slate-500" style="font-size: 0.75rem;">Clean commit messages, docstrings, and modular structure.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assigned Evaluator -->
+    <div class="sf-card p-4 bg-white border">
+      <div class="text-slate-400 small mb-1">Lead Reviewer:</div>
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <div class="rounded-circle bg-slate-200 text-slate-800 d-flex align-items-center justify-content-center fw-bold small" style="width: 32px; height: 32px;">
+          SJ
+        </div>
+        <div>
+          <div class="fw-semibold text-slate-900 small">Sarah Jenkins</div>
+          <div class="text-slate-500 small" style="font-size: 0.75rem;">Principal Systems Mentor</div>
+        </div>
+      </div>
+      <div class="text-slate-500 small">
+        Evaluations are completed within 24 hours of submission along with inline PR code review comments.
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function handleAssignmentSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Submitting...';
+
+  SkillForgeUI.showToast('Assignment submitted successfully! Notification sent to Mentor Sarah Jenkins.', 'success', 'Submission Confirmed');
+  setTimeout(() => {
+    window.location.href = '/student/assignments';
+  }, 1200);
+}
+</script>
+{% endblock %}
