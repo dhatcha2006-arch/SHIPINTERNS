@@ -1,0 +1,171 @@
+{% extends "base_app.html" %}
+
+{% block title %}Coding Assessment Studio | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
+  <div>
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <span class="sf-badge sf-badge-primary">Assessment Challenge #4</span>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-500 small">Time Elapsed: <span class="tabular-nums font-monospace" id="timerClock">18:42</span> / 60:00</span>
+    </div>
+    <h1 class="h4 fw-bold text-slate-900 mb-0">Distributed Token Bucket Rate Limiter with Sliding Window</h1>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <button class="btn-sf-secondary btn-sm" onclick="resetEditor()">
+      <i data-lucide="rotate-ccw" style="width: 14px; height: 14px;"></i>
+      <span>Reset Code</span>
+    </button>
+    <button class="btn-sf-secondary btn-sm" id="runTestsBtn" onclick="runCode()">
+      <i data-lucide="play" style="width: 14px; height: 14px;"></i>
+      <span>Run Tests</span>
+    </button>
+    <button class="btn-sf-primary btn-sm px-3" id="submitAssessmentBtn" onclick="submitAssessment()">
+      <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+      <span>Submit Assessment</span>
+    </button>
+  </div>
+</div>
+
+<!-- Split-Pane Workspace -->
+<div class="sf-editor-container">
+  <!-- Left Side: Problem Statement & Test Case Specs -->
+  <div class="sf-editor-pane" style="flex: 0 0 380px; background-color: #0d131f; border-right: 1px solid #1e293b; overflow-y: auto;">
+    <div class="sf-editor-header" style="background-color: #162032;">
+      <span class="fw-semibold text-white">Problem Description</span>
+      <span class="badge bg-slate-700 text-slate-300">Difficulty: Medium</span>
+    </div>
+    <div class="p-3 text-slate-300 small" style="line-height: 1.6;">
+      <h2 class="text-white fw-bold mb-2 fs-6">Challenge Overview</h2>
+      <p class="text-slate-400">
+        Implement an idempotent rate limiting function <code>is_request_allowed(client_id, max_tokens, refill_rate_per_sec, current_time)</code> that maintains a sliding window bucket per client.
+      </p>
+
+      <h3 class="text-white fw-semibold mb-1 fs-6">Constraints</h3>
+      <ul class="text-slate-400 ps-3 mb-3">
+        <li>Time complexity: <code>O(1)</code> per request</li>
+        <li>Space complexity: <code>O(N)</code> where N is unique active clients</li>
+        <li>Tokens must accurately refill based on microsecond elapsed differences</li>
+      </ul>
+
+      <h3 class="text-white fw-semibold mb-1 fs-6">Example 1:</h3>
+      <pre class="bg-slate-900 p-2 rounded text-slate-200 font-monospace small mb-3">
+client_id = "user_891"
+max_tokens = 5
+refill_rate = 1.0  # 1 token/sec
+
+# 1st request at t=0.0 -> Allowed (4 remaining)
+# 2nd request at t=0.1 -> Allowed (3 remaining)
+# 3rd request at t=0.2 -> Allowed (2 remaining)
+      </pre>
+
+      <div class="p-2 rounded bg-slate-800 text-slate-300 small">
+        <i data-lucide="info" class="me-1 text-primary" style="width: 14px;"></i>
+        <span>Evaluation includes 5 hidden edge cases testing clock drift and concurrent client bursts.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Center/Right Side: Code Editor -->
+  <div class="sf-editor-pane" style="flex: 1;">
+    <div class="sf-editor-header">
+      <div class="d-flex align-items-center gap-3">
+        <span class="text-white fw-medium">solution.py</span>
+        <select class="form-select form-select-sm bg-slate-800 text-slate-300 border-0 py-0" style="width: 130px; font-size: 0.75rem;">
+          <option selected>Python 3.12</option>
+          <option>JavaScript ES6</option>
+          <option>Go 1.22</option>
+          <option>PostgreSQL</option>
+        </select>
+      </div>
+      <span class="text-slate-400 small">UTF-8 • Tab Size: 4</span>
+    </div>
+    <textarea class="sf-code-area" id="codeEditorArea" spellcheck="false">import time
+
+class TokenBucketRateLimiter:
+    def __init__(self):
+        # Client cache schema: {client_id: {"tokens": float, "last_updated": float}}
+        self.clients = {}
+
+    def is_request_allowed(self, client_id: str, max_tokens: int, refill_rate_per_sec: float, current_time: float) -> bool:
+        """
+        Determines whether an incoming request from client_id is permitted under rate constraints.
+        Returns True if request is allowed, False otherwise.
+        """
+        if client_id not in self.clients:
+            self.clients[client_id] = {
+                "tokens": float(max_tokens - 1),
+                "last_updated": current_time
+            }
+            return True
+
+        record = self.clients[client_id]
+        elapsed = max(0.0, current_time - record["last_updated"])
+        
+        # Calculate replenished tokens
+        refilled = elapsed * refill_rate_per_sec
+        current_tokens = min(float(max_tokens), record["tokens"] + refilled)
+
+        if current_tokens >= 1.0:
+            self.clients[client_id]["tokens"] = current_tokens - 1.0
+            self.clients[client_id]["last_updated"] = current_time
+            return True
+        else:
+            self.clients[client_id]["tokens"] = current_tokens
+            self.clients[client_id]["last_updated"] = current_time
+            return False
+</textarea>
+  </div>
+
+  <!-- Right Terminal / Test Output Console -->
+  <div class="sf-test-console">
+    <div class="sf-editor-header" style="background-color: #0b101b; border-bottom: 1px solid #1e293b;">
+      <span class="text-white fw-semibold">Test Runner Output</span>
+      <span class="sf-badge sf-badge-success" id="testSummaryBadge">Ready</span>
+    </div>
+    <div class="sf-console-output" id="testConsoleOutput">
+SkillForge Automated Test Harness v2.4
+Target: solution.py (Python 3.12 Runtime)
+
+Press [Run Tests] to execute public test cases.
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function runCode() {
+  const btn = document.getElementById('runTestsBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Running...';
+
+  const outputEl = document.getElementById('testConsoleOutput');
+  outputEl.innerText = "Executing unit test suite...\n\nCompiling solution.py...\n[PASSED] Test Case 1: Initial client burst under capacity (0.012s)\n[PASSED] Test Case 2: Accurate fractional token replenishment (0.018s)\n[PASSED] Test Case 3: Rejection on token starvation (0.015s)\n[PASSED] Test Case 4: Multi-client isolation state (0.021s)\n\n==========================================\nResults: 4 / 4 Test Cases Passed!\nRuntime: 66ms • Memory: 14.2 MB\nExit Code: 0 (Success)";
+
+  const badge = document.getElementById('testSummaryBadge');
+  badge.className = 'sf-badge sf-badge-success';
+  badge.innerText = '4/4 Passed';
+
+  btn.disabled = false;
+  btn.innerHTML = '<i data-lucide="play" style="width: 14px; height: 14px;"></i> <span>Run Tests</span>';
+  if (window.lucide) lucide.createIcons();
+
+  SkillForgeUI.showToast('All 4 test cases passed successfully!', 'success', 'Compiler Output');
+}
+
+function submitAssessment() {
+  SkillForgeUI.showToast('Coding assessment submitted with score: 100/100! Recorded to your Skill Passport.', 'success', 'Assessment Scored');
+  setTimeout(() => {
+    window.location.href = '/student/assignments';
+  }, 1200);
+}
+
+function resetEditor() {
+  if (confirm('Reset code template to default?')) {
+    document.getElementById('codeEditorArea').value = '# Write your rate limiter implementation here...\n';
+  }
+}
+</script>
+{% endblock %}
