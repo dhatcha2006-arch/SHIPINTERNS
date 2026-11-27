@@ -88,6 +88,11 @@ def test_student_quiz(client):
     assert response.status_code == 200
     assert b"Timed Examination" in response.data
 
+def test_mentor_dashboard(client):
+    response = client.get('/mentor/dashboard')
+    assert response.status_code == 200
+    assert b"Supervised Cohort Velocity Cockpit" in response.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
