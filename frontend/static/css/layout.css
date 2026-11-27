@@ -312,11 +312,51 @@
   display: none;
 }
 
+/* Public Footer (Pitch-Black Dark Shell matching floating pill navbar) */
 .sf-public-footer {
-  background: var(--sf-slate-900);
-  color: var(--sf-slate-300);
-  border-top: 1px solid var(--sf-slate-800);
+  background: #090a0f !important;
+  color: #94a3b8;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: var(--sf-space-12) 0 var(--sf-space-6) 0;
+}
+
+.sf-public-footer a {
+  color: #94a3b8 !important;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.sf-public-footer a:hover {
+  color: #ffffff !important;
+}
+
+.sf-public-footer .border-slate-800 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.sf-public-footer .sf-input {
+  background: #11131a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.sf-public-footer .sf-input:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+.sf-public-footer .btn-sf-footer-sub {
+  background: #ffffff;
+  color: #090a0f;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--sf-radius-md);
+  padding: 8px 18px;
+  transition: all 0.15s ease;
+}
+
+.sf-public-footer .btn-sf-footer-sub:hover {
+  background: #e2e8f0;
 }
 
 /* App Shell (Dashboard, Portal & Studio) */
