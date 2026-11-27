@@ -74,6 +74,10 @@ def test_student_assignments(client):
     assert response.status_code == 200
     assert b"Assignments & Code Deliverables" in response.data
 
+    res2 = client.get('/student/assignments/402/submit')
+    assert res2.status_code == 200
+    assert b"Deliverable Submission Details" in res2.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
