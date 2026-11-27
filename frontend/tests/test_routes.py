@@ -93,6 +93,11 @@ def test_mentor_dashboard(client):
     assert response.status_code == 200
     assert b"Supervised Cohort Velocity Cockpit" in response.data
 
+def test_mentor_allocations(client):
+    response = client.get('/mentor/allocations')
+    assert response.status_code == 200
+    assert b"Allocated Squad Directory" in response.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
