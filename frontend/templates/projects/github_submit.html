@@ -1,0 +1,124 @@
+{% extends "base_app.html" %}
+
+{% block title %}GitHub Pull Request Submission | SkillForge{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <a href="{{ url_for('project_dashboard') }}" class="text-slate-500 small text-decoration-none d-inline-flex align-items-center gap-1 mb-2">
+    <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
+    <span>Back to Project Dashboard</span>
+  </a>
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+    <div>
+      <h1 class="h3 fw-bold text-slate-900 mb-1">GitHub Pull Request Review Submission</h1>
+      <p class="text-slate-500 small mb-0">Submit your feature branch pull request for mentor rubric review and automated CI validation.</p>
+    </div>
+    <span class="sf-badge sf-badge-primary">Sprint 4 Task Submission</span>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Submission Details Form -->
+  <div class="col-lg-7">
+    <div class="sf-card p-4 p-md-5 bg-white border mb-4">
+      <h2 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">Pull Request Link & Verification</h2>
+
+      <form id="githubSubmitForm" onsubmit="handleGithubSubmit(event)">
+        <div class="mb-3">
+          <label class="sf-label">Target Supervised Repository</label>
+          <select class="sf-select" id="repoSelect">
+            <option selected>skillforge/order-service</option>
+            <option>skillforge/worker-fleet</option>
+            <option>skillforge/infra-compose</option>
+          </select>
+        </div>
+
+        <div class="row g-3 mb-3">
+          <div class="col-sm-8">
+            <label class="sf-label">Feature Branch Name</label>
+            <input type="text" class="sf-input font-monospace" value="feat/pg-connection-pooling" required>
+          </div>
+          <div class="col-sm-4">
+            <label class="sf-label">PR Number</label>
+            <input type="number" class="sf-input font-monospace" value="42" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="sf-label">Direct GitHub PR Webhook URL</label>
+          <input type="url" class="sf-input font-monospace" value="https://github.com/skillforge/order-service/pull/42" required>
+        </div>
+
+        <div class="mb-4">
+          <label class="sf-label">Pull Request Description & Review Notes</label>
+          <textarea class="sf-textarea" rows="4" required>Implemented connection pool options in SQLAlchemy 2.0. Handled automatic session cleanup on context tear-down and added tests simulating transient socket timeouts.</textarea>
+        </div>
+
+        <div class="mb-4">
+          <label class="sf-label">Assign Mentor Reviewer</label>
+          <select class="sf-select" required>
+            <option selected>Sarah Jenkins (Principal Systems Mentor)</option>
+            <option>Marcus Kumar (AI & Data Mentor)</option>
+            <option>Elena Rostova (Full-Stack Mentor)</option>
+          </select>
+        </div>
+
+        <button type="submit" id="githubSubmitBtn" class="btn-sf-primary w-100 py-2">
+          <i data-lucide="git-pull-request" style="width: 16px; height: 16px;"></i>
+          <span>Dispatch Pull Request for Review</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Live GitHub Verification Card -->
+  <div class="col-lg-5">
+    <div class="sf-card p-4 bg-white border mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="h6 fw-bold text-slate-900 mb-0">Automated GitHub CI Health</h3>
+        <span class="sf-badge sf-badge-success">Passing</span>
+      </div>
+
+      <div class="p-3 bg-slate-900 text-slate-100 rounded-2 mb-3 font-monospace small" style="line-height: 1.6; font-size: 0.75rem;">
+        <div>repo: skillforge/order-service #42</div>
+        <div>head: <code>4f9812b</code> &rarr; base: <code>main</code></div>
+        <div class="text-success mt-1">&check; 42/42 Pytest unit tests passed (1.2s)</div>
+        <div class="text-success">&check; Flake8 linter: 0 errors, 0 warnings</div>
+        <div class="text-success">&check; Docker container build verified</div>
+      </div>
+
+      <div class="d-flex justify-content-between small text-slate-600 border-top pt-2">
+        <span>Files Changed: <strong>6 files</strong></span>
+        <span>Lines: <strong class="text-success">+248</strong> / <strong class="text-danger">-32</strong></span>
+      </div>
+    </div>
+
+    <!-- Reviewer SLA Guarantee -->
+    <div class="sf-card p-4 bg-slate-50 border">
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <i data-lucide="shield-check" class="text-primary" style="width: 18px;"></i>
+        <h3 class="h6 fw-bold text-slate-900 mb-0">Evaluation Guarantee</h3>
+      </div>
+      <p class="text-slate-500 small mb-0">
+        All pull requests are reviewed by an accredited industry architect within 24 hours. Feedback is returned with inline annotations and rubric scorecard points.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function handleGithubSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('githubSubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Dispatching to Mentor Queue...';
+
+  SkillForgeUI.showToast('Pull Request #42 submitted for review. Mentor Sarah Jenkins notified.', 'success', 'PR Submitted');
+  setTimeout(() => {
+    window.location.href = '/projects/dashboard';
+  }, 1200);
+}
+</script>
+{% endblock %}

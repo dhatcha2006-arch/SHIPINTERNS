@@ -107,6 +107,10 @@ def test_live_projects(client):
     assert res2.status_code == 200
     assert b"Project Task Tracking Board" in res2.data
 
+    res3 = client.get('/projects/github-submit')
+    assert res3.status_code == 200
+    assert b"GitHub Pull Request Review Submission" in res3.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
