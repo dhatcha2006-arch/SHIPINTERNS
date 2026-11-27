@@ -69,6 +69,11 @@ def test_student_lesson(client):
     assert response.status_code == 200
     assert b"Connection Pooling" in response.data
 
+def test_student_assignments(client):
+    response = client.get('/student/assignments')
+    assert response.status_code == 200
+    assert b"Assignments & Code Deliverables" in response.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200

@@ -1,0 +1,147 @@
+{% extends "base_app.html" %}
+
+{% block title %}Assignments Dashboard | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Assignments & Code Deliverables</h1>
+    <p class="text-slate-500 small mb-0">Practical industry exercises evaluated against production rubrics by senior engineering mentors.</p>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <a href="{{ url_for('student_assignment_submit', assignment_id=402) }}" class="btn-sf-primary">
+      <i data-lucide="upload-cloud" style="width: 16px; height: 16px;"></i>
+      <span>Submit Current Assignment</span>
+    </a>
+  </div>
+</div>
+
+<!-- Quick Stats Bar -->
+<div class="row g-3 mb-4">
+  <div class="col-sm-4">
+    <div class="sf-card p-3 bg-white text-center mb-0">
+      <div class="text-slate-400 small mb-1">Evaluated & Passed</div>
+      <div class="fs-4 fw-bold tabular-nums text-slate-900">14 Assignments</div>
+      <div class="text-success small">Average Score: 95.2%</div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="sf-card p-3 bg-white text-center mb-0">
+      <div class="text-slate-400 small mb-1">Under Mentor Review</div>
+      <div class="fs-4 fw-bold tabular-nums text-slate-900">1 Assignment</div>
+      <div class="text-warning small">Assigned to Sarah Jenkins</div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="sf-card p-3 bg-white text-center mb-0">
+      <div class="text-slate-400 small mb-1">Upcoming Deadline</div>
+      <div class="fs-4 fw-bold tabular-nums text-slate-900">Task 4.2</div>
+      <div class="text-danger small">Due in 3 Days (April 3)</div>
+    </div>
+  </div>
+</div>
+
+<!-- Filter Tabs -->
+<div class="sf-card bg-white border">
+  <div class="sf-card-header">
+    <div class="d-flex gap-2">
+      <button class="btn btn-sm btn-sf-primary" onclick="filterAssignments('all')">All (16)</button>
+      <button class="btn btn-sm btn-sf-secondary" onclick="filterAssignments('pending')">Pending (1)</button>
+      <button class="btn btn-sm btn-sf-secondary" onclick="filterAssignments('review')">In Review (1)</button>
+      <button class="btn btn-sm btn-sf-secondary" onclick="filterAssignments('completed')">Evaluated (14)</button>
+    </div>
+  </div>
+  <div class="sf-card-body p-0">
+    <div class="sf-table-wrapper border-0">
+      <table class="sf-table" id="assignmentsTable">
+        <thead>
+          <tr>
+            <th>Assignment Title & Track</th>
+            <th>Due Date</th>
+            <th>Mentor Evaluator</th>
+            <th>Rubric Score</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Item 1: Pending -->
+          <tr data-status="pending">
+            <td>
+              <div class="fw-semibold text-slate-900">Task 4.2: Asynchronous Task Queue with Celery & Redis</div>
+              <div class="text-slate-400 small">Sprint 4: Distributed Services • Weight: 30 pts</div>
+            </td>
+            <td class="tabular-nums text-danger small fw-medium">Apr 03, 2026 (3 days)</td>
+            <td class="text-slate-600 small">Sarah Jenkins</td>
+            <td class="tabular-nums text-slate-400 small">-- / 100</td>
+            <td><span class="sf-badge sf-badge-warning">To Submit</span></td>
+            <td>
+              <a href="{{ url_for('student_assignment_submit', assignment_id=402) }}" class="btn-sf-primary btn-sm py-1 px-2">Submit</a>
+            </td>
+          </tr>
+
+          <!-- Item 2: In Review -->
+          <tr data-status="review">
+            <td>
+              <div class="fw-semibold text-slate-900">Task 4.1: PostgreSQL Index Tuning & Connection Pooling</div>
+              <div class="text-slate-400 small">Sprint 4: Database Persistence • Weight: 25 pts</div>
+            </td>
+            <td class="tabular-nums text-slate-600 small">Mar 30, 2026</td>
+            <td class="text-slate-600 small">Sarah Jenkins</td>
+            <td class="tabular-nums text-slate-400 small">Grading...</td>
+            <td><span class="sf-badge sf-badge-primary">In Review</span></td>
+            <td>
+              <a href="{{ url_for('student_assignment_submit', assignment_id=401) }}" class="btn-sf-ghost btn-sm py-1 px-2">View PR</a>
+            </td>
+          </tr>
+
+          <!-- Item 3: Completed -->
+          <tr data-status="completed">
+            <td>
+              <div class="fw-semibold text-slate-900">Task 3.3: REST API Circuit Breaker & Rate Limiter</div>
+              <div class="text-slate-400 small">Sprint 3: High Concurrency • Weight: 25 pts</div>
+            </td>
+            <td class="tabular-nums text-slate-600 small">Mar 22, 2026</td>
+            <td class="text-slate-600 small">Sarah Jenkins</td>
+            <td class="tabular-nums fw-bold text-success small">96 / 100</td>
+            <td><span class="sf-badge sf-badge-success">Evaluated</span></td>
+            <td>
+              <a href="{{ url_for('student_evaluations') }}" class="btn-sf-ghost btn-sm py-1 px-2">Feedback</a>
+            </td>
+          </tr>
+
+          <!-- Item 4: Completed -->
+          <tr data-status="completed">
+            <td>
+              <div class="fw-semibold text-slate-900">Task 3.2: Multi-Blueprint Application Factory with Flask</div>
+              <div class="text-slate-400 small">Sprint 3: Core Framework • Weight: 20 pts</div>
+            </td>
+            <td class="tabular-nums text-slate-600 small">Mar 15, 2026</td>
+            <td class="text-slate-600 small">Sarah Jenkins</td>
+            <td class="tabular-nums fw-bold text-success small">98 / 100</td>
+            <td><span class="sf-badge sf-badge-success">Evaluated</span></td>
+            <td>
+              <a href="{{ url_for('student_evaluations') }}" class="btn-sf-ghost btn-sm py-1 px-2">Feedback</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function filterAssignments(status) {
+  const rows = document.querySelectorAll('#assignmentsTable tbody tr');
+  rows.forEach(r => {
+    if (status === 'all' || r.getAttribute('data-status') === status) {
+      r.style.display = '';
+    } else {
+      r.style.display = 'none';
+    }
+  });
+}
+</script>
+{% endblock %}
