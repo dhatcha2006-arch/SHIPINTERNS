@@ -31,6 +31,11 @@ def test_auth_pages(client):
         assert response.status_code == 200
         assert b"SkillForge" in response.data
 
+def test_student_dashboard(client):
+    response = client.get('/student/dashboard')
+    assert response.status_code == 200
+    assert b"Internship Command Center" in response.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200
