@@ -1,0 +1,60 @@
+<footer class="sf-public-footer">
+  <div class="container">
+    <div class="row g-5 mb-5">
+      <div class="col-lg-4">
+        <div class="sf-brand-logo text-white mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <span class="text-white">SkillForge</span>
+        </div>
+        <p class="text-slate-400 small mb-4">
+          An enterprise-grade training and supervised internship academy bridging academic foundations with production engineering rigor.
+        </p>
+        <div class="text-slate-500 small">
+          ISO 9001:2015 Accredited • IEEE & NASSCOM Industry Partner
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-2">
+        <div class="text-white fw-semibold small mb-3 text-uppercase">Programs</div>
+        <ul class="list-unstyled small mb-0 d-flex flex-column gap-2 text-slate-400">
+          <li><a href="{{ url_for('programs') }}" class="text-slate-400 hover-white">Cloud Architecture</a></li>
+          <li><a href="{{ url_for('programs') }}" class="text-slate-400 hover-white">Full Stack Engineering</a></li>
+          <li><a href="{{ url_for('programs') }}" class="text-slate-400 hover-white">AI & Machine Learning</a></li>
+          <li><a href="{{ url_for('programs') }}" class="text-slate-400 hover-white">DevOps & SRE</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-lg-2">
+        <div class="text-white fw-semibold small mb-3 text-uppercase">Platform</div>
+        <ul class="list-unstyled small mb-0 d-flex flex-column gap-2 text-slate-400">
+          <li><a href="{{ url_for('internships') }}" class="text-slate-400 hover-white">Internship Board</a></li>
+          <li><a href="{{ url_for('student_dashboard') }}" class="text-slate-400 hover-white">Student Portal</a></li>
+          <li><a href="{{ url_for('mentor_dashboard') }}" class="text-slate-400 hover-white">Mentor Portal</a></li>
+          <li><a href="{{ url_for('certificate_verify') }}" class="text-slate-400 hover-white">Certificate Verification</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="text-white fw-semibold small mb-3 text-uppercase">Academy Inquiries</div>
+        <p class="text-slate-400 small mb-3">
+          Subscribe to cohort announcements, research updates, and placement reports.
+        </p>
+        <div class="d-flex gap-2">
+          <input type="email" class="sf-input py-2" placeholder="name@college.edu">
+          <button class="btn-sf-primary text-nowrap">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-4 border-top border-slate-800 d-flex flex-column flex-md-row align-items-center justify-content-between small text-slate-500">
+      <div>&copy; 2026 SkillForge Academy Management System. All rights reserved.</div>
+      <div class="d-flex gap-4 mt-2 mt-md-0">
+        <a href="#" class="text-slate-500">Privacy Policy</a>
+        <a href="#" class="text-slate-500">Terms of Training</a>
+        <a href="#" class="text-slate-500">Academic Integrity Code</a>
+      </div>
+    </div>
+  </div>
+</footer>

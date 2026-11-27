@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block layout %}
+  {% include "components/navbar_public.html" %}
+  <main class="min-vh-100">
+    {% block content %}{% endblock %}
+  </main>
+  {% include "components/footer_public.html" %}
+{% endblock %}
