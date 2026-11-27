@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Certificate of Completion - {{ cert_id }} | SkillForge{% endblock %}
+
+{% block layout %}
+<div class="py-5 bg-canvas min-vh-100">
+  <div class="container" style="max-width: 960px;">
+    <!-- Action Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <a href="{{ url_for('student_dashboard') }}" class="btn-sf-secondary">
+        <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+        <span>Return to Dashboard</span>
+      </a>
+      <div class="d-flex gap-2">
+        <a href="{{ url_for('certificate_verify', cert_id=cert_id) }}" class="btn-sf-secondary">
+          <i data-lucide="shield-check" style="width: 16px; height: 16px;"></i>
+          <span>Verify Credential</span>
+        </a>
+        <button class="btn-sf-primary" onclick="window.print()">
+          <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+          <span>Print / Export PDF</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Official Certificate Frame -->
+    <div class="sf-cert-container">
+      <!-- Watermark Background -->
+      <div class="sf-cert-watermark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="400" height="400" fill="none" stroke="#0f172a" stroke-width="1">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+
+      <!-- Header with Crest -->
+      <div class="text-center mb-4">
+        <div class="d-inline-flex align-items-center justify-content-center p-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#2563eb" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="text-uppercase tracking-wide text-slate-500 fw-bold small" style="letter-spacing: 0.15em;">SkillForge Training & Internship Academy</div>
+        <h1 class="display-6 fw-bold text-slate-900 mt-2 mb-1" style="font-family: serif; letter-spacing: 0.02em;">Certificate of Engineering Completion</h1>
+        <div class="text-slate-400 small">Accredited Apprenticeship & Industry Practicum</div>
+      </div>
+
+      <!-- Recipient Body -->
+      <div class="text-center my-5">
+        <div class="text-slate-500 small mb-2 text-uppercase" style="letter-spacing: 0.05em;">This is to certify that</div>
+        <div class="display-5 fw-bold text-slate-900 mb-2" style="font-family: serif;">Alex Chen</div>
+        <div class="text-slate-600 max-w-xl mx-auto" style="font-size: 1.05rem; line-height: 1.6;">
+          has successfully demonstrated production software engineering competence, completed 140 hours of supervised coursework, passed all in-browser technical assessments, and contributed verified pull requests to enterprise codebases under senior mentor supervision in:
+        </div>
+        <div class="fs-4 fw-bold text-primary my-3">
+          Enterprise Full-Stack Python & Distributed Systems
+        </div>
+        <div class="sf-badge sf-badge-success fs-6 px-3 py-1">
+          Graduated with Highest Distinction (Honors Grade: 95.4 / 100)
+        </div>
+      </div>
+
+      <!-- Signatures & Verification Meta -->
+      <div class="row align-items-end pt-5 border-top border-slate-200 g-4">
+        <div class="col-sm-4 text-center">
+          <div class="fw-bold text-slate-900 fst-italic fs-5" style="font-family: serif;">Sarah Jenkins</div>
+          <div class="text-slate-400 small border-top pt-1 mt-1">Sarah Jenkins</div>
+          <div class="text-slate-500 small" style="font-size: 0.75rem;">Principal Systems Mentor</div>
+        </div>
+
+        <!-- Central Cryptographic Stamp -->
+        <div class="col-sm-4 text-center">
+          <div class="d-inline-flex flex-column align-items-center p-2 border border-2 border-primary rounded bg-slate-50">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#2563eb" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span class="text-slate-900 fw-bold small mt-1" style="font-size: 0.7rem;">VERIFIED CREDENTIAL</span>
+            <span class="tabular-nums font-monospace text-slate-500" style="font-size: 0.65rem;">{{ cert_id }}</span>
+          </div>
+        </div>
+
+        <div class="col-sm-4 text-center">
+          <div class="fw-bold text-slate-900 fst-italic fs-5" style="font-family: serif;">Dr. Arthur Pendelton</div>
+          <div class="text-slate-400 small border-top pt-1 mt-1">Dr. Arthur Pendelton</div>
+          <div class="text-slate-500 small" style="font-size: 0.75rem;">Dean of Academy Certification</div>
+        </div>
+      </div>
+
+      <!-- Bottom Hash Line -->
+      <div class="d-flex justify-content-between align-items-center mt-5 pt-3 border-top border-slate-100 text-slate-400 small" style="font-size: 0.7rem;">
+        <span>Issued: March 31, 2026 • SkillForge Global Verification Registry</span>
+        <span>SHA-256 Commit Hash: <code>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code></span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

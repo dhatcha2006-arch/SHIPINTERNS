@@ -1,0 +1,101 @@
+{% extends "base_public.html" %}
+
+{% block title %}Verify Certificate Credential | SkillForge{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-white border-bottom">
+  <div class="container py-3">
+    <div class="max-w-xl mx-auto text-center" style="max-width: 600px;">
+      <span class="sf-badge sf-badge-primary mb-2">Cryptographic Verification Authority</span>
+      <h1 class="h3 fw-bold text-slate-900 mb-2">SkillForge Certificate Verification</h1>
+      <p class="text-slate-600 small mb-4">
+        Instantly verify authentic graduation credentials, audited student pull requests, and mentor evaluation rubrics.
+      </p>
+
+      <!-- Search Input -->
+      <form id="verifyForm" onsubmit="handleVerify(event)" class="d-flex gap-2">
+        <input type="text" id="certIdInput" class="sf-input font-monospace" placeholder="e.g. SF-2026-88412" value="{{ cert_id or 'SF-2026-88412' }}" required>
+        <button type="submit" class="btn-sf-primary text-nowrap">
+          <i data-lucide="shield-check" style="width: 16px; height: 16px;"></i>
+          <span>Verify</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-canvas">
+  <div class="container py-2" style="max-width: 800px;">
+    <!-- Verification Result Card -->
+    <div class="sf-card p-4 p-md-5 bg-white border shadow-sm" id="resultCard">
+      <div class="d-flex justify-content-between align-items-start pb-3 border-bottom mb-4">
+        <div>
+          <span class="sf-badge sf-badge-success mb-2">
+            <i data-lucide="check" style="width: 14px;"></i>
+            <span>Cryptographically Verified & Active</span>
+          </span>
+          <h2 class="h5 fw-bold text-slate-900 mb-0">Certificate ID: <span id="displayCertId">{{ cert_id or 'SF-2026-88412' }}</span></h2>
+        </div>
+        <a href="{{ url_for('certificate_view', cert_id=cert_id or 'SF-2026-88412') }}" class="btn-sf-secondary btn-sm">
+          <i data-lucide="external-link" style="width: 14px;"></i>
+          <span>View Certificate</span>
+        </a>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-sm-6">
+          <div class="p-3 bg-slate-50 border rounded-2">
+            <div class="text-slate-400 small">Certified Candidate:</div>
+            <div class="fs-6 fw-bold text-slate-900">Alex Chen</div>
+            <div class="text-slate-500 small">Student UID: SF-2026-88412</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="p-3 bg-slate-50 border rounded-2">
+            <div class="text-slate-400 small">Training Track:</div>
+            <div class="fs-6 fw-bold text-slate-900">Enterprise Full-Stack Python</div>
+            <div class="text-slate-500 small">Cohort: Spring 2026</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="p-3 bg-slate-50 border rounded-2">
+            <div class="text-slate-400 small">Supervising Mentor:</div>
+            <div class="fs-6 fw-bold text-slate-900">Sarah Jenkins</div>
+            <div class="text-slate-500 small">Principal Systems Architect</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="p-3 bg-slate-50 border rounded-2">
+            <div class="text-slate-400 small">Cumulative Honors Score:</div>
+            <div class="fs-6 fw-bold text-success">95.4 / 100 (Highest Honors)</div>
+            <div class="text-slate-500 small">14 Audited PRs & 140 Hours</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blockchain / SHA-256 Commit Anchor -->
+      <div class="p-3 bg-slate-900 text-slate-100 rounded-2 mb-4 font-monospace small" style="line-height: 1.6; font-size: 0.75rem;">
+        <div class="text-slate-400">IMMUTABLE REPOSITORY COMMIT ANCHOR</div>
+        <div class="text-success">&check; SHA-256 Commit: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</div>
+        <div class="text-slate-400">Timestamp: 2026-03-31T09:00:00Z • Issuer: SkillForge Academic Examination Board</div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center pt-2">
+        <span class="text-slate-400 small">Direct verification URL: <code>/certificates/verify/SF-2026-88412</code></span>
+        <a href="{{ url_for('student_profile') }}" class="btn-sf-primary btn-sm">Inspect Verified Skill Passport &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function handleVerify(e) {
+  e.preventDefault();
+  const input = document.getElementById('certIdInput').value.trim();
+  document.getElementById('displayCertId').innerText = input;
+  SkillForgeUI.showToast(`Credential ${input} confirmed authentic in academy registry.`, 'success', 'Verification Success');
+}
+</script>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends "base_app.html" %}
+
+{% block title %}Student Performance Analytics | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Student Engineering Performance Analytics</h1>
+    <p class="text-slate-500 small mb-0">Quantified learning velocity, code review turnaround times, and sprint competency mastery.</p>
+  </div>
+  <span class="sf-badge sf-badge-primary">Cohort Standing: Top 5%</span>
+</div>
+
+<!-- 4 Key Analytics Stats -->
+<div class="row g-4 mb-4">
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Total Engineering Hours</div>
+      <div class="sf-stat-value text-slate-900">142.5 hrs</div>
+      <div class="sf-stat-meta text-success">
+        <i data-lucide="trending-up" style="width: 14px;"></i>
+        <span>28.5 hrs / week average</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Code Review Velocity</div>
+      <div class="sf-stat-value text-success">1.2 Days</div>
+      <div class="sf-stat-meta text-slate-500">Average time to merge PR</div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Automated Test Pass Rate</div>
+      <div class="sf-stat-value text-slate-900">98.2%</div>
+      <div class="sf-stat-meta text-success">42 / 42 CI checks clean</div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Mentor Rubric Average</div>
+      <div class="sf-stat-value text-slate-900">95.4%</div>
+      <div class="sf-stat-meta text-success">Honors distinction</div>
+    </div>
+  </div>
+</div>
+
+<!-- Analytics Breakdowns -->
+<div class="row g-4">
+  <!-- Weekly Study Hours Distribution -->
+  <div class="col-lg-6">
+    <div class="sf-card p-4 bg-white border mb-4">
+      <h2 class="h6 fw-bold text-slate-900 mb-3">Weekly Effort Distribution (March 2026)</h2>
+      <div class="d-flex flex-column gap-3 small">
+        <div>
+          <div class="d-flex justify-content-between mb-1">
+            <span class="text-slate-600">Week 1: Core Framework Architecture</span>
+            <span class="fw-bold text-slate-900 tabular-nums">32.0 hrs</span>
+          </div>
+          <div class="sf-progress-bar"><div class="sf-progress-fill" style="width: 80%;"></div></div>
+        </div>
+
+        <div>
+          <div class="d-flex justify-content-between mb-1">
+            <span class="text-slate-600">Week 2: Database Modeling & Indexing</span>
+            <span class="fw-bold text-slate-900 tabular-nums">34.5 hrs</span>
+          </div>
+          <div class="sf-progress-bar"><div class="sf-progress-fill" style="width: 86%;"></div></div>
+        </div>
+
+        <div>
+          <div class="d-flex justify-content-between mb-1">
+            <span class="text-slate-600">Week 3: Celery Task Queues & Redis</span>
+            <span class="fw-bold text-slate-900 tabular-nums">38.0 hrs</span>
+          </div>
+          <div class="sf-progress-bar"><div class="sf-progress-fill" style="width: 95%;"></div></div>
+        </div>
+
+        <div>
+          <div class="d-flex justify-content-between mb-1">
+            <span class="text-slate-600">Week 4: Microservices & Concurrency (Current)</span>
+            <span class="fw-bold text-slate-900 tabular-nums">38.0 hrs</span>
+          </div>
+          <div class="sf-progress-bar"><div class="sf-progress-fill success" style="width: 95%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skill Mastery Radar Matrix -->
+  <div class="col-lg-6">
+    <div class="sf-card p-4 bg-white border mb-4">
+      <h2 class="h6 fw-bold text-slate-900 mb-3">Competency Benchmark Radar</h2>
+      <div class="d-flex flex-column gap-3 small">
+        <div class="p-3 bg-slate-50 border rounded-2 d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-semibold text-slate-900">Distributed Architecture & REST</div>
+            <div class="text-slate-400" style="font-size: 0.75rem;">Top 2% in cohort</div>
+          </div>
+          <span class="sf-badge sf-badge-success">96% Mastery</span>
+        </div>
+
+        <div class="p-3 bg-slate-50 border rounded-2 d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-semibold text-slate-900">Relational DB Indexing (PostgreSQL)</div>
+            <div class="text-slate-400" style="font-size: 0.75rem;">Top 5% in cohort</div>
+          </div>
+          <span class="sf-badge sf-badge-success">92% Mastery</span>
+        </div>
+
+        <div class="p-3 bg-slate-50 border rounded-2 d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-semibold text-slate-900">Automated Testing & Pytest Suites</div>
+            <div class="text-slate-400" style="font-size: 0.75rem;">Top 3% in cohort</div>
+          </div>
+          <span class="sf-badge sf-badge-success">95% Mastery</span>
+        </div>
+
+        <div class="p-3 bg-slate-50 border rounded-2 d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-semibold text-slate-900">Docker & Linux Systems Internals</div>
+            <div class="text-slate-400" style="font-size: 0.75rem;">Top 10% in cohort</div>
+          </div>
+          <span class="sf-badge sf-badge-primary">88% Mastery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

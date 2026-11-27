@@ -1,0 +1,129 @@
+{% extends "base_app.html" %}
+
+{% block title %}Corporate Talent Portal | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <span class="sf-badge sf-badge-primary">HR Corporate Recruiter Mode</span>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-500 small">Enterprise Talent Pipeline</span>
+    </div>
+    <h1 class="h3 fw-bold text-slate-900 mb-0">Verified Engineering Intern Talent Sourcing</h1>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <button class="btn-sf-primary btn-sm" onclick="exportShortlist()">
+      <i data-lucide="download" style="width: 14px; height: 14px;"></i>
+      <span>Export Shortlisted Candidates</span>
+    </button>
+  </div>
+</div>
+
+<!-- Search & Skill Filters -->
+<div class="sf-card p-3 mb-4 bg-white border">
+  <div class="row g-3 align-items-center">
+    <div class="col-lg-5">
+      <div class="position-relative">
+        <input type="text" class="sf-input pe-5" placeholder="Search by verified skill (e.g. Flask, Docker, Kubernetes, Celery)...">
+        <i data-lucide="search" class="position-absolute top-50 end-0 translate-middle-y me-3 text-slate-400" style="width: 16px; height: 16px;"></i>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <select class="sf-select">
+        <option>All Cohort Tracks</option>
+        <option selected>Enterprise Full-Stack Python</option>
+        <option>Cloud Architecture & SRE</option>
+        <option>Applied AI Systems</option>
+      </select>
+    </div>
+    <div class="col-sm-6 col-lg-4 text-lg-end">
+      <span class="sf-badge sf-badge-success">8 Candidates Ready for Full-Time Offer</span>
+    </div>
+  </div>
+</div>
+
+<!-- Candidate Sourcing Directory -->
+<div class="sf-card bg-white border">
+  <div class="sf-card-header">
+    <h2 class="h6 fw-bold text-slate-900 mb-0">Top Performing Supervised Interns</h2>
+    <span class="text-slate-400 small">Verified by Senior Engineering Mentors</span>
+  </div>
+  <div class="sf-card-body p-0">
+    <div class="sf-table-wrapper border-0">
+      <table class="sf-table">
+        <thead>
+          <tr>
+            <th>Candidate & UID</th>
+            <th>Primary Skills</th>
+            <th>Honors Score</th>
+            <th>Mentor Signoff</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="fw-semibold text-slate-900">Alex Chen</div>
+              <div class="text-slate-400 small">ID: SF-2026-88412 • State Institute of Technology</div>
+            </td>
+            <td>
+              <div class="d-flex flex-wrap gap-1">
+                <span class="sf-badge sf-badge-neutral" style="font-size: 0.7rem;">Python</span>
+                <span class="sf-badge sf-badge-neutral" style="font-size: 0.7rem;">Flask</span>
+                <span class="sf-badge sf-badge-neutral" style="font-size: 0.7rem;">PostgreSQL</span>
+                <span class="sf-badge sf-badge-neutral" style="font-size: 0.7rem;">Celery</span>
+              </div>
+            </td>
+            <td class="tabular-nums fw-bold text-success">95.4 / 100</td>
+            <td class="small text-slate-700">Sarah Jenkins (Approved)</td>
+            <td><span class="sf-badge sf-badge-success">Available for Hire</span></td>
+            <td>
+              <div class="d-flex gap-1">
+                <a href="{{ url_for('student_profile') }}" class="btn-sf-ghost py-1 px-2 small">Skill Passport</a>
+                <button class="btn-sf-primary btn-sm py-1 px-2 small" onclick="shortlistCandidate('Alex Chen')">Shortlist</button>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="fw-semibold text-slate-900">Marcus Vance</div>
+              <div class="text-slate-400 small">ID: SF-2026-88413 • Tech University</div>
+            </td>
+            <td>
+              <div class="d-flex flex-wrap gap-1">
+                <span class="sf-badge sf-badge-neutral" style="font-size: 0.7rem;">FastAPI</span>
+                <span class="sf-badge sf-badge-neutral" style="font-size: 0.7rem;">PyTorch</span>
+                <span class="sf-badge sf-badge-neutral" style="font-size: 0.7rem;">Qdrant</span>
+              </div>
+            </td>
+            <td class="tabular-nums fw-bold text-success">94.8 / 100</td>
+            <td class="small text-slate-700">Marcus Kumar (Approved)</td>
+            <td><span class="sf-badge sf-badge-success">Available for Hire</span></td>
+            <td>
+              <div class="d-flex gap-1">
+                <a href="{{ url_for('student_profile') }}" class="btn-sf-ghost py-1 px-2 small">Skill Passport</a>
+                <button class="btn-sf-primary btn-sm py-1 px-2 small" onclick="shortlistCandidate('Marcus Vance')">Shortlist</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function shortlistCandidate(name) {
+  SkillForgeUI.showToast(`${name} added to your company's hiring interview queue.`, 'success', 'Candidate Shortlisted');
+}
+
+function exportShortlist() {
+  SkillForgeUI.showToast('Exported shortlisted candidate dossier to PDF.', 'info', 'Export Complete');
+}
+</script>
+{% endblock %}

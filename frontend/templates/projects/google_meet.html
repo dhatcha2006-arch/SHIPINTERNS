@@ -1,0 +1,145 @@
+{% extends "base_app.html" %}
+
+{% block title %}Google Meet Scheduling | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Google Meet Session Scheduler</h1>
+    <p class="text-slate-500 small mb-0">Book 1-on-1 mentor office hours, squad sprint reviews, and technical mock interviews.</p>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <a href="{{ url_for('zoom_meet') }}" class="btn-sf-secondary">
+      <i data-lucide="video" style="width: 16px; height: 16px;"></i>
+      <span>Open Zoom Room</span>
+    </a>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Booking Form -->
+  <div class="col-lg-5">
+    <div class="sf-card p-4 bg-white border mb-4">
+      <h2 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">Schedule New Virtual Sync</h2>
+
+      <form id="meetSchedulerForm" onsubmit="handleScheduleMeet(event)">
+        <div class="mb-3">
+          <label class="sf-label">Session Topic / Agenda</label>
+          <input type="text" id="meetTitleInput" class="sf-input" value="Sprint 4 PR #42 Architecture Retrospective" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="sf-label">Select Mentor</label>
+          <select class="sf-select" id="meetMentorSelect" required>
+            <option selected>Sarah Jenkins (Principal Systems Mentor)</option>
+            <option>Marcus Kumar (AI & LLM Mentor)</option>
+            <option>Elena Rostova (Full-Stack Mentor)</option>
+            <option>David Tanaka (DevSecOps Mentor)</option>
+          </select>
+        </div>
+
+        <div class="row g-3 mb-3">
+          <div class="col-sm-6">
+            <label class="sf-label">Date</label>
+            <input type="date" class="sf-input" value="2026-03-31" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="sf-label">Time Slot (UTC)</label>
+            <select class="sf-select">
+              <option selected>16:30 - 17:00</option>
+              <option>17:00 - 17:30</option>
+              <option>17:30 - 18:00</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="sf-label">Discussion Agenda Notes</label>
+          <textarea class="sf-textarea" rows="3" placeholder="Notes or questions for the mentor...">Review database connection pooling deadlock scenarios and verify benchmark latency gains.</textarea>
+        </div>
+
+        <button type="submit" id="scheduleBtn" class="btn-sf-primary w-100 py-2">
+          <i data-lucide="calendar-plus" style="width: 16px; height: 16px;"></i>
+          <span>Confirm & Generate Google Meet Link</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Security Note -->
+    <div class="p-3 bg-slate-50 border rounded-2 small text-slate-500">
+      <i data-lucide="lock" class="me-1 text-primary" style="width: 14px;"></i>
+      <span>Google Calendar API & Meet OAuth authentication are generated securely via Ari's Flask backend.</span>
+    </div>
+  </div>
+
+  <!-- Scheduled Meetings Directory -->
+  <div class="col-lg-7">
+    <div class="sf-card bg-white border">
+      <div class="sf-card-header">
+        <h2 class="h6 fw-bold text-slate-900 mb-0">Upcoming & Scheduled Sessions</h2>
+        <span class="sf-badge sf-badge-primary">Google Meet</span>
+      </div>
+      <div class="sf-card-body p-0">
+        <div class="sf-table-wrapper border-0">
+          <table class="sf-table">
+            <thead>
+              <tr>
+                <th>Session & Agenda</th>
+                <th>Mentor</th>
+                <th>Time & Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="fw-semibold text-slate-900">Sprint 4 PR #42 Code Review</div>
+                  <code class="text-primary small" style="font-size: 0.75rem;">meet.google.com/sf-402-arch</code>
+                </td>
+                <td class="text-slate-700 small">Sarah Jenkins</td>
+                <td class="tabular-nums text-slate-600 small">Today • 16:30 UTC</td>
+                <td>
+                  <a href="https://meet.google.com" target="_blank" class="btn-sf-primary btn-sm py-1 px-2">
+                    <i data-lucide="video" style="width: 12px; height: 12px;"></i>
+                    <span>Join Room</span>
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="fw-semibold text-slate-900">Sprint 3 Retrospective Review</div>
+                  <code class="text-slate-400 small" style="font-size: 0.75rem;">meet.google.com/sf-301-retro</code>
+                </td>
+                <td class="text-slate-700 small">Sarah Jenkins</td>
+                <td class="tabular-nums text-slate-400 small">Mar 24, 2026</td>
+                <td>
+                  <span class="sf-badge sf-badge-success">Completed</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function handleScheduleMeet(e) {
+  e.preventDefault();
+  const btn = document.getElementById('scheduleBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Generating Meet Link...';
+
+  SkillForgeUI.showToast('Google Meet session scheduled! Calendar invitation dispatched.', 'success', 'Session Scheduled');
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.innerHTML = '<i data-lucide="calendar-plus" style="width: 16px; height: 16px;"></i> <span>Confirm & Generate Google Meet Link</span>';
+    if (window.lucide) lucide.createIcons();
+  }, 1000);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends "base_app.html" %}
+
+{% block title %}Zoom Virtual Classroom | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
+  <div>
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <span class="sf-badge sf-badge-primary">Encrypted Live Session</span>
+      <span class="text-slate-400">•</span>
+      <span class="text-slate-500 small">Meeting ID: 891 4201 8841</span>
+    </div>
+    <h1 class="h4 fw-bold text-slate-900 mb-0">Sprint 4 Architecture Retrospective & Mentorship Sync</h1>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <span class="sf-badge sf-badge-success">Session Active (8 Connected)</span>
+    <a href="{{ url_for('google_meet') }}" class="btn-sf-secondary btn-sm">Switch to Google Meet</a>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Main Video Conference Stage -->
+  <div class="col-lg-8">
+    <div class="sf-card p-0 bg-slate-950 border-0 overflow-hidden shadow mb-3">
+      <!-- Main Speaker Screen -->
+      <div class="position-relative d-flex align-items-center justify-content-center" style="height: 440px; background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);">
+        <div class="text-center">
+          <div class="rounded-circle bg-primary-600 text-white d-inline-flex align-items-center justify-content-center fw-bold fs-2 mb-2 shadow" style="width: 80px; height: 80px;">
+            SJ
+          </div>
+          <div class="text-white fw-semibold">Sarah Jenkins (Speaking)</div>
+          <div class="text-slate-400 small" style="font-size: 0.75rem;">Principal Systems Mentor • Sharing Screen: architecture_diagram.svg</div>
+        </div>
+
+        <!-- Floating Intern Video Thumbnails -->
+        <div class="position-absolute top-0 end-0 p-3 d-flex flex-column gap-2">
+          <div class="bg-slate-900 p-2 rounded border border-slate-800 text-white small d-flex align-items-center gap-2" style="width: 140px;">
+            <div class="rounded-circle bg-slate-700 text-white d-flex align-items-center justify-content-center fw-bold" style="width: 22px; height: 22px; font-size: 10px;">AC</div>
+            <span style="font-size: 11px;">Alex Chen (You)</span>
+          </div>
+          <div class="bg-slate-900 p-2 rounded border border-slate-800 text-white small d-flex align-items-center gap-2" style="width: 140px;">
+            <div class="rounded-circle bg-slate-700 text-white d-flex align-items-center justify-content-center fw-bold" style="width: 22px; height: 22px; font-size: 10px;">MV</div>
+            <span style="font-size: 11px;">Marcus Vance</span>
+          </div>
+        </div>
+
+        <!-- Live Conference Control Bar -->
+        <div class="position-absolute bottom-0 start-0 end-0 p-3 bg-slate-900 border-top border-slate-800 d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-light d-flex align-items-center gap-1" id="micBtn" onclick="toggleMic()">
+              <i data-lucide="mic" id="micIcon" style="width: 16px;"></i>
+              <span id="micText">Mute</span>
+            </button>
+            <button class="btn btn-sm btn-outline-light d-flex align-items-center gap-1" id="camBtn" onclick="toggleCam()">
+              <i data-lucide="video" id="camIcon" style="width: 16px;"></i>
+              <span>Stop Video</span>
+            </button>
+          </div>
+
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-light" onclick="SkillForgeUI.showToast('Screen sharing initialized.', 'info', 'Screen Share')">
+              <i data-lucide="share" style="width: 16px;"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-light" onclick="SkillForgeUI.showToast('Participant list: 8 connected.', 'info', 'Participants')">
+              <i data-lucide="users" style="width: 16px;"></i>
+            </button>
+          </div>
+
+          <div>
+            <button class="btn btn-sm btn-danger px-3" onclick="leaveSession()">Leave Room</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security & Backend Architecture Note -->
+    <div class="p-3 bg-slate-50 border rounded-2 small text-slate-500">
+      <i data-lucide="shield-check" class="me-1 text-success" style="width: 14px;"></i>
+      <span>Security Guarantee: Zoom Web SDK credentials and OAuth tokens are strictly managed by Ari's Flask backend REST API. Never exposed in browser JavaScript.</span>
+    </div>
+  </div>
+
+  <!-- Right Panel: Meeting Agenda & Live Chat -->
+  <div class="col-lg-4">
+    <div class="sf-card p-4 bg-white border mb-4">
+      <h2 class="h6 fw-bold text-slate-900 mb-3">Live Retrospective Agenda</h2>
+      <ul class="list-unstyled d-flex flex-column gap-3 mb-0 small text-slate-600">
+        <li class="d-flex align-items-start gap-2">
+          <i data-lucide="check-circle" class="text-success mt-1" style="width: 14px;"></i>
+          <div><strong>4:00 - 4:15 PM:</strong> Sprint 4 burndown review & story point completion.</div>
+        </li>
+        <li class="d-flex align-items-start gap-2">
+          <i data-lucide="play-circle" class="text-primary mt-1" style="width: 14px;"></i>
+          <div><strong>4:15 - 4:40 PM:</strong> Live code review of PR #42 (PostgreSQL connection pool).</div>
+        </li>
+        <li class="d-flex align-items-start gap-2">
+          <i data-lucide="circle" class="text-slate-300 mt-1" style="width: 14px;"></i>
+          <div><strong>4:40 - 5:00 PM:</strong> 1-on-1 blocker triage & question round with Sarah.</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Meeting Chat -->
+    <div class="sf-card p-4 bg-white border">
+      <h3 class="h6 fw-bold text-slate-900 mb-3">Meeting Chat</h3>
+      <div class="p-2 bg-slate-50 border rounded-2 mb-3 small text-slate-700" style="height: 140px; overflow-y: auto;">
+        <div class="mb-2"><strong>Sarah:</strong> Please pull the latest migration file before running the test suite.</div>
+        <div><strong>Alex:</strong> PR updated with the connection timeout flag!</div>
+      </div>
+      <div class="d-flex gap-2">
+        <input type="text" class="sf-input py-1" placeholder="Type a message..." id="chatInput">
+        <button class="btn-sf-primary btn-sm py-1" onclick="sendChatMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+let micActive = true;
+function toggleMic() {
+  micActive = !micActive;
+  const icon = document.getElementById('micIcon');
+  const text = document.getElementById('micText');
+  if (micActive) {
+    icon.setAttribute('data-lucide', 'mic');
+    text.innerText = 'Mute';
+    SkillForgeUI.showToast('Microphone unmuted.', 'info', 'Audio');
+  } else {
+    icon.setAttribute('data-lucide', 'mic-off');
+    text.innerText = 'Unmuted';
+    SkillForgeUI.showToast('Microphone muted.', 'warning', 'Audio');
+  }
+  if (window.lucide) lucide.createIcons();
+}
+
+function leaveSession() {
+  if (confirm('Leave current Zoom mentorship session?')) {
+    SkillForgeUI.showToast('You left the virtual session.', 'info', 'Session Ended');
+    window.location.href = '/student/dashboard';
+  }
+}
+
+function sendChatMessage() {
+  const input = document.getElementById('chatInput');
+  if (input.value.trim()) {
+    SkillForgeUI.showToast('Message sent to meeting chat.', 'success', 'Chat');
+    input.value = '';
+  }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,191 @@
+{% extends "base_app.html" %}
+
+{% block title %}Attendance & Work Logs | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Attendance & Working Hours Registry</h1>
+    <p class="text-slate-500 small mb-0">Verified daily check-ins, remote sprint hours, and supervisor audit records.</p>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <button class="btn-sf-primary" id="punchInBtn" onclick="handlePunchIn()">
+      <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+      <span>Record Today's Check-In</span>
+    </button>
+  </div>
+</div>
+
+<!-- Stat Cards -->
+<div class="row g-4 mb-4">
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Attendance Rate</div>
+      <div class="sf-stat-value text-success">96.8%</div>
+      <div class="sf-progress-bar mt-2 mb-2">
+        <div class="sf-progress-fill success" style="width: 96.8%;"></div>
+      </div>
+      <div class="sf-stat-meta text-success">
+        <i data-lucide="check" style="width: 14px;"></i>
+        <span>Exceeds 85% requirement</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Days Present</div>
+      <div class="sf-stat-value text-slate-900">30 Days</div>
+      <div class="sf-stat-meta text-slate-500">Spring 2026 Cohort</div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Approved Leaves</div>
+      <div class="sf-stat-value text-slate-900">1 Day</div>
+      <div class="sf-stat-meta text-slate-500">Medical regularization</div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Unexcused Absences</div>
+      <div class="sf-stat-value text-slate-900">0</div>
+      <div class="sf-stat-meta text-success">Clean attendance track</div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Interactive Attendance Calendar Grid (March 2026) -->
+  <div class="col-lg-8">
+    <div class="sf-card p-4 bg-white border mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h6 fw-bold text-slate-900 mb-0">March 2026 Attendance Heatmap</h2>
+          <span class="text-slate-400 small">Cohort Sprint Cycle</span>
+        </div>
+        <div class="d-flex align-items-center gap-3 small">
+          <span class="d-flex align-items-center gap-1"><span class="badge bg-success p-1 rounded-circle" style="width: 8px; height: 8px;"></span> Present</span>
+          <span class="d-flex align-items-center gap-1"><span class="badge bg-warning p-1 rounded-circle" style="width: 8px; height: 8px;"></span> Excused</span>
+          <span class="d-flex align-items-center gap-1"><span class="badge bg-slate-200 p-1 rounded-circle" style="width: 8px; height: 8px;"></span> Weekend</span>
+        </div>
+      </div>
+
+      <!-- Calendar Days Grid (5 weeks) -->
+      <div class="row g-2 text-center small">
+        <div class="col font-weight-bold text-slate-400">Mon</div>
+        <div class="col font-weight-bold text-slate-400">Tue</div>
+        <div class="col font-weight-bold text-slate-400">Wed</div>
+        <div class="col font-weight-bold text-slate-400">Thu</div>
+        <div class="col font-weight-bold text-slate-400">Fri</div>
+        <div class="col font-weight-bold text-slate-300">Sat</div>
+        <div class="col font-weight-bold text-slate-300">Sun</div>
+      </div>
+
+      <div class="d-flex flex-column gap-2 mt-2">
+        <!-- Week 1 -->
+        <div class="row g-2 text-center small">
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">2</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">3</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">4</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">5</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">6</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-400">7</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-400">8</div></div>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="row g-2 text-center small">
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">9</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">10</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">11</div></div>
+          <div class="col"><div class="p-2 border rounded bg-warning-50 text-warning fw-semibold">12</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">13</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-400">14</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-400">15</div></div>
+        </div>
+
+        <!-- Week 3 -->
+        <div class="row g-2 text-center small">
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">16</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">17</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">18</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">19</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">20</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-400">21</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-400">22</div></div>
+        </div>
+
+        <!-- Week 4 -->
+        <div class="row g-2 text-center small">
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">23</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">24</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">25</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">26</div></div>
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">27</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-400">28</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-400">29</div></div>
+        </div>
+
+        <!-- Week 5 -->
+        <div class="row g-2 text-center small">
+          <div class="col"><div class="p-2 border rounded bg-success-50 text-success fw-semibold">30</div></div>
+          <div class="col"><div class="p-2 border-2 border-primary rounded bg-primary-50 text-primary fw-bold" id="todayTile">31 (Today)</div></div>
+          <div class="col"><div class="p-2 border rounded bg-white text-slate-300">1</div></div>
+          <div class="col"><div class="p-2 border rounded bg-white text-slate-300">2</div></div>
+          <div class="col"><div class="p-2 border rounded bg-white text-slate-300">3</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-300">4</div></div>
+          <div class="col"><div class="p-2 border rounded bg-slate-100 text-slate-300">5</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Regularization Request Drawer -->
+  <div class="col-lg-4">
+    <div class="sf-card p-4 bg-white border">
+      <h3 class="h6 fw-bold text-slate-900 mb-3">Absence Regularization Request</h3>
+      <form onsubmit="handleRegularize(event)">
+        <div class="mb-3">
+          <label class="sf-label">Absence Date</label>
+          <input type="date" class="sf-input" value="2026-03-12" required>
+        </div>
+        <div class="mb-3">
+          <label class="sf-label">Reason</label>
+          <select class="sf-select">
+            <option>Academic University Examination</option>
+            <option>Medical Leave</option>
+            <option>Technical / Power Outage</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="sf-label">Supporting Document URL / Note</label>
+          <textarea class="sf-textarea" rows="2" placeholder="Describe the circumstance..."></textarea>
+        </div>
+        <button type="submit" class="btn-sf-secondary btn-sm w-100">Submit to Supervisor Sarah Jenkins</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function handlePunchIn() {
+  const btn = document.getElementById('punchInBtn');
+  btn.disabled = true;
+  btn.className = 'btn btn-success btn-sm';
+  btn.innerHTML = '<i data-lucide="check" style="width: 14px;"></i> Checked In (09:02 AM UTC)';
+  if (window.lucide) lucide.createIcons();
+
+  SkillForgeUI.showToast('Today\'s check-in recorded! Attendance percentage: 97.1%.', 'success', 'Punch In Confirmed');
+}
+
+function handleRegularize(e) {
+  e.preventDefault();
+  SkillForgeUI.showToast('Regularization request submitted to supervisor.', 'info', 'Request Dispatched');
+}
+</script>
+{% endblock %}

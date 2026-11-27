@@ -111,6 +111,57 @@ def test_live_projects(client):
     assert res3.status_code == 200
     assert b"GitHub Pull Request Review Submission" in res3.data
 
+def test_virtual_meetings(client):
+    res1 = client.get('/projects/zoom-meet')
+    assert res1.status_code == 200
+    assert b"Zoom Virtual Classroom" in res1.data
+
+    res2 = client.get('/projects/google-meet')
+    assert res2.status_code == 200
+    assert b"Google Meet Session Scheduler" in res2.data
+
+def test_attendance_dashboard(client):
+    response = client.get('/student/attendance')
+    assert response.status_code == 200
+    assert b"Attendance & Working Hours Registry" in response.data
+
+def test_daily_report(client):
+    response = client.get('/student/daily-report')
+    assert response.status_code == 200
+    assert b"Daily Work Standup Reports" in response.data
+
+def test_evaluations_and_feedback(client):
+    res1 = client.get('/student/evaluations')
+    assert res1.status_code == 200
+    assert b"Mentor Evaluation & Feedback Scorecard" in res1.data
+
+    res2 = client.get('/mentor/feedback')
+    assert res2.status_code == 200
+    assert b"Mentor Evaluation & Grading Workspace" in res2.data
+
+def test_certificates(client):
+    res1 = client.get('/certificates/view/SF-2026-88412')
+    assert res1.status_code == 200
+    assert b"Certificate of Engineering Completion" in res1.data
+
+    res2 = client.get('/certificates/verify')
+    assert res2.status_code == 200
+    assert b"SkillForge Certificate Verification" in res2.data
+
+def test_admin_and_hr_portals(client):
+    res1 = client.get('/admin/dashboard')
+    assert res1.status_code == 200
+    assert b"Global Platform Administration" in res1.data
+
+    res2 = client.get('/employee/portal')
+    assert res2.status_code == 200
+    assert b"Verified Engineering Intern Talent Sourcing" in res2.data
+
+def test_student_analytics(client):
+    response = client.get('/student/analytics')
+    assert response.status_code == 200
+    assert b"Student Engineering Performance Analytics" in response.data
+
 def test_auth_api(client):
     res = client.post('/api/v1/auth/login', json={'email': 'alex.chen@skillforge.edu', 'password': 'test'})
     assert res.status_code == 200

@@ -1,0 +1,140 @@
+{% extends "base_app.html" %}
+
+{% block title %}Mentor Grading Rubric | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Mentor Evaluation & Grading Workspace</h1>
+    <p class="text-slate-500 small mb-0">Grade intern pull requests against industry rubric criteria and record qualitative assessments.</p>
+  </div>
+  <a href="{{ url_for('mentor_dashboard') }}" class="btn-sf-secondary">
+    <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+    <span>Back to Mentor Cockpit</span>
+  </a>
+</div>
+
+<div class="row g-4">
+  <!-- Grading Form -->
+  <div class="col-lg-8">
+    <div class="sf-card p-4 p-md-5 bg-white border mb-4">
+      <h2 class="h6 fw-bold text-slate-900 mb-3 text-uppercase" style="letter-spacing: 0.05em;">Grade Deliverable: PR #42</h2>
+
+      <form id="mentorGradingForm" onsubmit="handleMentorGrade(event)">
+        <div class="row g-3 mb-3">
+          <div class="col-sm-6">
+            <label class="sf-label">Intern Candidate</label>
+            <input type="text" class="sf-input" value="Alex Chen (SF-2026-88412)" readonly>
+          </div>
+          <div class="col-sm-6">
+            <label class="sf-label">Deliverable Task</label>
+            <input type="text" class="sf-input" value="Task 4.1: PostgreSQL Index Tuning" readonly>
+          </div>
+        </div>
+
+        <!-- Rubric Sliders / Inputs -->
+        <div class="mb-4">
+          <label class="sf-label d-flex justify-content-between">
+            <span>1. Code Craftsmanship & Pytest Coverage (Max 40 Pts)</span>
+            <span class="fw-bold text-primary tabular-nums" id="pts1Val">39 / 40</span>
+          </label>
+          <input type="range" class="form-range" min="0" max="40" value="39" id="pts1" oninput="updateRubricTotal()">
+        </div>
+
+        <div class="mb-4">
+          <label class="sf-label d-flex justify-content-between">
+            <span>2. Architectural Soundness & Concurrency (Max 30 Pts)</span>
+            <span class="fw-bold text-primary tabular-nums" id="pts2Val">29 / 30</span>
+          </label>
+          <input type="range" class="form-range" min="0" max="30" value="29" id="pts2" oninput="updateRubricTotal()">
+        </div>
+
+        <div class="mb-4">
+          <label class="sf-label d-flex justify-content-between">
+            <span>3. Standup Discipline & DWR Documentation (Max 20 Pts)</span>
+            <span class="fw-bold text-primary tabular-nums" id="pts3Val">19 / 20</span>
+          </label>
+          <input type="range" class="form-range" min="0" max="20" value="19" id="pts3" oninput="updateRubricTotal()">
+        </div>
+
+        <div class="mb-4">
+          <label class="sf-label d-flex justify-content-between">
+            <span>4. Peer Review & Git Etiquette (Max 10 Pts)</span>
+            <span class="fw-bold text-primary tabular-nums" id="pts4Val">9 / 10</span>
+          </label>
+          <input type="range" class="form-range" min="0" max="10" value="9" id="pts4" oninput="updateRubricTotal()">
+        </div>
+
+        <div class="mb-4">
+          <label class="sf-label">Mentor Qualitative Review Feedback</label>
+          <textarea class="sf-textarea" rows="4" required>Alex demonstrated exceptional mastery of SQLAlchemy connection pooling lifecycle. The test suite accurately reproduces socket disconnect recovery without leaked file descriptors. Approved for merge.</textarea>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+          <div>
+            <div class="text-slate-400 small">Total Evaluated Score:</div>
+            <div class="fs-4 fw-bold text-success tabular-nums" id="totalScore">96 / 100 (Honors)</div>
+          </div>
+          <button type="submit" id="submitGradeBtn" class="btn-sf-primary px-4 py-2">
+            <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+            <span>Submit Evaluation & Signoff</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Intern Summary Sidebar -->
+  <div class="col-lg-4">
+    <div class="sf-card p-4 bg-white border mb-4">
+      <h3 class="h6 fw-bold text-slate-900 mb-3">Intern Profile Summary</h3>
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <div class="rounded-circle bg-slate-200 text-slate-800 d-flex align-items-center justify-content-center fw-bold" style="width: 44px; height: 44px;">
+          AC
+        </div>
+        <div>
+          <div class="fw-semibold text-slate-900">Alex Chen</div>
+          <div class="text-slate-500 small">Enterprise Full-Stack Track</div>
+        </div>
+      </div>
+      <div class="small text-slate-600 mb-3">
+        Current Sprint: <strong>Sprint 4</strong><br>
+        Attendance: <strong>96.8%</strong><br>
+        Average Grade: <strong>95.2%</strong>
+      </div>
+      <a href="{{ url_for('student_profile') }}" class="btn-sf-secondary btn-sm w-100">Inspect Full Skill Passport</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function updateRubricTotal() {
+  const p1 = parseInt(document.getElementById('pts1').value) || 0;
+  const p2 = parseInt(document.getElementById('pts2').value) || 0;
+  const p3 = parseInt(document.getElementById('pts3').value) || 0;
+  const p4 = parseInt(document.getElementById('pts4').value) || 0;
+
+  document.getElementById('pts1Val').innerText = `${p1} / 40`;
+  document.getElementById('pts2Val').innerText = `${p2} / 30`;
+  document.getElementById('pts3Val').innerText = `${p3} / 20`;
+  document.getElementById('pts4Val').innerText = `${p4} / 10`;
+
+  const total = p1 + p2 + p3 + p4;
+  document.getElementById('totalScore').innerText = `${total} / 100 (${total >= 90 ? 'Honors' : 'Pass'})`;
+}
+
+function handleMentorGrade(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitGradeBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Publishing Signoff...';
+
+  SkillForgeUI.showToast('Evaluation recorded and signed into Alex Chen\'s Skill Passport!', 'success', 'Rubric Published');
+  setTimeout(() => {
+    window.location.href = '/mentor/dashboard';
+  }, 1200);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "base_app.html" %}
+
+{% block title %}Evaluation & Feedback | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Mentor Evaluation & Feedback Scorecard</h1>
+    <p class="text-slate-500 small mb-0">Official rubric evaluations verified by your mentor and stored immutably in your Skill Passport.</p>
+  </div>
+  <a href="{{ url_for('certificate_view', cert_id='SF-2026-88412') }}" class="btn-sf-primary">
+    <i data-lucide="award" style="width: 16px; height: 16px;"></i>
+    <span>View Graduation Certificate</span>
+  </a>
+</div>
+
+<!-- Scorecard Overview -->
+<div class="row g-4 mb-4">
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Cumulative Score</div>
+      <div class="sf-stat-value text-success">95.4 / 100</div>
+      <div class="sf-stat-meta text-success">
+        <i data-lucide="check" style="width: 14px;"></i>
+        <span>Tier 1 Honors Standing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Evaluated Deliverables</div>
+      <div class="sf-stat-value text-slate-900">14 PRs</div>
+      <div class="sf-stat-meta text-slate-500">100% on-time submissions</div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Code Quality Rating</div>
+      <div class="sf-stat-value text-slate-900">38.5 / 40</div>
+      <div class="sf-stat-meta text-success">Flake8 & Pytest Exemplary</div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-xl-3">
+    <div class="sf-stat-card">
+      <div class="sf-stat-label">Supervising Mentor</div>
+      <div class="sf-stat-value text-slate-900" style="font-size: 1.3rem;">Sarah Jenkins</div>
+      <div class="sf-stat-meta text-primary">Principal Systems Architect</div>
+    </div>
+  </div>
+</div>
+
+<!-- Milestone Evaluation Cards -->
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="sf-card p-4 bg-white border mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <span class="sf-badge sf-badge-primary mb-1">Sprint 4 Deliverable</span>
+          <h2 class="h6 fw-bold text-slate-900 mb-0">PR #42: Connection Pool & Read Replica Routing</h2>
+        </div>
+        <span class="sf-badge sf-badge-success fs-6">Score: 96 / 100</span>
+      </div>
+
+      <!-- Rubric Breakdown -->
+      <div class="row g-3 mb-3 small">
+        <div class="col-6 col-md-3">
+          <div class="p-2 bg-slate-50 border rounded text-center">
+            <div class="text-slate-400" style="font-size: 0.7rem;">Code & Testing</div>
+            <div class="fw-bold text-slate-900">39 / 40</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-2 bg-slate-50 border rounded text-center">
+            <div class="text-slate-400" style="font-size: 0.7rem;">Architecture</div>
+            <div class="fw-bold text-slate-900">29 / 30</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-2 bg-slate-50 border rounded text-center">
+            <div class="text-slate-400" style="font-size: 0.7rem;">DWR & Standups</div>
+            <div class="fw-bold text-slate-900">19 / 20</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-2 bg-slate-50 border rounded text-center">
+            <div class="text-slate-400" style="font-size: 0.7rem;">Collaboration</div>
+            <div class="fw-bold text-slate-900">9 / 10</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Qualitative Feedback Quote -->
+      <div class="p-3 bg-slate-50 border rounded-2 small text-slate-700 mb-3">
+        <div class="fw-semibold text-slate-900 mb-1">Mentor Evaluation Notes:</div>
+        "Alex demonstrated exceptional mastery of SQLAlchemy connection pooling lifecycle. The test suite accurately reproduces socket disconnect recovery without leaked file descriptors. Approved for merge."
+      </div>
+      <div class="d-flex justify-content-between text-slate-400 small" style="font-size: 0.75rem;">
+        <span>Evaluated by: Sarah Jenkins • March 30, 2026</span>
+        <span>Verified Cryptographic Hash: <code>4f9812b...</code></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: Mentorship Recommendation -->
+  <div class="col-lg-4">
+    <div class="sf-card p-4 bg-white border">
+      <h3 class="h6 fw-bold text-slate-900 mb-3">Recommendation Letter Ready</h3>
+      <p class="text-slate-600 small mb-3">
+        Students maintaining an evaluation score >= 90% receive an official letter of recommendation from their mentor and direct placement fast-tracking.
+      </p>
+      <div class="p-3 bg-primary-50 border border-primary-200 rounded-2 text-primary small fw-semibold text-center mb-3">
+        Eligible for Enterprise Fast-Track
+      </div>
+      <button class="btn-sf-primary btn-sm w-100" onclick="SkillForgeUI.showToast('Recommendation letter exported as PDF.', 'success', 'Exported')">
+        <i data-lucide="download" style="width: 14px;"></i>
+        <span>Download Letter of Recommendation</span>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}

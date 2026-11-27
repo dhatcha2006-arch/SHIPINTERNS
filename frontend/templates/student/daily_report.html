@@ -1,0 +1,120 @@
+{% extends "base_app.html" %}
+
+{% block title %}Daily Work Reports (DWR) | SkillForge{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 fw-bold text-slate-900 mb-1">Daily Work Standup Reports (DWR)</h1>
+    <p class="text-slate-500 small mb-0">Record your daily engineering output, sprint goals, and blockers for mentor review and attendance credit.</p>
+  </div>
+  <span class="sf-badge sf-badge-primary">Sprint 4: Active Standup Cycle</span>
+</div>
+
+<div class="row g-4">
+  <!-- Today's Report Submission Form -->
+  <div class="col-lg-6">
+    <div class="sf-card p-4 p-md-5 bg-white border mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h6 fw-bold text-slate-900 mb-0 text-uppercase" style="letter-spacing: 0.05em;">Log Today's Standup (DWR)</h2>
+        <span class="sf-badge sf-badge-warning">Due by 6:00 PM</span>
+      </div>
+
+      <form id="dwrForm" onsubmit="handleDwrSubmit(event)">
+        <div class="row g-3 mb-3">
+          <div class="col-sm-6">
+            <label class="sf-label">Report Date</label>
+            <input type="date" class="sf-input" value="2026-03-31" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="sf-label">Engineering Hours Logged</label>
+            <input type="number" step="0.5" class="sf-input" value="6.5" min="1" max="12" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="sf-label">1. What did you accomplish since yesterday?</label>
+          <textarea class="sf-textarea" rows="3" required placeholder="Specific features, refactors, bugfixes...">Completed Unit tests for Celery task dispatching with 95% branch coverage. Configured dead-letter queue routing in Redis broker.</textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="sf-label">2. What are your target deliverables for today?</label>
+          <textarea class="sf-textarea" rows="3" required placeholder="PRs to push, tasks to complete...">Open PR #43 on skillforge/order-service and verify container image builds with Docker Compose.</textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="sf-label">3. Any blockers or dependencies?</label>
+          <input type="text" class="sf-input" value="None. Redis local container running stably on port 6379." required>
+        </div>
+
+        <div class="mb-4">
+          <label class="sf-label">GitHub Commit / PR Link (Proof of Work)</label>
+          <input type="url" class="sf-input font-monospace" value="https://github.com/skillforge/order-service/pull/43" required>
+        </div>
+
+        <button type="submit" id="dwrSubmitBtn" class="btn-sf-primary w-100 py-2">
+          <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+          <span>Submit Daily Standup Report</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Recent DWR Feed & Supervisor Approvals -->
+  <div class="col-lg-6">
+    <div class="sf-card bg-white border">
+      <div class="sf-card-header">
+        <h3 class="h6 fw-bold text-slate-900 mb-0">Supervisor Verification History</h3>
+        <span class="sf-badge sf-badge-success">Audit Complete</span>
+      </div>
+      <div class="sf-card-body p-4">
+        <!-- Report 1: Yesterday -->
+        <div class="p-3 bg-slate-50 border rounded-2 mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fw-semibold text-slate-900 small">March 30, 2026 (6.5 hrs logged)</span>
+            <span class="sf-badge sf-badge-success">Approved by Sarah</span>
+          </div>
+          <div class="text-slate-600 small mb-2">
+            <strong>Accomplished:</strong> Tuned PostgreSQL connection pool parameters in SQLAlchemy 2.0 with PgBouncer transaction pooling mode.
+          </div>
+          <div class="p-2 bg-white border rounded text-slate-700 small" style="font-size: 0.75rem;">
+            <strong class="text-primary">Mentor Sarah Jenkins:</strong> Excellent code isolation in the database module. Connection acquisition latency dropped from 42ms to 2.1ms in tests.
+          </div>
+        </div>
+
+        <!-- Report 2 -->
+        <div class="p-3 bg-slate-50 border rounded-2 mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fw-semibold text-slate-900 small">March 27, 2026 (7.0 hrs logged)</span>
+            <span class="sf-badge sf-badge-success">Approved by Sarah</span>
+          </div>
+          <div class="text-slate-600 small mb-2">
+            <strong>Accomplished:</strong> Authored unit test suites for JWT token rotation and invalidation checks.
+          </div>
+          <div class="p-2 bg-white border rounded text-slate-700 small" style="font-size: 0.75rem;">
+            <strong class="text-primary">Mentor Sarah Jenkins:</strong> Approved without revisions.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function handleDwrSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('dwrSubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Submitting DWR...';
+
+  SkillForgeUI.showToast('Today\'s work report logged and submitted to Mentor Sarah Jenkins!', 'success', 'DWR Recorded');
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.innerHTML = '<i data-lucide="check" style="width: 16px; height: 16px;"></i> <span>Submit Daily Standup Report</span>';
+    if (window.lucide) lucide.createIcons();
+  }, 1000);
+}
+</script>
+{% endblock %}
