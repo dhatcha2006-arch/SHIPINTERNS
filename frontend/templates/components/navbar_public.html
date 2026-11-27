@@ -1,0 +1,25 @@
+<nav class="sf-public-navbar">
+  <div class="container d-flex align-items-center justify-content-between h-100">
+    <a href="{{ url_for('home') }}" class="sf-brand-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      <span>SkillForge</span>
+    </a>
+
+    <div class="d-none d-lg-flex align-items-center gap-1">
+      <a href="{{ url_for('home') }}" class="sf-nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+      <a href="{{ url_for('about') }}" class="sf-nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
+      <a href="{{ url_for('programs') }}" class="sf-nav-link {% if request.endpoint == 'programs' %}active{% endif %}">Programs</a>
+      <a href="{{ url_for('internships') }}" class="sf-nav-link {% if request.endpoint == 'internships' %}active{% endif %}">Internships</a>
+      <a href="{{ url_for('careers') }}" class="sf-nav-link {% if request.endpoint == 'careers' %}active{% endif %}">Careers</a>
+      <a href="{{ url_for('contact') }}" class="sf-nav-link {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a>
+      <a href="{{ url_for('certificate_verify') }}" class="sf-nav-link text-primary {% if request.endpoint == 'certificate_verify' %}active{% endif %}">Verify Certificate</a>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+      <a href="{{ url_for('login') }}" class="btn-sf-ghost text-slate-700">Log in</a>
+      <a href="{{ url_for('register') }}" class="btn-sf-primary">Apply Now</a>
+    </div>
+  </div>
+</nav>
