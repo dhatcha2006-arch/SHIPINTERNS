@@ -12,3 +12,9 @@ def test_api_health(client):
     assert response.status_code == 200
     data = response.get_json()
     assert data['status'] == 'healthy'
+
+def test_home_page(client):
+    response = client.get('/')
+    assert response.status_code == 200
+    assert b"SkillForge" in response.data
+    assert b"Where Academic Foundations Meet Supervised Industry Practice" in response.data
