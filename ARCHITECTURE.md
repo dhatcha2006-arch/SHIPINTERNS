@@ -1,7 +1,7 @@
-# SkillForge Architecture & Frontend Engineering Specification
+# ShipInterns Architecture & Frontend Engineering Specification
 
 ## Architecture Overview
-SkillForge is built using a decoupled, modular Flask Jinja2 + Bootstrap 5.3 + Vanilla ES6 architecture. The frontend strictly avoids AI slop, decorative gradients, and ungrounded templates in favor of a clean, human-crafted engineering design system.
+ShipInterns is built using a decoupled, modular Flask Jinja2 + Bootstrap 5.3 + Vanilla ES6 architecture. The frontend strictly avoids AI slop, decorative gradients, and ungrounded templates in favor of a clean, human-crafted engineering design system.
 
 ### Core Principles (Unslop Standard):
 1. **4px Grid Discipline:** All margins, paddings, gaps, and heights follow strict multiples of 4px.

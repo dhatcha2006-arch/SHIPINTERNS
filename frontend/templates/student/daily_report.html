@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Daily Work Reports (DWR) | SkillForge{% endblock %}
+{% block title %}Daily Work Reports (DWR) | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
@@ -39,7 +39,7 @@
 
         <div class="mb-3">
           <label class="sf-label">2. What are your target deliverables for today?</label>
-          <textarea class="sf-textarea" rows="3" required placeholder="PRs to push, tasks to complete...">Open PR #43 on skillforge/order-service and verify container image builds with Docker Compose.</textarea>
+          <textarea class="sf-textarea" rows="3" required placeholder="PRs to push, tasks to complete...">Open PR #43 on shipinterns/order-service and verify container image builds with Docker Compose.</textarea>
         </div>
 
         <div class="mb-3">
@@ -49,7 +49,7 @@
 
         <div class="mb-4">
           <label class="sf-label">GitHub Commit / PR Link (Proof of Work)</label>
-          <input type="url" class="sf-input font-monospace" value="https://github.com/skillforge/order-service/pull/43" required>
+          <input type="url" class="sf-input font-monospace" value="https://github.com/shipinterns/order-service/pull/43" required>
         </div>
 
         <button type="submit" id="dwrSubmitBtn" class="btn-sf-primary w-100 py-2">
@@ -109,7 +109,7 @@ function handleDwrSubmit(e) {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Submitting DWR...';
 
-  SkillForgeUI.showToast('Today\'s work report logged and submitted to Mentor Sarah Jenkins!', 'success', 'DWR Recorded');
+  ShipInternsUI.showToast('Today\'s work report logged and submitted to Mentor Sarah Jenkins!', 'success', 'DWR Recorded');
   setTimeout(() => {
     btn.disabled = false;
     btn.innerHTML = '<i data-lucide="check" style="width: 16px; height: 16px;"></i> <span>Submit Daily Standup Report</span>';

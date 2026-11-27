@@ -7,7 +7,7 @@ app = Flask(
     static_folder=os.path.join(os.path.dirname(__file__), 'frontend', 'static'),
     static_url_path='/static'
 )
-app.config['SECRET_KEY'] = 'skillforge-dev-secret-key-2026'
+app.config['SECRET_KEY'] = 'shipinterns-dev-secret-key-2026'
 
 # --- PUBLIC ROUTES ---
 @app.route('/')
@@ -172,7 +172,7 @@ def employee_portal():
 # --- API ENDPOINTS (COORDINATED WITH ARI) ---
 @app.route('/api/v1/health')
 def api_health():
-    return jsonify({"status": "healthy", "service": "SkillForge Frontend-Backend Gateway", "version": "1.0.0"})
+    return jsonify({"status": "healthy", "service": "ShipInterns Frontend-Backend Gateway", "version": "1.0.0"})
 
 @app.route('/api/v1/auth/login', methods=['POST'])
 def api_login():
@@ -191,7 +191,7 @@ def api_login():
         "user": {
             "id": 101,
             "name": "Dhatchanamoorthi Anbazhagan",
-            "email": email or "dhatcha2006@skillforge.edu",
+            "email": email or "dhatcha2006@shipinterns.edu",
             "role": role,
             "cohort": "Spring 2026 Full Stack Cohort"
         }
@@ -202,7 +202,7 @@ def api_register():
     data = request.get_json() or {}
     return jsonify({
         "success": True,
-        "message": "Registration successful. Welcome to SkillForge!",
+        "message": "Registration successful. Welcome to ShipInterns!",
         "user": data
     })
 

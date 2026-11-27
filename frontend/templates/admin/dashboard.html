@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Central Admin Console | SkillForge{% endblock %}
+{% block title %}Central Admin Console | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
@@ -131,7 +131,7 @@
         </div>
       </div>
       <div class="mt-4 pt-3 border-top">
-        <button class="btn-sf-secondary btn-sm w-100" onclick="SkillForgeUI.showToast('Global audit log exported to CSV.', 'info', 'Audit Log')">
+        <button class="btn-sf-secondary btn-sm w-100" onclick="ShipInternsUI.showToast('Global audit log exported to CSV.', 'info', 'Audit Log')">
           <i data-lucide="download" style="width: 14px;"></i>
           <span>Export System Audit Logs</span>
         </button>
@@ -144,11 +144,11 @@
 {% block extra_scripts %}
 <script>
 function addNewCohort() {
-  SkillForgeUI.showToast('New cohort creation wizard opened.', 'info', 'Admin Console');
+  ShipInternsUI.showToast('New cohort creation wizard opened.', 'info', 'Admin Console');
 }
 
 function manageCohort(cohortId) {
-  SkillForgeUI.showToast(`Managing configuration for Cohort ${cohortId}.`, 'info', 'Cohort Admin');
+  ShipInternsUI.showToast(`Managing configuration for Cohort ${cohortId}.`, 'info', 'Cohort Admin');
 }
 </script>
 {% endblock %}

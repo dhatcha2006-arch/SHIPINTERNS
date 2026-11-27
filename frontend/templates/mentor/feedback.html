@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Mentor Grading Rubric | SkillForge{% endblock %}
+{% block title %}Mentor Grading Rubric | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
@@ -131,7 +131,7 @@ function handleMentorGrade(e) {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Publishing Signoff...';
 
-  SkillForgeUI.showToast('Evaluation recorded and signed into Dhatchanamoorthi\'s Skill Passport!', 'success', 'Rubric Published');
+  ShipInternsUI.showToast('Evaluation recorded and signed into Dhatchanamoorthi\'s Skill Passport!', 'success', 'Rubric Published');
   setTimeout(() => {
     window.location.href = '/mentor/dashboard';
   }, 1200);

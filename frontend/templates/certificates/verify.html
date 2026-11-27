@@ -1,13 +1,13 @@
 {% extends "base_public.html" %}
 
-{% block title %}Verify Certificate Credential | SkillForge{% endblock %}
+{% block title %}Verify Certificate Credential | ShipInterns{% endblock %}
 
 {% block content %}
 <section class="py-5 bg-white border-bottom">
   <div class="container py-3">
     <div class="max-w-xl mx-auto text-center" style="max-width: 600px;">
       <span class="sf-badge sf-badge-primary mb-2">Cryptographic Verification Authority</span>
-      <h1 class="h3 fw-bold text-slate-900 mb-2">SkillForge Certificate Verification</h1>
+      <h1 class="h3 fw-bold text-slate-900 mb-2">ShipInterns Certificate Verification</h1>
       <p class="text-slate-600 small mb-4">
         Instantly verify authentic graduation credentials, audited student pull requests, and mentor evaluation rubrics.
       </p>
@@ -77,7 +77,7 @@
       <div class="p-3 bg-slate-900 text-slate-100 rounded-2 mb-4 font-monospace small" style="line-height: 1.6; font-size: 0.75rem;">
         <div class="text-slate-400">IMMUTABLE REPOSITORY COMMIT ANCHOR</div>
         <div class="text-success">&check; SHA-256 Commit: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</div>
-        <div class="text-slate-400">Timestamp: 2026-03-31T09:00:00Z • Issuer: SkillForge Academic Examination Board</div>
+        <div class="text-slate-400">Timestamp: 2026-03-31T09:00:00Z • Issuer: ShipInterns Academic Examination Board</div>
       </div>
 
       <div class="d-flex justify-content-between align-items-center pt-2">
@@ -95,7 +95,7 @@ function handleVerify(e) {
   e.preventDefault();
   const input = document.getElementById('certIdInput').value.trim();
   document.getElementById('displayCertId').innerText = input;
-  SkillForgeUI.showToast(`Credential ${input} confirmed authentic in academy registry.`, 'success', 'Verification Success');
+  ShipInternsUI.showToast(`Credential ${input} confirmed authentic in academy registry.`, 'success', 'Verification Success');
 }
 </script>
 {% endblock %}

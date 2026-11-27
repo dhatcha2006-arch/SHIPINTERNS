@@ -16,20 +16,20 @@ def test_api_health(client):
 def test_home_page(client):
     response = client.get('/')
     assert response.status_code == 200
-    assert b"SkillForge" in response.data
+    assert b"ShipInterns" in response.data
     assert b"Where Academic Foundations Meet Supervised Industry Practice" in response.data
 
 def test_public_pages(client):
     for route in ['/about', '/programs', '/contact', '/careers', '/internships']:
         response = client.get(route)
         assert response.status_code == 200
-        assert b"SkillForge" in response.data
+        assert b"ShipInterns" in response.data
 
 def test_auth_pages(client):
     for route in ['/auth/login', '/auth/register', '/auth/forgot-password']:
         response = client.get(route)
         assert response.status_code == 200
-        assert b"SkillForge" in response.data
+        assert b"ShipInterns" in response.data
 
 def test_student_dashboard(client):
     response = client.get('/student/dashboard')
@@ -146,7 +146,7 @@ def test_certificates(client):
 
     res2 = client.get('/certificates/verify')
     assert res2.status_code == 200
-    assert b"SkillForge Certificate Verification" in res2.data
+    assert b"ShipInterns Certificate Verification" in res2.data
 
 def test_admin_and_hr_portals(client):
     res1 = client.get('/admin/dashboard')
@@ -163,7 +163,7 @@ def test_student_analytics(client):
     assert b"Student Engineering Performance Analytics" in response.data
 
 def test_auth_api(client):
-    res = client.post('/api/v1/auth/login', json={'email': 'dhatcha2006@skillforge.edu', 'password': 'test'})
+    res = client.post('/api/v1/auth/login', json={'email': 'dhatcha2006@shipinterns.edu', 'password': 'test'})
     assert res.status_code == 200
     data = res.get_json()
     assert data['success'] is True

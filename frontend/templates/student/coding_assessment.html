@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Coding Assessment Studio | SkillForge{% endblock %}
+{% block title %}Coding Assessment Studio | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
@@ -125,7 +125,7 @@ class TokenBucketRateLimiter:
       <span class="sf-badge sf-badge-success" id="testSummaryBadge">Ready</span>
     </div>
     <div class="sf-console-output" id="testConsoleOutput">
-SkillForge Automated Test Harness v2.4
+ShipInterns Automated Test Harness v2.4
 Target: solution.py (Python 3.12 Runtime)
 
 Press [Run Tests] to execute public test cases.
@@ -152,11 +152,11 @@ function runCode() {
   btn.innerHTML = '<i data-lucide="play" style="width: 14px; height: 14px;"></i> <span>Run Tests</span>';
   if (window.lucide) lucide.createIcons();
 
-  SkillForgeUI.showToast('All 4 test cases passed successfully!', 'success', 'Compiler Output');
+  ShipInternsUI.showToast('All 4 test cases passed successfully!', 'success', 'Compiler Output');
 }
 
 function submitAssessment() {
-  SkillForgeUI.showToast('Coding assessment submitted with score: 100/100! Recorded to your Skill Passport.', 'success', 'Assessment Scored');
+  ShipInternsUI.showToast('Coding assessment submitted with score: 100/100! Recorded to your Skill Passport.', 'success', 'Assessment Scored');
   setTimeout(() => {
     window.location.href = '/student/assignments';
   }, 1200);

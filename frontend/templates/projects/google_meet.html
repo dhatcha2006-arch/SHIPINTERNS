@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Google Meet Scheduling | SkillForge{% endblock %}
+{% block title %}Google Meet Scheduling | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
@@ -134,7 +134,7 @@ function handleScheduleMeet(e) {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Generating Meet Link...';
 
-  SkillForgeUI.showToast('Google Meet session scheduled! Calendar invitation dispatched.', 'success', 'Session Scheduled');
+  ShipInternsUI.showToast('Google Meet session scheduled! Calendar invitation dispatched.', 'success', 'Session Scheduled');
   setTimeout(() => {
     btn.disabled = false;
     btn.innerHTML = '<i data-lucide="calendar-plus" style="width: 16px; height: 16px;"></i> <span>Confirm & Generate Google Meet Link</span>';

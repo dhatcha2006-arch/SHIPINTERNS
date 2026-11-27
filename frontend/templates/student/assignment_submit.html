@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Submit Assignment | SkillForge{% endblock %}
+{% block title %}Submit Assignment | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="mb-4">
@@ -34,7 +34,7 @@
         <div class="mb-4">
           <label class="sf-label">GitHub Pull Request URL (Primary)</label>
           <div class="position-relative">
-            <input type="url" id="prUrlInput" class="sf-input ps-5" required placeholder="https://github.com/skillforge/order-service/pull/43" value="https://github.com/skillforge/order-service/pull/43">
+            <input type="url" id="prUrlInput" class="sf-input ps-5" required placeholder="https://github.com/shipinterns/order-service/pull/43" value="https://github.com/shipinterns/order-service/pull/43">
             <i data-lucide="git-pull-request" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-slate-400" style="width: 16px; height: 16px;"></i>
           </div>
           <div class="text-slate-400 small mt-1" style="font-size: 0.75rem;">Your PR must be rebased on <code>main</code> and have passing automated CI checks.</div>
@@ -142,7 +142,7 @@ function handleAssignmentSubmit(e) {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Submitting...';
 
-  SkillForgeUI.showToast('Assignment submitted successfully! Notification sent to Mentor Sarah Jenkins.', 'success', 'Submission Confirmed');
+  ShipInternsUI.showToast('Assignment submitted successfully! Notification sent to Mentor Sarah Jenkins.', 'success', 'Submission Confirmed');
   setTimeout(() => {
     window.location.href = '/student/assignments';
   }, 1200);

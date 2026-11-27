@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Skill Passport & Profile | SkillForge{% endblock %}
+{% block title %}Skill Passport & Profile | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
@@ -38,7 +38,7 @@
       <div class="text-start border-top pt-3">
         <div class="mb-2 small">
           <span class="text-slate-400">Institutional Email:</span><br>
-          <span class="text-slate-800 fw-medium">dhatcha2006@skillforge.edu</span>
+          <span class="text-slate-800 fw-medium">dhatcha2006@shipinterns.edu</span>
         </div>
         <div class="mb-2 small">
           <span class="text-slate-400">University:</span><br>
@@ -82,7 +82,7 @@
             <span class="badge bg-slate-900 text-white px-2 py-1">OFFICIAL CREDENTIAL</span>
             <span class="sf-badge sf-badge-primary">Cryptographic Skill Passport</span>
           </div>
-          <h2 class="h4 fw-bold text-slate-900 mb-1">SkillForge Academy Verified Passport</h2>
+          <h2 class="h4 fw-bold text-slate-900 mb-1">ShipInterns Academy Verified Passport</h2>
           <div class="text-slate-500 small">Issued to Dhatchanamoorthi Anbazhagan • Candidate UID: SF-2026-88412</div>
         </div>
         <div class="text-sm-end">
@@ -172,7 +172,7 @@
                   <div class="fw-medium text-slate-900">PR #42: Connection Pooling & Idempotent Transactions</div>
                   <code class="text-slate-400 small" style="font-size: 0.75rem;">commit 4f9812b</code>
                 </td>
-                <td class="small text-slate-600">skillforge/order-service</td>
+                <td class="small text-slate-600">shipinterns/order-service</td>
                 <td><span class="sf-badge sf-badge-success">Sarah Jenkins (Approved)</span></td>
                 <td class="tabular-nums fw-semibold text-slate-900">96 / 100</td>
               </tr>
@@ -181,7 +181,7 @@
                   <div class="fw-medium text-slate-900">PR #38: Celery Background Task Dispatcher with Redis</div>
                   <code class="text-slate-400 small" style="font-size: 0.75rem;">commit 91c4ea0</code>
                 </td>
-                <td class="small text-slate-600">skillforge/worker-fleet</td>
+                <td class="small text-slate-600">shipinterns/worker-fleet</td>
                 <td><span class="sf-badge sf-badge-success">Sarah Jenkins (Approved)</span></td>
                 <td class="tabular-nums fw-semibold text-slate-900">94 / 100</td>
               </tr>
@@ -193,7 +193,7 @@
       <!-- Passport Footer Signoff -->
       <div class="d-flex justify-content-between align-items-center pt-3 border-top small text-slate-500">
         <div>Supervised by: <strong>Sarah Jenkins (Principal Systems Mentor)</strong></div>
-        <div>Academy Verification Authority: <strong>SkillForge Board of Examiners</strong></div>
+        <div>Academy Verification Authority: <strong>ShipInterns Board of Examiners</strong></div>
       </div>
     </div>
   </div>
@@ -204,7 +204,7 @@
 <script>
 function handleProfileUpdate(e) {
   e.preventDefault();
-  SkillForgeUI.showToast('Profile information updated successfully.', 'success', 'Saved');
+  ShipInternsUI.showToast('Profile information updated successfully.', 'success', 'Saved');
 }
 </script>
 {% endblock %}

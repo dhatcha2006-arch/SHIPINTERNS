@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Lesson: Event Streaming & Microservices | SkillForge{% endblock %}
+{% block title %}Lesson: Event Streaming & Microservices | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="mb-3">
@@ -12,7 +12,7 @@
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
     <h1 class="h4 fw-bold text-slate-900 mb-0">Lesson 2.2: Connection Pooling with PgBouncer & SQLAlchemy Engine Options</h1>
     <div class="d-flex gap-2">
-      <button class="btn-sf-secondary btn-sm" onclick="SkillForgeUI.showToast('Note bookmarked to your study portfolio.', 'info', 'Bookmarked')">
+      <button class="btn-sf-secondary btn-sm" onclick="ShipInternsUI.showToast('Note bookmarked to your study portfolio.', 'info', 'Bookmarked')">
         <i data-lucide="bookmark" style="width: 14px; height: 14px;"></i>
         <span>Bookmark</span>
       </button>
@@ -184,7 +184,7 @@ function togglePlay() {
   if (isPlaying) {
     bottomIcon.setAttribute('data-lucide', 'pause');
     centerBtn.style.opacity = '0';
-    SkillForgeUI.showToast('Playback started.', 'info', 'Video Player');
+    ShipInternsUI.showToast('Playback started.', 'info', 'Video Player');
   } else {
     bottomIcon.setAttribute('data-lucide', 'play');
     centerBtn.style.opacity = '1';
@@ -193,7 +193,7 @@ function togglePlay() {
 }
 
 function markComplete() {
-  SkillForgeUI.showToast('Lesson marked completed! Progress updated to 82%.', 'success', 'Curriculum Progress');
+  ShipInternsUI.showToast('Lesson marked completed! Progress updated to 82%.', 'success', 'Curriculum Progress');
   setTimeout(() => {
     window.location.href = '/student/coding-assessment';
   }, 1000);

@@ -1,9 +1,9 @@
 /**
- * SkillForge UI Interactive Components Library
+ * ShipInterns UI Interactive Components Library
  * Handles alerts, toast system, mobile sidebar toggle and modals
  */
 
-const SkillForgeUI = {
+const ShipInternsUI = {
   // Toast Notification System
   showToast(message, type = 'info', title = '') {
     const container = document.getElementById('sfToastContainer');
@@ -65,7 +65,10 @@ const SkillForgeUI = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  SkillForgeUI.initMobileNav();
+  ShipInternsUI.initMobileNav();
 });
 
-window.SkillForgeUI = SkillForgeUI;
+window.ShipInternsUI = ShipInternsUI;
+
+// Backward compatibility alias
+window.SkillForgeUI = window.ShipInternsUI;

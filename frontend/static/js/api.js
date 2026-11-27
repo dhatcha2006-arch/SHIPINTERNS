@@ -1,8 +1,8 @@
 /**
- * SkillForge Unified API Client
+ * ShipInterns Unified API Client
  * Coordinates with Ari's Flask REST APIs
  */
-const SkillForgeAPI = {
+const ShipInternsAPI = {
   baseURL: '/api/v1',
 
   async request(endpoint, options = {}) {
@@ -33,7 +33,7 @@ const SkillForgeAPI = {
 
       return { success: true, data };
     } catch (err) {
-      console.warn(`[SkillForge API Error] ${endpoint}:`, err.message);
+      console.warn(`[ShipInterns API Error] ${endpoint}:`, err.message);
       return { success: false, error: err.message };
     }
   },
@@ -41,7 +41,7 @@ const SkillForgeAPI = {
   // Auth Methods
   auth: {
     async login(credentials) {
-      const res = await SkillForgeAPI.request('/auth/login', {
+      const res = await ShipInternsAPI.request('/auth/login', {
         method: 'POST',
         body: JSON.stringify(credentials)
       });
@@ -52,7 +52,7 @@ const SkillForgeAPI = {
       return res;
     },
     async register(userData) {
-      return SkillForgeAPI.request('/auth/register', {
+      return ShipInternsAPI.request('/auth/register', {
         method: 'POST',
         body: JSON.stringify(userData)
       });
@@ -70,8 +70,11 @@ const SkillForgeAPI = {
 
   // System Health
   async checkHealth() {
-    return SkillForgeAPI.request('/health');
+    return ShipInternsAPI.request('/health');
   }
 };
 
-window.SkillForgeAPI = SkillForgeAPI;
+window.ShipInternsAPI = ShipInternsAPI;
+
+// Backward compatibility alias
+window.SkillForgeAPI = window.ShipInternsAPI;

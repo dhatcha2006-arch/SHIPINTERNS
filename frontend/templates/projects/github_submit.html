@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}GitHub Pull Request Submission | SkillForge{% endblock %}
+{% block title %}GitHub Pull Request Submission | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="mb-4">
@@ -27,9 +27,9 @@
         <div class="mb-3">
           <label class="sf-label">Target Supervised Repository</label>
           <select class="sf-select" id="repoSelect">
-            <option selected>skillforge/order-service</option>
-            <option>skillforge/worker-fleet</option>
-            <option>skillforge/infra-compose</option>
+            <option selected>shipinterns/order-service</option>
+            <option>shipinterns/worker-fleet</option>
+            <option>shipinterns/infra-compose</option>
           </select>
         </div>
 
@@ -46,7 +46,7 @@
 
         <div class="mb-3">
           <label class="sf-label">Direct GitHub PR Webhook URL</label>
-          <input type="url" class="sf-input font-monospace" value="https://github.com/skillforge/order-service/pull/42" required>
+          <input type="url" class="sf-input font-monospace" value="https://github.com/shipinterns/order-service/pull/42" required>
         </div>
 
         <div class="mb-4">
@@ -80,7 +80,7 @@
       </div>
 
       <div class="p-3 bg-slate-900 text-slate-100 rounded-2 mb-3 font-monospace small" style="line-height: 1.6; font-size: 0.75rem;">
-        <div>repo: skillforge/order-service #42</div>
+        <div>repo: shipinterns/order-service #42</div>
         <div>head: <code>4f9812b</code> &rarr; base: <code>main</code></div>
         <div class="text-success mt-1">&check; 42/42 Pytest unit tests passed (1.2s)</div>
         <div class="text-success">&check; Flake8 linter: 0 errors, 0 warnings</div>
@@ -115,7 +115,7 @@ function handleGithubSubmit(e) {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Dispatching to Mentor Queue...';
 
-  SkillForgeUI.showToast('Pull Request #42 submitted for review. Mentor Sarah Jenkins notified.', 'success', 'PR Submitted');
+  ShipInternsUI.showToast('Pull Request #42 submitted for review. Mentor Sarah Jenkins notified.', 'success', 'PR Submitted');
   setTimeout(() => {
     window.location.href = '/projects/dashboard';
   }, 1200);

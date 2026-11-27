@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Mentor Allocations & Squad Directory | SkillForge{% endblock %}
+{% block title %}Mentor Allocations & Squad Directory | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
@@ -145,7 +145,7 @@
 {% block extra_scripts %}
 <script>
 function openScheduleModal() {
-  SkillForgeUI.showToast('Mentor Office Hours scheduler initialized. Google Meet integration ready.', 'info', 'Scheduler');
+  ShipInternsUI.showToast('Mentor Office Hours scheduler initialized. Google Meet integration ready.', 'info', 'Scheduler');
   setTimeout(() => {
     window.location.href = '/projects/google-meet';
   }, 1000);

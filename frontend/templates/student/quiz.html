@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Examination Engine | SkillForge{% endblock %}
+{% block title %}Examination Engine | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="container py-2" style="max-width: 900px;">
@@ -92,7 +92,7 @@
         <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
         <span>Previous</span>
       </button>
-      <button class="btn-sf-ghost text-warning" onclick="SkillForgeUI.showToast('Question 1 flagged for review.', 'warning', 'Flagged')">
+      <button class="btn-sf-ghost text-warning" onclick="ShipInternsUI.showToast('Question 1 flagged for review.', 'warning', 'Flagged')">
         <i data-lucide="flag" style="width: 14px; height: 14px;"></i>
         <span>Flag Question</span>
       </button>
@@ -108,12 +108,12 @@
 {% block extra_scripts %}
 <script>
 function goToQuestion(qNum) {
-  SkillForgeUI.showToast(`Navigated to Question ${qNum}`, 'info', 'Exam Navigator');
+  ShipInternsUI.showToast(`Navigated to Question ${qNum}`, 'info', 'Exam Navigator');
 }
 
 function finishExam() {
   if (confirm('Are you ready to submit your exam responses for mentor evaluation?')) {
-    SkillForgeUI.showToast('Exam submitted successfully! Score: 95/100 (Pass with Distinction).', 'success', 'Exam Evaluated');
+    ShipInternsUI.showToast('Exam submitted successfully! Score: 95/100 (Pass with Distinction).', 'success', 'Exam Evaluated');
     setTimeout(() => {
       window.location.href = '/student/assignments';
     }, 1200);

@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Attendance & Work Logs | SkillForge{% endblock %}
+{% block title %}Attendance & Work Logs | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
@@ -180,12 +180,12 @@ function handlePunchIn() {
   btn.innerHTML = '<i data-lucide="check" style="width: 14px;"></i> Checked In (09:02 AM UTC)';
   if (window.lucide) lucide.createIcons();
 
-  SkillForgeUI.showToast('Today\'s check-in recorded! Attendance percentage: 97.1%.', 'success', 'Punch In Confirmed');
+  ShipInternsUI.showToast('Today\'s check-in recorded! Attendance percentage: 97.1%.', 'success', 'Punch In Confirmed');
 }
 
 function handleRegularize(e) {
   e.preventDefault();
-  SkillForgeUI.showToast('Regularization request submitted to supervisor.', 'info', 'Request Dispatched');
+  ShipInternsUI.showToast('Regularization request submitted to supervisor.', 'info', 'Request Dispatched');
 }
 </script>
 {% endblock %}

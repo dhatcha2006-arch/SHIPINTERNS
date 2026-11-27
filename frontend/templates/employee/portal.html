@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Corporate Talent Portal | SkillForge{% endblock %}
+{% block title %}Corporate Talent Portal | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
@@ -119,11 +119,11 @@
 {% block extra_scripts %}
 <script>
 function shortlistCandidate(name) {
-  SkillForgeUI.showToast(`${name} added to your company's hiring interview queue.`, 'success', 'Candidate Shortlisted');
+  ShipInternsUI.showToast(`${name} added to your company's hiring interview queue.`, 'success', 'Candidate Shortlisted');
 }
 
 function exportShortlist() {
-  SkillForgeUI.showToast('Exported shortlisted candidate dossier to PDF.', 'info', 'Export Complete');
+  ShipInternsUI.showToast('Exported shortlisted candidate dossier to PDF.', 'info', 'Export Complete');
 }
 </script>
 {% endblock %}

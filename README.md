@@ -1,6 +1,6 @@
-# SkillForge – Internship & Training Academy Management Platform
+# ShipInterns – Internship & Training Academy Management Platform
 
-SkillForge is a production-grade, enterprise-ready internship and training academy management platform connecting students, mentors, corporate training partners, and administrators.
+ShipInterns is a production-grade, enterprise-ready internship and training academy management platform connecting students, mentors, corporate training partners, and administrators.
 
 ## Technology Stack
 - **Frontend:** HTML5, CSS3, Bootstrap 5.3, Vanilla JavaScript (ES6+), Jinja2 Templates, Fetch API

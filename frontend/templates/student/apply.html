@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Internship Application | SkillForge{% endblock %}
+{% block title %}Internship Application | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="container py-2" style="max-width: 840px;">
@@ -45,7 +45,7 @@
         </div>
         <div class="col-sm-6">
           <label class="sf-label">Email Address</label>
-          <input type="email" class="sf-input" value="dhatcha2006@skillforge.edu" required>
+          <input type="email" class="sf-input" value="dhatcha2006@shipinterns.edu" required>
         </div>
         <div class="col-sm-8">
           <label class="sf-label">College / University Name</label>
@@ -116,7 +116,7 @@ function submitApplication(e) {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Submitting...';
 
-  SkillForgeUI.showToast('Application successfully registered! Redirecting to tracker...', 'success', 'Application Received');
+  ShipInternsUI.showToast('Application successfully registered! Redirecting to tracker...', 'success', 'Application Received');
   setTimeout(() => {
     window.location.href = '/student/application-status';
   }, 1000);

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Sign In | SkillForge Academy{% endblock %}
+{% block title %}Sign In | ShipInterns Academy{% endblock %}
 
 {% block layout %}
 <div class="min-vh-100 d-flex flex-column justify-content-center py-5 bg-canvas">
@@ -11,7 +11,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
         </svg>
-        <span>SkillForge</span>
+        <span>ShipInterns</span>
       </a>
       <h1 class="h4 fw-bold text-slate-900 mb-1">Academy Portal Sign In</h1>
       <p class="text-slate-500 small">Access your supervised internship, curriculum, and tasks.</p>
@@ -33,7 +33,7 @@
       <form id="loginForm" onsubmit="handleLogin(event)">
         <div class="mb-3">
           <label class="sf-label" for="emailInput">Institutional / Work Email</label>
-          <input type="email" id="emailInput" class="sf-input" required placeholder="dhatcha2006@skillforge.edu" autocomplete="email">
+          <input type="email" id="emailInput" class="sf-input" required placeholder="dhatcha2006@shipinterns.edu" autocomplete="email">
         </div>
 
         <div class="mb-3">
@@ -75,13 +75,13 @@
 <script>
 function fillDemo(role) {
   const emailMap = {
-    student: 'dhatcha2006@skillforge.edu',
-    mentor: 'sarah.jenkins@mentor.skillforge.edu',
-    admin: 'admin@skillforge.edu',
-    hr: 'hr.partner@skillforge.edu'
+    student: 'dhatcha2006@shipinterns.edu',
+    mentor: 'sarah.jenkins@mentor.shipinterns.edu',
+    admin: 'admin@shipinterns.edu',
+    hr: 'hr.partner@shipinterns.edu'
   };
-  document.getElementById('emailInput').value = emailMap[role] || 'student@skillforge.edu';
-  document.getElementById('passwordInput').value = 'SkillForge2026!';
+  document.getElementById('emailInput').value = emailMap[role] || 'student@shipinterns.edu';
+  document.getElementById('passwordInput').value = 'ShipInterns2026!';
 }
 
 function togglePassword() {
@@ -106,9 +106,9 @@ async function handleLogin(e) {
   const email = document.getElementById('emailInput').value.trim();
   const password = document.getElementById('passwordInput').value;
 
-  const res = await SkillForgeAPI.auth.login({ email, password });
+  const res = await ShipInternsAPI.auth.login({ email, password });
   if (res.success) {
-    SkillForgeUI.showToast('Authentication successful. Redirecting...', 'success', 'Welcome');
+    ShipInternsUI.showToast('Authentication successful. Redirecting...', 'success', 'Welcome');
     setTimeout(() => {
       const user = res.data.user || {};
       if (user.role === 'mentor') {
@@ -125,7 +125,7 @@ async function handleLogin(e) {
     btn.disabled = false;
     btn.innerHTML = '<span>Authenticate & Continue</span> <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>';
     if (window.lucide) lucide.createIcons();
-    SkillForgeUI.showToast(res.error || 'Invalid credentials', 'danger', 'Login Failed');
+    ShipInternsUI.showToast(res.error || 'Invalid credentials', 'danger', 'Login Failed');
   }
 }
 </script>

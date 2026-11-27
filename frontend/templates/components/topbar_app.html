@@ -1,6 +1,6 @@
 <header class="sf-topbar">
   <div class="d-flex align-items-center gap-3">
-    <button class="btn btn-sm btn-ghost d-lg-none" onclick="SkillForgeUI.toggleSidebar()">
+    <button class="btn btn-sm btn-ghost d-lg-none" onclick="ShipInternsUI.toggleSidebar()">
       <i data-lucide="menu"></i>
     </button>
     <div class="d-none d-md-flex align-items-center gap-2">
@@ -56,7 +56,7 @@
         <li><a class="dropdown-item small" href="{{ url_for('student_profile') }}"><i data-lucide="user" class="me-2" style="width: 14px;"></i> My Profile</a></li>
         <li><a class="dropdown-item small" href="{{ url_for('student_analytics') }}"><i data-lucide="bar-chart-2" class="me-2" style="width: 14px;"></i> Analytics</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><button class="dropdown-item small text-danger" onclick="SkillForgeAPI.auth.logout()"><i data-lucide="log-out" class="me-2" style="width: 14px;"></i> Logout</button></li>
+        <li><button class="dropdown-item small text-danger" onclick="ShipInternsAPI.auth.logout()"><i data-lucide="log-out" class="me-2" style="width: 14px;"></i> Logout</button></li>
       </ul>
     </div>
   </div>

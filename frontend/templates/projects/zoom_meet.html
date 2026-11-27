@@ -1,6 +1,6 @@
 {% extends "base_app.html" %}
 
-{% block title %}Zoom Virtual Classroom | SkillForge{% endblock %}
+{% block title %}Zoom Virtual Classroom | ShipInterns{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
@@ -58,10 +58,10 @@
           </div>
 
           <div class="d-flex align-items-center gap-2">
-            <button class="btn btn-sm btn-outline-light" onclick="SkillForgeUI.showToast('Screen sharing initialized.', 'info', 'Screen Share')">
+            <button class="btn btn-sm btn-outline-light" onclick="ShipInternsUI.showToast('Screen sharing initialized.', 'info', 'Screen Share')">
               <i data-lucide="share" style="width: 16px;"></i>
             </button>
-            <button class="btn btn-sm btn-outline-light" onclick="SkillForgeUI.showToast('Participant list: 8 connected.', 'info', 'Participants')">
+            <button class="btn btn-sm btn-outline-light" onclick="ShipInternsUI.showToast('Participant list: 8 connected.', 'info', 'Participants')">
               <i data-lucide="users" style="width: 16px;"></i>
             </button>
           </div>
@@ -126,18 +126,18 @@ function toggleMic() {
   if (micActive) {
     icon.setAttribute('data-lucide', 'mic');
     text.innerText = 'Mute';
-    SkillForgeUI.showToast('Microphone unmuted.', 'info', 'Audio');
+    ShipInternsUI.showToast('Microphone unmuted.', 'info', 'Audio');
   } else {
     icon.setAttribute('data-lucide', 'mic-off');
     text.innerText = 'Unmuted';
-    SkillForgeUI.showToast('Microphone muted.', 'warning', 'Audio');
+    ShipInternsUI.showToast('Microphone muted.', 'warning', 'Audio');
   }
   if (window.lucide) lucide.createIcons();
 }
 
 function leaveSession() {
   if (confirm('Leave current Zoom mentorship session?')) {
-    SkillForgeUI.showToast('You left the virtual session.', 'info', 'Session Ended');
+    ShipInternsUI.showToast('You left the virtual session.', 'info', 'Session Ended');
     window.location.href = '/student/dashboard';
   }
 }
@@ -145,7 +145,7 @@ function leaveSession() {
 function sendChatMessage() {
   const input = document.getElementById('chatInput');
   if (input.value.trim()) {
-    SkillForgeUI.showToast('Message sent to meeting chat.', 'success', 'Chat');
+    ShipInternsUI.showToast('Message sent to meeting chat.', 'success', 'Chat');
     input.value = '';
   }
 }
